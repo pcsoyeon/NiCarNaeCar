@@ -7,10 +7,25 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+import NiCarNaeCar_Util
+
+final class MainViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentAlert(title: "ㅎ2")
+    }
+    
+    override func configureUI() {
+        super.configureUI()
         view.backgroundColor = .systemPink
+    }
+    
+    override func setLayout() {
+        
     }
 }

@@ -18,7 +18,40 @@
 		92356D7628C987AC00EB5333 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7528C987AC00EB5333 /* SnapKit */; };
 		92356D7928C987B700EB5333 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7828C987B700EB5333 /* Then */; };
 		92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainViewController.swift */; };
+		92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; };
+		92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92356DB528C98EDA00EB5333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92356D8728C98BF000EB5333;
+			remoteInfo = "NiCarNaeCar-Util";
+		};
+		92356DB728C98EDA00EB5333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92356D9128C98BF000EB5333;
+			remoteInfo = "NiCarNaeCar-UtilTests";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92356DBC28C98EF400EB5333 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		92356D4E28C9844400EB5333 /* NiCarNaeCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiCarNaeCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +65,7 @@
 		92356D7028C9859900EB5333 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		92356D7228C985A700EB5333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		92356D7B28C98A6900EB5333 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Util.xcodeproj"; path = "../../NiCarNaeCar-Util/NiCarNaeCar-Util.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356D7628C987AC00EB5333 /* SnapKit in Frameworks */,
+				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
 				92356D7928C987B700EB5333 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,8 +85,10 @@
 		92356D4528C9844400EB5333 = {
 			isa = PBXGroup;
 			children = (
+				92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */,
 				92356D5028C9844400EB5333 /* NiCarNaeCar */,
 				92356D4F28C9844400EB5333 /* Products */,
+				92356DB928C98EF400EB5333 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +213,22 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		92356DB128C98EDA00EB5333 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */,
+				92356DB828C98EDA00EB5333 /* NiCarNaeCar-UtilTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92356DB928C98EF400EB5333 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +239,7 @@
 				92356D4A28C9844400EB5333 /* Sources */,
 				92356D4B28C9844400EB5333 /* Frameworks */,
 				92356D4C28C9844400EB5333 /* Resources */,
+				92356DBC28C98EF400EB5333 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,12 +284,35 @@
 			);
 			productRefGroup = 92356D4F28C9844400EB5333 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 92356DB128C98EDA00EB5333 /* Products */;
+					ProjectRef = 92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				92356D4D28C9844400EB5333 /* NiCarNaeCar */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NiCarNaeCar_Util.framework;
+			remoteRef = 92356DB528C98EDA00EB5333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92356DB828C98EDA00EB5333 /* NiCarNaeCar-UtilTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NiCarNaeCar-UtilTests.xctest";
+			remoteRef = 92356DB728C98EDA00EB5333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		92356D4C28C9844400EB5333 /* Resources */ = {
