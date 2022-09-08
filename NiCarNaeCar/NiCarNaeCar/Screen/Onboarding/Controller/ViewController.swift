@@ -7,13 +7,38 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+import NiCarNaeCar_Resource
+import NiCarNaeCar_Util
 
+import SnapKit
+import Then
+
+final class ViewController: BaseViewController {
+
+    private lazy var button = UIButton().then {
+        $0.setTitle("메인으로 이동", for: .normal)
+        $0.setTitleColor(.systemPink, for: .normal)
+        $0.addTarget(self, action: #selector(touchUpButton), for: .touchUpInside)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
+    
+    override func configureUI() {
+        view.backgroundColor = R.Color.white
+    }
+    
+    override func setLayout() {
+        view.addSubviews(button)
+        button.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+    }
+    
+    @objc func touchUpButton() {
+        transition(MainViewController(), transitionStyle: .presentCrossDisolve)
+    }
 
 }
 
