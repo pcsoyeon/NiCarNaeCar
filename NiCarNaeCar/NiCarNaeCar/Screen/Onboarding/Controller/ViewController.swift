@@ -17,7 +17,7 @@ final class ViewController: BaseViewController {
 
     private lazy var button = UIButton().then {
         $0.setTitle("메인으로 이동", for: .normal)
-        $0.setTitleColor(.systemPink, for: .normal)
+        $0.setTitleColor(R.Color.black200, for: .normal)
         $0.addTarget(self, action: #selector(touchUpButton), for: .touchUpInside)
     }
     

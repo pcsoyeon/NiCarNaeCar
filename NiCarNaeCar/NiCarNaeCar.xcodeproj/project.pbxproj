@@ -25,6 +25,8 @@
 		92356DFB28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */; };
 		92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* SheetView.swift */; };
+		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
+		92356E2228C9D0F000EB5333 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E2128C9D0F000EB5333 /* Car.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Resource.xcodeproj"; path = "../../NiCarNaeCar-Resource/NiCarNaeCar-Resource.xcodeproj"; sourceTree = "<group>"; };
 		92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetViewController.swift; sourceTree = "<group>"; };
 		92356E1A28C9C71500EB5333 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotationView.swift; sourceTree = "<group>"; };
+		92356E2128C9D0F000EB5333 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 		92356D6D28C984C800EB5333 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				92356E1E28C9CE8100EB5333 /* Model */,
 				92356DEC28C9936E00EB5333 /* View */,
 				92356D7A28C98A5C00EB5333 /* Controller */,
 			);
@@ -262,6 +267,7 @@
 			children = (
 				92356DEF28C9937800EB5333 /* MainView.swift */,
 				92356E1A28C9C71500EB5333 /* SheetView.swift */,
+				92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,6 +279,14 @@
 				92356DF928C994BA00EB5333 /* NiCarNaeCar-ResourceTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		92356E1E28C9CE8100EB5333 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92356E2128C9D0F000EB5333 /* Car.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,7 +418,9 @@
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
+				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
+				92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

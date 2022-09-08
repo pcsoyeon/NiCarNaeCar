@@ -10,6 +10,7 @@ import CoreLocation
 import MapKit
 
 import NiCarNaeCar_Util
+import NiCarNaeCar_Resource
 
 final class MainViewController: BaseViewController {
     
@@ -26,7 +27,10 @@ final class MainViewController: BaseViewController {
     
     private let locationManager = CLLocationManager()
     private var annotation = MKPointAnnotation()
-
+    
+    // TODO: REMOVE
+    private var carList = CarList().mapAnnotations
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -40,6 +44,7 @@ final class MainViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         configureMapView()
+        registerAnnotationViewClasses()
         
     }
     
@@ -49,6 +54,11 @@ final class MainViewController: BaseViewController {
     
     private func configureMapView() {
         rootView.mapView.delegate = self
+        
+        for car in carList {
+            let center = CLLocationCoordinate2D(latitude: car.latitude, longitude: car.longitude)
+            self.setAnnotation(center: center, title: car.location)
+        }
     }
     
     // MARK: - Custom Method
@@ -72,6 +82,10 @@ final class MainViewController: BaseViewController {
         
         rootView.mapView.addAnnotation(annotation)
     }
+    
+    private func registerAnnotationViewClasses() {
+        rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
+    }
 }
 
 // MARK: - MapView Protocol
@@ -83,6 +97,17 @@ extension MainViewController: MKMapViewDelegate {
             print("============================== \(title) ==============================")
             
             transition(MainSheetViewController(), transitionStyle: .present)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.title == "나의 현재 위치" {
+            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
+            annotationView.markerTintColor = R.Color.gray300
+            return annotationView
+        } else {
+            let annotationView = DefaultAnnoationView(annotation: annotation, reuseIdentifier: DefaultAnnoationView.ReuseID)
+            return annotationView
         }
     }
 }
