@@ -23,6 +23,8 @@
 		92356DF028C9937800EB5333 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356DEF28C9937800EB5333 /* MainView.swift */; };
 		92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; };
 		92356DFB28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */; };
+		92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* SheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Util.xcodeproj"; path = "../../NiCarNaeCar-Util/NiCarNaeCar-Util.xcodeproj"; sourceTree = "<group>"; };
 		92356DEF28C9937800EB5333 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Resource.xcodeproj"; path = "../../NiCarNaeCar-Resource/NiCarNaeCar-Resource.xcodeproj"; sourceTree = "<group>"; };
+		92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetViewController.swift; sourceTree = "<group>"; };
+		92356E1A28C9C71500EB5333 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				92356D7B28C98A6900EB5333 /* MainViewController.swift */,
+				92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				92356DEF28C9937800EB5333 /* MainView.swift */,
+				92356E1A28C9C71500EB5333 /* SheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -391,11 +397,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356D5628C9844400EB5333 /* ViewController.swift in Sources */,
+				92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
+				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

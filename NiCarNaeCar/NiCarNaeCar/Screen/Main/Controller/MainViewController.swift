@@ -39,6 +39,7 @@ final class MainViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
+        configureMapView()
         
     }
     
@@ -76,7 +77,14 @@ final class MainViewController: BaseViewController {
 // MARK: - MapView Protocol
 
 extension MainViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotationTitle = view.annotation?.title {
+            guard let title = annotationTitle else { return }
+            print("============================== \(title) ==============================")
+            
+            transition(MainSheetViewController(), transitionStyle: .present)
+        }
+    }
 }
 
 // MARK: - Authorization Method
