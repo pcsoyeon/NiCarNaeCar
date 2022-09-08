@@ -20,6 +20,9 @@
 		92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainViewController.swift */; };
 		92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; };
 		92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92356DF028C9937800EB5333 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356DEF28C9937800EB5333 /* MainView.swift */; };
+		92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; };
+		92356DFB28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,20 @@
 			remoteGlobalIDString = 92356D9128C98BF000EB5333;
 			remoteInfo = "NiCarNaeCar-UtilTests";
 		};
+		92356DF628C994BA00EB5333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92356DC728C9905C00EB5333;
+			remoteInfo = "NiCarNaeCar-Resource";
+		};
+		92356DF828C994BA00EB5333 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92356DD128C9905D00EB5333;
+			remoteInfo = "NiCarNaeCar-ResourceTests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				92356DFB28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Embed Frameworks */,
 				92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -66,6 +84,8 @@
 		92356D7228C985A700EB5333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		92356D7B28C98A6900EB5333 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Util.xcodeproj"; path = "../../NiCarNaeCar-Util/NiCarNaeCar-Util.xcodeproj"; sourceTree = "<group>"; };
+		92356DEF28C9937800EB5333 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Resource.xcodeproj"; path = "../../NiCarNaeCar-Resource/NiCarNaeCar-Resource.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */,
 				92356D7628C987AC00EB5333 /* SnapKit in Frameworks */,
 				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
 				92356D7928C987B700EB5333 /* Then in Frameworks */,
@@ -85,6 +106,7 @@
 		92356D4528C9844400EB5333 = {
 			isa = PBXGroup;
 			children = (
+				92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */,
 				92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */,
 				92356D5028C9844400EB5333 /* NiCarNaeCar */,
 				92356D4F28C9844400EB5333 /* Products */,
@@ -183,6 +205,7 @@
 		92356D6D28C984C800EB5333 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				92356DEC28C9936E00EB5333 /* View */,
 				92356D7A28C98A5C00EB5333 /* Controller */,
 			);
 			path = Main;
@@ -227,6 +250,23 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92356DEC28C9936E00EB5333 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92356DEF28C9937800EB5333 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92356DF228C994BA00EB5333 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */,
+				92356DF928C994BA00EB5333 /* NiCarNaeCar-ResourceTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +326,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 92356DF228C994BA00EB5333 /* Products */;
+					ProjectRef = 92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */;
+				},
+				{
 					ProductGroup = 92356DB128C98EDA00EB5333 /* Products */;
 					ProjectRef = 92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */;
 				},
@@ -312,6 +356,20 @@
 			remoteRef = 92356DB728C98EDA00EB5333 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NiCarNaeCar_Resource.framework;
+			remoteRef = 92356DF628C994BA00EB5333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92356DF928C994BA00EB5333 /* NiCarNaeCar-ResourceTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NiCarNaeCar-ResourceTests.xctest";
+			remoteRef = 92356DF828C994BA00EB5333 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -333,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356D5628C9844400EB5333 /* ViewController.swift in Sources */,
+				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
