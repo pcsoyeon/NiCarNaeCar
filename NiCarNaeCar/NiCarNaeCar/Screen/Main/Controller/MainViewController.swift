@@ -28,6 +28,9 @@ final class MainViewController: BaseViewController {
     private let locationManager = CLLocationManager()
     private var annotation = MKPointAnnotation()
     
+    private var currentLatitude: Double?
+    private var currentLongtitude: Double?
+    
     // TODO: REMOVE
     private var carList = CarList().mapAnnotations
     
@@ -45,7 +48,7 @@ final class MainViewController: BaseViewController {
         super.configureUI()
         configureMapView()
         registerAnnotationViewClasses()
-        
+        configureButton()
     }
     
     override func setLayout() {
@@ -59,6 +62,12 @@ final class MainViewController: BaseViewController {
             let center = CLLocationCoordinate2D(latitude: car.latitude, longitude: car.longitude)
             self.setAnnotation(center: center, title: car.location)
         }
+    }
+    
+    private func configureButton() {
+        rootView.currentLocationButton.layer.cornerRadius = 21
+        
+        rootView.currentLocationButton.addTarget(self, action: #selector(touchUpLocationButton), for: .touchUpInside)
     }
     
     // MARK: - Custom Method
@@ -85,6 +94,15 @@ final class MainViewController: BaseViewController {
     
     private func registerAnnotationViewClasses() {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
+    }
+    
+    // MARK: - @objc
+    
+    @objc func touchUpLocationButton() {
+        if let latitude = currentLatitude, let longtitude = currentLongtitude {
+            let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude), latitudinalMeters: 1200, longitudinalMeters: 1200)
+            rootView.mapView.setRegion(currentLocation, animated: true)
+        }
     }
 }
 
@@ -174,6 +192,8 @@ extension MainViewController: CLLocationManagerDelegate {
         
         if let coordinate = locations.last?.coordinate {
             setRegionAndAnnotation(center: coordinate, title: "나의 현재 위치")
+            currentLatitude = coordinate.latitude
+            currentLongtitude = coordinate.longitude
         }
         locationManager.stopUpdatingLocation()
     }
