@@ -17,6 +17,7 @@
 		92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7228C985A700EB5333 /* UserDefaults.swift */; };
 		92356D7628C987AC00EB5333 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7528C987AC00EB5333 /* SnapKit */; };
 		92356D7928C987B700EB5333 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7828C987B700EB5333 /* Then */; };
+		92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		92356D5F28C9844500EB5333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92356D7028C9859900EB5333 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		92356D7228C985A700EB5333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		92356D7B28C98A6900EB5333 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		92356D6D28C984C800EB5333 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				92356D7A28C98A5C00EB5333 /* Controller */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -163,6 +166,14 @@
 				92356D7228C985A700EB5333 /* UserDefaults.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		92356D7A28C98A5C00EB5333 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92356D7B28C98A6900EB5333 /* MainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 				92356D5628C9844400EB5333 /* ViewController.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
+				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 			);
