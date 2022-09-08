@@ -103,7 +103,7 @@ extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.title == "나의 현재 위치" {
             let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
-            annotationView.markerTintColor = R.Color.gray300
+            annotationView.markerTintColor = .systemRed
             return annotationView
         } else {
             let annotationView = DefaultAnnoationView(annotation: annotation, reuseIdentifier: DefaultAnnoationView.ReuseID)
