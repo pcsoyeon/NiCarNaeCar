@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5128C9844400EB5333 /* AppDelegate.swift */; };
 		92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5328C9844400EB5333 /* SceneDelegate.swift */; };
-		92356D5628C9844400EB5333 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5528C9844400EB5333 /* ViewController.swift */; };
+		92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5528C9844400EB5333 /* OnboardingViewController.swift */; };
 		92356D5928C9844400EB5333 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5728C9844400EB5333 /* Main.storyboard */; };
 		92356D5B28C9844500EB5333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5A28C9844500EB5333 /* Assets.xcassets */; };
 		92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */; };
@@ -34,6 +34,8 @@
 		926DE45428CAD9DF0083123F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45328CAD9DF0083123F /* DetailView.swift */; };
 		926DE45928CADECF0083123F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45828CADECF0083123F /* SettingViewController.swift */; };
 		926DE45B28CAE0A60083123F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45A28CAE0A60083123F /* SettingView.swift */; };
+		926DE45D28CAE2380083123F /* NDSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45C28CAE2380083123F /* NDSButton.swift */; };
+		926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45F28CAE36A0083123F /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +88,7 @@
 		92356D4E28C9844400EB5333 /* NiCarNaeCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiCarNaeCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92356D5128C9844400EB5333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92356D5328C9844400EB5333 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		92356D5528C9844400EB5333 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		92356D5528C9844400EB5333 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		92356D5828C9844400EB5333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92356D5A28C9844500EB5333 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92356D5D28C9844500EB5333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,8 @@
 		926DE45328CAD9DF0083123F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		926DE45828CADECF0083123F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		926DE45A28CAE0A60083123F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		926DE45C28CAE2380083123F /* NDSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSButton.swift; sourceTree = "<group>"; };
+		926DE45F28CAE36A0083123F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,7 @@
 		92356D6C28C984B800EB5333 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				926DE45E28CAE3460083123F /* View */,
 				92356D6E28C984D300EB5333 /* Controller */,
 			);
 			path = Onboarding;
@@ -240,7 +245,7 @@
 		92356D6E28C984D300EB5333 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				92356D5528C9844400EB5333 /* ViewController.swift */,
+				92356D5528C9844400EB5333 /* OnboardingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				926DE44828CAD47D0083123F /* BackButton.swift */,
 				926DE44A28CAD4850083123F /* CloseButton.swift */,
 				926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */,
+				926DE45C28CAE2380083123F /* NDSButton.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -362,6 +368,14 @@
 			isa = PBXGroup;
 			children = (
 				926DE45A28CAE0A60083123F /* SettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		926DE45E28CAE3460083123F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45F28CAE36A0083123F /* OnboardingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -487,10 +501,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92356D5628C9844400EB5333 /* ViewController.swift in Sources */,
+				92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
+				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
@@ -499,6 +514,7 @@
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,
+				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,

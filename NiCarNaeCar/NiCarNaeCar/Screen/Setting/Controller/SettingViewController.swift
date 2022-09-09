@@ -24,6 +24,7 @@ final class SettingViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func loadView() {
+        super.loadView()
         self.view = rootView
     }
     
