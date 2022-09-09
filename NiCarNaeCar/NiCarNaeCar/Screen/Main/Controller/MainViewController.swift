@@ -162,6 +162,7 @@ final class MainViewController: BaseViewController {
         currentPage += 30
         endPage += 30
         
+        // TODO: 코드 개선 
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list in
                 dump(list)
