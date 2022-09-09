@@ -36,6 +36,9 @@
 		926DE45B28CAE0A60083123F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45A28CAE0A60083123F /* SettingView.swift */; };
 		926DE45D28CAE2380083123F /* NDSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45C28CAE2380083123F /* NDSButton.swift */; };
 		926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45F28CAE36A0083123F /* OnboardingView.swift */; };
+		926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46128CAE77F0083123F /* NDSTextField.swift */; };
+		926DE46628CAE9210083123F /* OnboardingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46528CAE9210083123F /* OnboardingNameViewController.swift */; };
+		926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46728CAE93E0083123F /* OnboardingNameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,9 @@
 		926DE45A28CAE0A60083123F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		926DE45C28CAE2380083123F /* NDSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSButton.swift; sourceTree = "<group>"; };
 		926DE45F28CAE36A0083123F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		926DE46128CAE77F0083123F /* NDSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSTextField.swift; sourceTree = "<group>"; };
+		926DE46528CAE9210083123F /* OnboardingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameViewController.swift; sourceTree = "<group>"; };
+		926DE46728CAE93E0083123F /* OnboardingNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				92356D5528C9844400EB5333 /* OnboardingViewController.swift */,
+				926DE46528CAE9210083123F /* OnboardingNameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +325,7 @@
 				926DE44A28CAD4850083123F /* CloseButton.swift */,
 				926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */,
 				926DE45C28CAE2380083123F /* NDSButton.swift */,
+				926DE46128CAE77F0083123F /* NDSTextField.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -376,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				926DE45F28CAE36A0083123F /* OnboardingView.swift */,
+				926DE46728CAE93E0083123F /* OnboardingNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -508,6 +517,7 @@
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
+				926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */,
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				926DE44B28CAD4850083123F /* CloseButton.swift in Sources */,
@@ -517,9 +527,11 @@
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
+				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,
 				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
+				926DE46628CAE9210083123F /* OnboardingNameViewController.swift in Sources */,
 				92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

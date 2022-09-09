@@ -49,6 +49,6 @@ final class OnboardingViewController: BaseViewController {
 
 extension OnboardingViewController: OnboardingViewDelegate {
     func touchUpStartButton() {
-        transition(MainViewController(), transitionStyle: .presentFullScreen)
+        transition(OnboardingNameViewController(), transitionStyle: .push)
     }
 }
