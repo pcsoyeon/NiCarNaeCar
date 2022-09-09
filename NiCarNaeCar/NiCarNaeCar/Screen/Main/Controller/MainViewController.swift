@@ -21,7 +21,7 @@ final class MainViewController: BaseViewController {
     
     private let rootView = MainView()
     
-    private lazy var navigationBarView = UIView().then {
+    private lazy var navigationBar = UIView().then {
         $0.addSubviews(logoView, settingButton)
     }
     
@@ -34,6 +34,7 @@ final class MainViewController: BaseViewController {
     private lazy var settingButton = UIButton().then {
         $0.setImage(R.Image.btnSetting, for: .normal)
         $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSettingButton), for: .touchUpInside)
     }
     
     override func loadView() {
@@ -54,6 +55,11 @@ final class MainViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLocationManager()
@@ -70,9 +76,9 @@ final class MainViewController: BaseViewController {
     }
     
     override func setLayout() {
-        view.addSubview(navigationBarView)
+        view.addSubview(navigationBar)
         
-        navigationBarView.snp.makeConstraints { make in
+        navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(67)
         }
@@ -138,6 +144,11 @@ final class MainViewController: BaseViewController {
             let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude), latitudinalMeters: 1200, longitudinalMeters: 1200)
             rootView.mapView.setRegion(currentLocation, animated: true)
         }
+    }
+    
+    @objc func touchUpSettingButton() {
+        let viewController = SettingViewController()
+        transition(viewController, transitionStyle: .push)
     }
 }
 

@@ -37,7 +37,7 @@ final class ViewController: BaseViewController {
     }
     
     @objc func touchUpButton() {
-        transition(MainViewController(), transitionStyle: .presentCrossDisolve)
+        transition(MainViewController(), transitionStyle: .presentFullScreen)
     }
 
 }

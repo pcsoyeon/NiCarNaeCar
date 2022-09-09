@@ -54,7 +54,7 @@ final class NDSNavigationBar: UIView {
         $0.textAlignment = .center
     }
     
-    private var viewType: PageView = .main {
+    var viewType: PageView = .main {
         didSet {
             titleLabel.text = viewType.title
         }
@@ -69,12 +69,10 @@ final class NDSNavigationBar: UIView {
     
     // MARK: - Initializer
     
-    public init(_ viewController: UIViewController,
-                view: PageView) {
+    public init(_ viewController: UIViewController) {
         super.init(frame: .zero)
         self.backButton = BackButton(root: viewController)
         self.closeButton = CloseButton(root: viewController)
-        viewType = view
         configureUI()
         setLayout()
     }

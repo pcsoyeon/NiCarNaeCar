@@ -30,6 +30,10 @@
 		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
 		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
 		926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */; };
+		926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45128CAD9D60083123F /* DetailViewController.swift */; };
+		926DE45428CAD9DF0083123F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45328CAD9DF0083123F /* DetailView.swift */; };
+		926DE45928CADECF0083123F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45828CADECF0083123F /* SettingViewController.swift */; };
+		926DE45B28CAE0A60083123F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45A28CAE0A60083123F /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,10 @@
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSNavigationBar.swift; sourceTree = "<group>"; };
+		926DE45128CAD9D60083123F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		926DE45328CAD9DF0083123F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		926DE45828CADECF0083123F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		926DE45A28CAE0A60083123F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +168,7 @@
 		92356D6628C9847B00EB5333 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				926DE45528CADEAE0083123F /* Setting */,
 				926DE44E28CAD9490083123F /* Detail */,
 				92356D6D28C984C800EB5333 /* Main */,
 				92356D6C28C984B800EB5333 /* Onboarding */,
@@ -319,6 +328,7 @@
 		926DE44F28CAD9520083123F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				926DE45128CAD9D60083123F /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,6 +336,32 @@
 		926DE45028CAD9570083123F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				926DE45328CAD9DF0083123F /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		926DE45528CADEAE0083123F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45728CADEC20083123F /* View */,
+				926DE45628CADEBE0083123F /* Controller */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		926DE45628CADEBE0083123F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45828CADECF0083123F /* SettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		926DE45728CADEC20083123F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45A28CAE0A60083123F /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,15 +490,19 @@
 				92356D5628C9844400EB5333 /* ViewController.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
+				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
+				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				926DE44B28CAD4850083123F /* CloseButton.swift in Sources */,
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
+				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,
+				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 				92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */,
 			);
