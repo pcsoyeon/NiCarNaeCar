@@ -46,6 +46,9 @@
 		926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47828CAF2C10083123F /* UIFont+Extension.swift */; };
 		926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47B28CAF4190083123F /* UILabel+Extension.swift */; };
 		926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */; };
+		926DE48028CAF8020083123F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47F28CAF8020083123F /* .gitignore */; };
+		926DE48328CAF81D0083123F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48228CAF81D0083123F /* APIKey.swift */; };
+		926DE48728CAF8D20083123F /* LocationAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48628CAF8D20083123F /* LocationAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +135,9 @@
 		926DE47828CAF2C10083123F /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		926DE47B28CAF4190083123F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCarNaeCarFont.swift; sourceTree = "<group>"; };
+		926DE47F28CAF8020083123F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		926DE48228CAF81D0083123F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		926DE48628CAF8D20083123F /* LocationAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,7 @@
 		92356D4528C9844400EB5333 = {
 			isa = PBXGroup;
 			children = (
+				926DE47F28CAF8020083123F /* .gitignore */,
 				92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */,
 				92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */,
 				92356D5028C9844400EB5333 /* NiCarNaeCar */,
@@ -203,6 +210,8 @@
 		92356D6728C9847F00EB5333 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				926DE48528CAF8C00083123F /* APIManager */,
+				926DE48128CAF8150083123F /* Base */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -426,6 +435,22 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		926DE48128CAF8150083123F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				926DE48228CAF81D0083123F /* APIKey.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		926DE48528CAF8C00083123F /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				926DE48628CAF8D20083123F /* LocationAPIManager.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -534,6 +559,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926DE48028CAF8020083123F /* .gitignore in Resources */,
 				92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */,
 				926DE47528CAF23C0083123F /* Pretendard-Medium.otf in Resources */,
 				926DE47728CAF23C0083123F /* Pretendard-Bold.otf in Resources */,
@@ -552,12 +578,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */,
+				926DE48728CAF8D20083123F /* LocationAPIManager.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
+				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */,
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
