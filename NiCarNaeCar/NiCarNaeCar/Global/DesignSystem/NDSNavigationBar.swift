@@ -52,6 +52,7 @@ final class NDSNavigationBar: UIView {
     private var titleLabel = UILabel().then {
         $0.textColor = R.Color.black200
         $0.textAlignment = .center
+        $0.font = NiCarNaeCarFont.body2.font
     }
     
     var viewType: PageView = .main {

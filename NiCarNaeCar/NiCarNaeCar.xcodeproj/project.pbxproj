@@ -39,6 +39,13 @@
 		926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46128CAE77F0083123F /* NDSTextField.swift */; };
 		926DE46628CAE9210083123F /* OnboardingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46528CAE9210083123F /* OnboardingNameViewController.swift */; };
 		926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46728CAE93E0083123F /* OnboardingNameView.swift */; };
+		926DE47428CAF23C0083123F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47028CAF23C0083123F /* Pretendard-Regular.otf */; };
+		926DE47528CAF23C0083123F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47128CAF23C0083123F /* Pretendard-Medium.otf */; };
+		926DE47628CAF23C0083123F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47228CAF23C0083123F /* Pretendard-SemiBold.otf */; };
+		926DE47728CAF23C0083123F /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47328CAF23C0083123F /* Pretendard-Bold.otf */; };
+		926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47828CAF2C10083123F /* UIFont+Extension.swift */; };
+		926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47B28CAF4190083123F /* UILabel+Extension.swift */; };
+		926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +125,13 @@
 		926DE46128CAE77F0083123F /* NDSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSTextField.swift; sourceTree = "<group>"; };
 		926DE46528CAE9210083123F /* OnboardingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameViewController.swift; sourceTree = "<group>"; };
 		926DE46728CAE93E0083123F /* OnboardingNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameView.swift; sourceTree = "<group>"; };
+		926DE47028CAF23C0083123F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		926DE47128CAF23C0083123F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		926DE47228CAF23C0083123F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		926DE47328CAF23C0083123F /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		926DE47828CAF2C10083123F /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		926DE47B28CAF4190083123F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCarNaeCarFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +238,7 @@
 		92356D6B28C984AA00EB5333 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				926DE46B28CAF2100083123F /* Font */,
 				92356D5A28C9844500EB5333 /* Assets.xcassets */,
 			);
 			path = Asset;
@@ -321,6 +336,7 @@
 		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				926DE47A28CAF4090083123F /* Font */,
 				926DE44828CAD47D0083123F /* BackButton.swift */,
 				926DE44A28CAD4850083123F /* CloseButton.swift */,
 				926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */,
@@ -387,6 +403,27 @@
 				926DE46728CAE93E0083123F /* OnboardingNameView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		926DE46B28CAF2100083123F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				926DE47328CAF23C0083123F /* Pretendard-Bold.otf */,
+				926DE47128CAF23C0083123F /* Pretendard-Medium.otf */,
+				926DE47028CAF23C0083123F /* Pretendard-Regular.otf */,
+				926DE47228CAF23C0083123F /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		926DE47A28CAF4090083123F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				926DE47828CAF2C10083123F /* UIFont+Extension.swift */,
+				926DE47B28CAF4190083123F /* UILabel+Extension.swift */,
+				926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,6 +535,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */,
+				926DE47528CAF23C0083123F /* Pretendard-Medium.otf in Resources */,
+				926DE47728CAF23C0083123F /* Pretendard-Bold.otf in Resources */,
+				926DE47428CAF23C0083123F /* Pretendard-Regular.otf in Resources */,
+				926DE47628CAF23C0083123F /* Pretendard-SemiBold.otf in Resources */,
 				92356D5B28C9844500EB5333 /* Assets.xcassets in Resources */,
 				92356D5928C9844400EB5333 /* Main.storyboard in Resources */,
 			);
@@ -514,6 +555,7 @@
 				92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
+				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
@@ -524,8 +566,10 @@
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,
+				926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */,
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
+				926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,
 				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,

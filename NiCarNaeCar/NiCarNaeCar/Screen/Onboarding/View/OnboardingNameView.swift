@@ -29,6 +29,7 @@ final class OnboardingNameView: BaseView {
     var nameCountLabel = UILabel().then {
         $0.text = "0/0"
         $0.textColor = R.Color.black200
+        $0.font = NiCarNaeCarFont.body7.font
     }
     
     lazy var startButton = NDSButton().then {

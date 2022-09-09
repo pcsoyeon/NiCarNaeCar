@@ -43,7 +43,7 @@ final class NDSButton: UIButton {
     // MARK: - InitUI
     
     private func setTitle() {
-        titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        titleLabel?.font = NiCarNaeCarFont.body2.font
         setTitleColor(R.Color.white, for: .normal)
         setTitleColor(R.Color.gray100, for: .highlighted)
     }
