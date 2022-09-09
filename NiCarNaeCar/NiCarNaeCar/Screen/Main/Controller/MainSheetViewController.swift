@@ -16,12 +16,23 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var dataSource = [String]()
+    var dataSource = [String]() {
+        didSet {
+            rootView.tableView.reloadData()
+        }
+    }
+    
+    var positionId: Int = 0
     
     // MARK: - Life Cycle
     
     override func loadView() {
         self.view = rootView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
@@ -34,10 +45,6 @@ final class MainSheetViewController: BaseViewController {
     }
     
     private func configureTableView() {
-        for i in 0...5 {
-            dataSource.append("\(i)")
-        }
-        
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
     }
@@ -56,6 +63,13 @@ final class MainSheetViewController: BaseViewController {
 }
 
 extension MainSheetViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = DetailViewController()
+        transition(viewController, transitionStyle: .presentFullScreen) { _ in
+            print(self.positionId)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }

@@ -51,6 +51,8 @@
 		926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48928CAFB8A0083123F /* SpotList.swift */; };
 		926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48C28CAFC5E0083123F /* URLConstant.swift */; };
 		926DE48F28CAFC9B0083123F /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48E28CAFC9B0083123F /* EndPoint.swift */; };
+		926DE49128CB20CB0083123F /* CarListAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE49028CB20CB0083123F /* CarListAPIManager.swift */; };
+		926DE49328CB223B0083123F /* CarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE49228CB223B0083123F /* CarList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		926DE48928CAFB8A0083123F /* SpotList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotList.swift; sourceTree = "<group>"; };
 		926DE48C28CAFC5E0083123F /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		926DE48E28CAFC9B0083123F /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		926DE49028CB20CB0083123F /* CarListAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListAPIManager.swift; sourceTree = "<group>"; };
+		926DE49228CB223B0083123F /* CarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				926DE48928CAFB8A0083123F /* SpotList.swift */,
+				926DE49228CB223B0083123F /* CarList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				926DE48628CAF8D20083123F /* SpotListAPIManager.swift */,
+				926DE49028CB20CB0083123F /* CarListAPIManager.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
+				926DE49128CB20CB0083123F /* CarListAPIManager.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
@@ -608,6 +615,7 @@
 				926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
+				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,

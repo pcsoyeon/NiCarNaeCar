@@ -13,7 +13,7 @@ class SpotListAPIManager {
     
     private init() { }
     
-    typealias completionHandler = ((SpotList)) -> Void
+    typealias completionHandler = (SpotList) -> Void
     
     static func requestSpotList(startPage: Int, endPage: Int, completionHander: @escaping completionHandler) {
         let urlString = EndPoint.spotList.requestURL + "/\(startPage)/\(endPage)"

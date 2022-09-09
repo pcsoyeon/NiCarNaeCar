@@ -18,7 +18,7 @@ class DetailViewController: BaseViewController {
     
     private lazy var navigationBar = NDSNavigationBar(self).then {
         $0.viewType = .detail
-        $0.backButtonIsHidden = false
+        $0.backButtonIsHidden = true
     }
     
     // MARK: - Property

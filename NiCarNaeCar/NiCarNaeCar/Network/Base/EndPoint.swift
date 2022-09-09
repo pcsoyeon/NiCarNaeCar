@@ -17,17 +17,17 @@ extension URL {
 
 enum EndPoint {
     case spotList
-    case carListSO(spot: Int)
-    case carListGR(spot: Int)
+    case carListSO
+    case carListGR
     
     var requestURL: String {
         switch self {
         case .spotList:
             return URL.makeEndPointString("/\(APIKey.APIKey)/json/NanumcarSpotList")
-        case .carListSO(let spot):
-            return URL.makeEndPointString("/xml/NanumcarCarList/1/1870/\(spot)/so")
-        case .carListGR(let spot):
-            return URL.makeEndPointString("/xml/NanumcarCarList/1/1870/\(spot)/gr")
+        case .carListSO:
+            return URL.makeEndPointString("/\(APIKey.APIKey)/xml/NanumcarCarList")
+        case .carListGR:
+            return URL.makeEndPointString("/\(APIKey.APIKey)/xml/NanumcarCarList")
         }
     }
 }

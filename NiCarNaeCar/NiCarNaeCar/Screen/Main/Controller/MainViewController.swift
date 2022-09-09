@@ -56,6 +56,16 @@ final class MainViewController: BaseViewController {
     private var endPage: Int = 30
     private var totalPage: Int = 0
     
+    var item: [String:String] = [:]
+    var elements: [String:String] = [:]
+    var currentElement = ""
+    
+    private var socarCount: String = ""
+    private var greencarCount: String = ""
+    
+    private var carList: [String] = ["", ""]
+    private var positionId: Int = 0
+    
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,7 +184,7 @@ final class MainViewController: BaseViewController {
                                                             longitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80))
                         self.rootView.mapView.setRegion(viewRegion, animated: false)
                     }
-                   
+                    
                     
                     for spot in list.nanumcarSpotList.row {
                         self.spotList.append(spot)
@@ -197,15 +207,22 @@ extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotationTitle = view.annotation?.title {
             guard let title = annotationTitle else { return }
-            print("============================== ⚫️ \(title) ⚫️ ==============================")
-            
             for spot in spotList {
                 if spot.positnNm == title {
                     print("거점 ID: ", spot.positnCD)
+                    if let positionCD = Int(spot.positnCD) {
+                        positionId = positionCD
+                        requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+                        requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
+                    }
                 }
             }
             
-            transition(MainSheetViewController(), transitionStyle: .present)
+            let viewController = MainSheetViewController()
+            transition(viewController, transitionStyle: .presentNavigation) { _ in
+                viewController.dataSource = self.carList
+                viewController.positionId = self.positionId
+            }
         }
     }
     
@@ -303,5 +320,63 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(#function)
         checkUserDeviceLocationServiceAuthorization()
+    }
+}
+
+// MARK: - XMLParser Delegate
+
+extension MainViewController: XMLParserDelegate {
+    func requestSocarList(startPage: Int, endPage: Int, spot: Int) {
+        let urlString = EndPoint.carListSO.requestURL + "/\(startPage)/\(endPage)/\(spot)/so"
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        if let parser = XMLParser(contentsOf: url) {
+            parser.delegate = self
+            
+            if parser.parse() {
+                print("============================== 🔵 SOCAR 🔵 ==============================")
+                carList[0] = "SOCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
+            } else {
+                print("============================== 🔴 Parse Failed 🔴 ==============================")
+            }
+        }
+    }
+    
+    func requestGreencarList(startPage: Int, endPage: Int, spot: Int) {
+        let urlString = EndPoint.carListGR.requestURL + "/\(startPage)/\(endPage)/\(spot)/gr"
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        if let parser = XMLParser(contentsOf: url) {
+            parser.delegate = self
+            
+            if parser.parse() {
+                print("============================== 🟢 GREENCAR 🟢 ==============================")
+                carList[1] = "GREENCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
+            } else {
+                print("============================== 🔴 Parse Failed 🔴 ==============================")
+            }
+        }
+    }
+    
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+        print("currentElement = \(elementName)")
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        print("data = \(data)")
+        if !data.isEmpty {
+            item[currentElement] = data
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "reservAbleCnt" {
+            elements = item
+        }
     }
 }
