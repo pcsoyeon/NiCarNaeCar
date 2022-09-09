@@ -54,6 +54,7 @@ final class MainViewController: BaseViewController {
     
     private var currentPage: Int = 1
     private var endPage: Int = 30
+    private var totalPage: Int = 0
     
     // MARK: - Life Cycle
     
@@ -103,9 +104,8 @@ final class MainViewController: BaseViewController {
     }
     
     private func configureButton() {
-        rootView.currentLocationButton.layer.cornerRadius = 21
-        
         rootView.currentLocationButton.addTarget(self, action: #selector(touchUpLocationButton), for: .touchUpInside)
+        rootView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
     }
     
     // MARK: - Custom Method
@@ -134,7 +134,7 @@ final class MainViewController: BaseViewController {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
-    private func setSpotListAnnotation(startPage: Int = 1, endPage: Int = 30) {
+    private func setSpotListAnnotation() {
         for spot in spotList {
             guard let latitude = Double(spot.la) else { return }
             guard let longtitude = Double(spot.lo) else { return }
@@ -157,6 +157,36 @@ final class MainViewController: BaseViewController {
         let viewController = SettingViewController()
         transition(viewController, transitionStyle: .push)
     }
+    
+    @objc func touchUpSearchButton() {
+        currentPage += 30
+        endPage += 30
+        
+        if endPage <= totalPage {
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list in
+                dump(list)
+                
+                DispatchQueue.main.async {
+                    if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
+                        let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude),
+                                                            latitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80),
+                                                            longitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80))
+                        self.rootView.mapView.setRegion(viewRegion, animated: false)
+                    }
+                   
+                    
+                    for spot in list.nanumcarSpotList.row {
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
+                }
+                
+            }
+        }
+    }
 }
 
 // MARK: - MapView Protocol
@@ -165,7 +195,7 @@ extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotationTitle = view.annotation?.title {
             guard let title = annotationTitle else { return }
-            print("============================== \(title) ==============================")
+            print("============================== ⚫️ \(title) ⚫️ ==============================")
             
             transition(MainSheetViewController(), transitionStyle: .present)
         }
@@ -252,6 +282,7 @@ extension MainViewController: CLLocationManagerDelegate {
                 self.spotList = data.nanumcarSpotList.row
                 dump(self.spotList)
                 self.setSpotListAnnotation()
+                self.totalPage = data.nanumcarSpotList.listTotalCount
             }
         }
         locationManager.stopUpdatingLocation()
