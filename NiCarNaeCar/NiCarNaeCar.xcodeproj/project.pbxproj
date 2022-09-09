@@ -15,8 +15,6 @@
 		92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */; };
 		92356D7128C9859900EB5333 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7028C9859900EB5333 /* Constant.swift */; };
 		92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7228C985A700EB5333 /* UserDefaults.swift */; };
-		92356D7628C987AC00EB5333 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7528C987AC00EB5333 /* SnapKit */; };
-		92356D7928C987B700EB5333 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 92356D7828C987B700EB5333 /* Then */; };
 		92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainViewController.swift */; };
 		92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; };
 		92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -27,6 +25,11 @@
 		92356E1B28C9C71500EB5333 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* SheetView.swift */; };
 		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
 		92356E2228C9D0F000EB5333 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E2128C9D0F000EB5333 /* Car.swift */; };
+		926DE43628CAD3950083123F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 926DE43528CAD3950083123F /* Then */; };
+		926DE43A28CAD3A70083123F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 926DE43928CAD3A70083123F /* SnapKit */; };
+		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
+		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
+		926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		92356E1A28C9C71500EB5333 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotationView.swift; sourceTree = "<group>"; };
 		92356E2128C9D0F000EB5333 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +108,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */,
-				92356D7628C987AC00EB5333 /* SnapKit in Frameworks */,
+				926DE43A28CAD3A70083123F /* SnapKit in Frameworks */,
+				926DE43628CAD3950083123F /* Then in Frameworks */,
 				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
-				92356D7928C987B700EB5333 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +160,7 @@
 		92356D6628C9847B00EB5333 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				926DE44E28CAD9490083123F /* Detail */,
 				92356D6D28C984C800EB5333 /* Main */,
 				92356D6C28C984B800EB5333 /* Onboarding */,
 			);
@@ -170,6 +177,7 @@
 		92356D6828C9848800EB5333 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				926DE43B28CAD3DC0083123F /* DesignSystem */,
 				92356D6F28C9858D00EB5333 /* Constant */,
 			);
 			path = Global;
@@ -289,6 +297,39 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				926DE44828CAD47D0083123F /* BackButton.swift */,
+				926DE44A28CAD4850083123F /* CloseButton.swift */,
+				926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		926DE44E28CAD9490083123F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45028CAD9570083123F /* View */,
+				926DE44F28CAD9520083123F /* Controller */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		926DE44F28CAD9520083123F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		926DE45028CAD9570083123F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,8 +348,8 @@
 			);
 			name = NiCarNaeCar;
 			packageProductDependencies = (
-				92356D7528C987AC00EB5333 /* SnapKit */,
-				92356D7828C987B700EB5333 /* Then */,
+				926DE43528CAD3950083123F /* Then */,
+				926DE43928CAD3A70083123F /* SnapKit */,
 			);
 			productName = NiCarNaeCar;
 			productReference = 92356D4E28C9844400EB5333 /* NiCarNaeCar.app */;
@@ -339,8 +380,8 @@
 			);
 			mainGroup = 92356D4528C9844400EB5333;
 			packageReferences = (
-				92356D7428C987AC00EB5333 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				92356D7728C987B700EB5333 /* XCRemoteSwiftPackageReference "Then" */,
+				926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */,
+				926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 92356D4F28C9844400EB5333 /* Products */;
 			projectDirPath = "";
@@ -416,8 +457,11 @@
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
+				926DE44B28CAD4850083123F /* CloseButton.swift in Sources */,
+				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
+				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				92356E2228C9D0F000EB5333 /* Car.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 				92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */,
@@ -644,15 +688,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		92356D7428C987AC00EB5333 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
-		92356D7728C987B700EB5333 /* XCRemoteSwiftPackageReference "Then" */ = {
+		926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -660,18 +696,26 @@
 				kind = branch;
 			};
 		};
+		926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		92356D7528C987AC00EB5333 /* SnapKit */ = {
+		926DE43528CAD3950083123F /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 92356D7428C987AC00EB5333 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		92356D7828C987B700EB5333 /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92356D7728C987B700EB5333 /* XCRemoteSwiftPackageReference "Then" */;
+			package = 926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		926DE43928CAD3A70083123F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

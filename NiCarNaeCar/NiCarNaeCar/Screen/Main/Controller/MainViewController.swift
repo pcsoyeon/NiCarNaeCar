@@ -12,11 +12,29 @@ import MapKit
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
+import SnapKit
+import Then
+
 final class MainViewController: BaseViewController {
     
     // MARK: - UI Property
     
     private let rootView = MainView()
+    
+    private lazy var navigationBarView = UIView().then {
+        $0.addSubviews(logoView, settingButton)
+    }
+    
+    private let logoView = UIImageView().then {
+        $0.image = R.Image.imgLogo
+        $0.backgroundColor = R.Color.white
+        $0.contentMode = .scaleToFill
+    }
+    
+    private lazy var settingButton = UIButton().then {
+        $0.setImage(R.Image.btnSetting, for: .normal)
+        $0.setTitle("", for: .normal)
+    }
     
     override func loadView() {
         super.loadView()
@@ -52,7 +70,24 @@ final class MainViewController: BaseViewController {
     }
     
     override func setLayout() {
+        view.addSubview(navigationBarView)
         
+        navigationBarView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(67)
+        }
+        
+        logoView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(19)
+            make.leading.equalToSuperview().inset(20)
+            make.width.equalTo(72)
+            make.height.equalTo(27)
+        }
+        
+        settingButton.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(9)
+            make.width.height.equalTo(Metric.buttonSize)
+        }
     }
     
     private func configureMapView() {
