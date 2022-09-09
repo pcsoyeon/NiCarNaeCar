@@ -38,18 +38,12 @@ final class MainView: BaseView {
         $0.makeShadow(R.Color.gray100, 0.25, CGSize(width: 0, height: 4), 10)
     }
     
-    var countLabel = UILabel().then {
-        $0.text = ""
-        $0.textColor = R.Color.black200
-        $0.font = NiCarNaeCarFont.body6.font
-    }
-    
     // MARK: - UI Method
     
     override func configureUI() {
         self.backgroundColor = R.Color.white
         
-        addSubviews(mapView, currentLocationButton, searchButton, countLabel)
+        addSubviews(mapView, currentLocationButton, searchButton)
     }
     
     override func setLayout() {
@@ -68,11 +62,6 @@ final class MainView: BaseView {
             make.top.equalTo(self.safeAreaLayoutGuide).inset(86)
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(102)
             make.height.equalTo(43)
-        }
-        
-        countLabel.snp.makeConstraints { make in
-            make.top.equalTo(searchButton.snp.bottom).offset(16)
-            make.centerX.equalToSuperview()
         }
     }
 }

@@ -162,7 +162,7 @@ final class MainViewController: BaseViewController {
         currentPage += 30
         endPage += 30
         
-        // TODO: 코드 개선 
+        // TODO: 코드 개선
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list in
                 dump(list)
@@ -177,6 +177,8 @@ final class MainViewController: BaseViewController {
                    
                     
                     for spot in list.nanumcarSpotList.row {
+                        self.spotList.append(spot)
+                        
                         guard let latitude = Double(spot.la) else { return }
                         guard let longtitude = Double(spot.lo) else { return }
                         
@@ -184,7 +186,6 @@ final class MainViewController: BaseViewController {
                         self.setAnnotation(center: center, title: spot.positnNm)
                     }
                 }
-                
             }
         }
     }
@@ -197,6 +198,12 @@ extension MainViewController: MKMapViewDelegate {
         if let annotationTitle = view.annotation?.title {
             guard let title = annotationTitle else { return }
             print("============================== ⚫️ \(title) ⚫️ ==============================")
+            
+            for spot in spotList {
+                if spot.positnNm == title {
+                    print("거점 ID: ", spot.positnCD)
+                }
+            }
             
             transition(MainSheetViewController(), transitionStyle: .present)
         }
