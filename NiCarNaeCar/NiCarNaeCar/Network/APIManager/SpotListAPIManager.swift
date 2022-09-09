@@ -15,7 +15,7 @@ class SpotListAPIManager {
     
     typealias completionHandler = ((SpotList)) -> Void
     
-    static func requestSpotList(startPage: Int, endPage: Int) {
+    static func requestSpotList(startPage: Int, endPage: Int, completionHander: @escaping completionHandler) {
         let urlString = EndPoint.spotList.requestURL + "/\(startPage)/\(endPage)"
         
         guard let url = URL(string: urlString) else { return }
@@ -45,7 +45,7 @@ class SpotListAPIManager {
             do {
                 let result = try JSONDecoder().decode(SpotList.self, from: data)
                 print("============================== 🟢 Success 🟢 ==============================")
-                dump(result.nanumcarSpotList.row)
+                completionHander(result)
                 
             } catch let error {
                 print("============================== 🔴 Decode Error 🔴 ==============================")

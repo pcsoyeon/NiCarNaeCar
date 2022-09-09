@@ -50,8 +50,7 @@ final class MainViewController: BaseViewController {
     private var currentLatitude: Double?
     private var currentLongtitude: Double?
     
-    // TODO: REMOVE
-    private var carList = CarList().mapAnnotations
+    private var spotList: [Row] = []
     
     private var currentPage: Int = 1
     private var endPage: Int = 30
@@ -101,11 +100,6 @@ final class MainViewController: BaseViewController {
     
     private func configureMapView() {
         rootView.mapView.delegate = self
-        
-        for car in carList {
-            let center = CLLocationCoordinate2D(latitude: car.latitude, longitude: car.longitude)
-            self.setAnnotation(center: center, title: car.location)
-        }
     }
     
     private func configureButton() {
@@ -138,6 +132,16 @@ final class MainViewController: BaseViewController {
     
     private func registerAnnotationViewClasses() {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
+    }
+    
+    private func setSpotListAnnotation(startPage: Int = 1, endPage: Int = 30) {
+        for spot in spotList {
+            guard let latitude = Double(spot.la) else { return }
+            guard let longtitude = Double(spot.lo) else { return }
+            
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            self.setAnnotation(center: center, title: spot.positnNm)
+        }
     }
     
     // MARK: - @objc
@@ -244,7 +248,11 @@ extension MainViewController: CLLocationManagerDelegate {
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
             
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage)
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data in
+                self.spotList = data.nanumcarSpotList.row
+                dump(self.spotList)
+                self.setSpotListAnnotation()
+            }
         }
         locationManager.stopUpdatingLocation()
     }
