@@ -53,6 +53,9 @@ final class MainViewController: BaseViewController {
     // TODO: REMOVE
     private var carList = CarList().mapAnnotations
     
+    private var currentPage: Int = 1
+    private var endPage: Int = 30
+    
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -240,6 +243,8 @@ extension MainViewController: CLLocationManagerDelegate {
             setRegionAndAnnotation(center: coordinate, title: "나의 현재 위치")
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
+            
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage)
         }
         locationManager.stopUpdatingLocation()
     }
