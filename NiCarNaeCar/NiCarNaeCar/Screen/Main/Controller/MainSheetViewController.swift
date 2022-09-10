@@ -13,13 +13,13 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let rootView = SheetView()
+    private let rootView = MainSheetView()
     
     // MARK: - Property
     
     var dataSource = [String]() {
         didSet {
-            rootView.tableView.reloadData()
+            rootView.collectionView.reloadData()
         }
     }
     
@@ -40,14 +40,18 @@ final class MainSheetViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    // MARK: - UI Method
+    
     override func configureUI() {
-        configureTableView()
+        configureCollectionView()
         configureSheet()
     }
     
-    private func configureTableView() {
-        rootView.tableView.delegate = self
-        rootView.tableView.dataSource = self
+    private func configureCollectionView() {
+        rootView.collectionView.delegate = self
+        rootView.collectionView.dataSource = self
+        
+        rootView.collectionView.register(MainSheetCollectionViewCell.self, forCellWithReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier)
     }
     
     private func configureSheet() {
@@ -64,21 +68,46 @@ final class MainSheetViewController: BaseViewController {
     }
 }
 
-extension MainSheetViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+// MARK: - UICollectionView Protocol
+
+extension MainSheetViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = DetailViewController()
-        transition(viewController, transitionStyle: .presentFullScreen) { _ in
-            print(self.positionId)
+        if indexPath.row == 0 {
+            viewController.carType = .socar
+        } else {
+            viewController.carType = .greencar
         }
+        transition(viewController, transitionStyle: .presentFullScreen)
+    }
+}
+
+extension MainSheetViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: 193)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 25
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+}
+
+extension MainSheetViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
+        if indexPath.row == 0 {
+            cell.setData(.socar, 10)
+        } else {
+            cell.setData(.greencar, 10)
+        }
         return cell
     }
 }

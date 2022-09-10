@@ -23,11 +23,9 @@ class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    var text: String = "쏘카/그린카" {
+    var carType: CarType = .socar {
         didSet {
-            if text == "쏘카" {
-                print("SOCAR")
-            }
+            rootView.nextButton.backgroundColor = carType.color
         }
     }
     
