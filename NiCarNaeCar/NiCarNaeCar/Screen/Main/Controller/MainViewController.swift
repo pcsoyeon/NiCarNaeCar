@@ -63,7 +63,8 @@ final class MainViewController: BaseViewController {
     private var socarCount: String = ""
     private var greencarCount: String = ""
     
-    private var carList: [String] = ["", ""]
+    private var carList: [BrandInfo] = [BrandInfo(carType: .socar, totalCount: "0", availableCount: "0"),
+                                        BrandInfo(carType: .greencar, totalCount: "0", availableCount: "0")]
     private var positionId: Int = 0
     
     // MARK: - Life Cycle
@@ -76,7 +77,7 @@ final class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLocationManager()
-        setRegionAndAnnotation(title: "청년취업사관학교 영등포 캠퍼스")
+//        setRegionAndAnnotation(title: "청년취업사관학교 영등포 캠퍼스")
     }
     
     // MARK: - UI Method
@@ -226,6 +227,7 @@ extension MainViewController: MKMapViewDelegate {
             transition(viewController, transitionStyle: .presentNavigation) { _ in
                 viewController.dataSource = self.carList
                 viewController.positionId = self.positionId
+                viewController.positionName = title
             }
         }
     }
@@ -339,7 +341,10 @@ extension MainViewController: XMLParserDelegate {
             parser.delegate = self
             
             if parser.parse() {
-                carList[0] = "SOCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
+                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
+                    carList[0] = BrandInfo(carType: .socar, totalCount: totalCount, availableCount: availableCount)
+                }
+
             } else {
                 print("============================== 🔴 Parse Failed 🔴 ==============================")
             }
@@ -355,7 +360,9 @@ extension MainViewController: XMLParserDelegate {
             parser.delegate = self
             
             if parser.parse() {
-                carList[1] = "GREENCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
+                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
+                    carList[1] = BrandInfo(carType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                }
             } else {
                 print("============================== 🔴 Parse Failed 🔴 ==============================")
             }

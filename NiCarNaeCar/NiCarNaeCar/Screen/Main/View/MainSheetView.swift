@@ -16,13 +16,13 @@ final class MainSheetView: BaseView {
     
     // MARK: - UI Property
     
-    var locationLabel = UILabel().then {
+    private var locationLabel = UILabel().then {
         $0.text = "위치"
         $0.textColor = R.Color.black200
         $0.font = NiCarNaeCarFont.title3.font
     }
     
-    var distanceLabel = UILabel().then {
+    private var distanceLabel = UILabel().then {
         $0.text = "00km"
         $0.textColor = R.Color.gray200
         $0.font = NiCarNaeCarFont.body3.font
@@ -41,6 +41,20 @@ final class MainSheetView: BaseView {
     
     private let collectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
+    }
+    
+    // MARK: - Property
+    
+    var positionName: String = "" {
+        didSet {
+            locationLabel.text = positionName
+        }
+    }
+    
+    var distance: Int = 0 {
+        didSet {
+            distanceLabel.text = "\(distance)km"
+        }
     }
     
     // MARK: - UI Method

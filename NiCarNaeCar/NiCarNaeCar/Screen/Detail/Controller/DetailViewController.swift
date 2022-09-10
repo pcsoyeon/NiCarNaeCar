@@ -23,7 +23,7 @@ class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    var carType: CarType = .socar {
+    var carType: BrandType = .socar {
         didSet {
             rootView.nextButton.backgroundColor = carType.color
         }

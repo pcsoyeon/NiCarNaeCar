@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct BrandInfo {
+    var carType: BrandType
+    var totalCount: String
+    var availableCount: String
+}

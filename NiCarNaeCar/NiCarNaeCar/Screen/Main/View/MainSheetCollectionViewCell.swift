@@ -26,12 +26,12 @@ final class MainSheetCollectionViewCell: BaseCollectionViewCell {
     }
     
     private var countLabel = UILabel().then {
-        $0.font = NiCarNaeCarFont.body2.font
+        $0.font = NiCarNaeCarFont.body3.font
     }
 
     // MARK: - Property
     
-    var carType: CarType = .socar {
+    var carType: BrandType = .socar {
         didSet {
             logoImageView.image = carType.logoImage
             titleLabel.text = carType.title
@@ -75,7 +75,7 @@ final class MainSheetCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Data Bind
     
-    func setData(_ carType: CarType, _ count: Int) {
+    func setData(_ carType: BrandType, _ count: String) {
         self.carType = carType
         
         countLabel.text = "\(count)대 예약가능"

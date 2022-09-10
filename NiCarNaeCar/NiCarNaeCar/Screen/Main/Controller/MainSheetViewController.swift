@@ -17,13 +17,18 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var dataSource = [String]() {
+    var dataSource = [BrandInfo]() {
         didSet {
             rootView.collectionView.reloadData()
         }
     }
     
     var positionId: Int = 0
+    var positionName: String = "" {
+        didSet {
+            rootView.positionName = positionName
+        }
+    }
     
     // MARK: - Life Cycle
     
@@ -103,11 +108,7 @@ extension MainSheetViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
-        if indexPath.row == 0 {
-            cell.setData(.socar, 10)
-        } else {
-            cell.setData(.greencar, 10)
-        }
+        cell.setData(dataSource[indexPath.row].carType, dataSource[indexPath.row].availableCount)
         return cell
     }
 }
