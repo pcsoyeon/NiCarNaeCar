@@ -36,7 +36,7 @@ final class NDSNavigationBar: UIView {
             case .main:
                 return ""
             case .detail:
-                return "차량 정보"
+                return "예약 현황"
             case .setting:
                 return "설정"
             }
