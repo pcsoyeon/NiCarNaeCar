@@ -64,7 +64,7 @@ extension OnboardingViewController: OnboardingViewDelegate {
             rootView.collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .right, animated: true)
             currentRow += 1
         } else if currentRow == 1 {
-            print("PRESENT BOTTOM SHEET VIEW")
+            transition(OnboardingSheetViewController(), transitionStyle: .present)
         }
     }
 }

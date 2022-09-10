@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import NiCarNaeCar_Util
 
 final class MainSheetViewController: BaseViewController {
@@ -58,6 +59,7 @@ final class MainSheetViewController: BaseViewController {
             sheet.largestUndimmedDetentIdentifier = .none
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
         }
     }
 }

@@ -56,6 +56,8 @@
 		927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404A528CC99D10074FBEB /* UILabel+Extension.swift */; };
 		927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404A928CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift */; };
 		927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404AB28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift */; };
+		927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404AE28CCACAC0074FBEB /* OnboardingSheetViewController.swift */; };
+		927404B128CCACF80074FBEB /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404B028CCACF80074FBEB /* OnboardingSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,8 @@
 		927404A528CC99D10074FBEB /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		927404A928CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		927404AB28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		927404AE28CCACAC0074FBEB /* OnboardingSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetViewController.swift; sourceTree = "<group>"; };
+		927404B028CCACF80074FBEB /* OnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,7 @@
 			children = (
 				92356D5528C9844400EB5333 /* OnboardingViewController.swift */,
 				926DE46528CAE9210083123F /* OnboardingNameViewController.swift */,
+				927404AE28CCACAC0074FBEB /* OnboardingSheetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 				926DE46728CAE93E0083123F /* OnboardingNameView.swift */,
 				927404A928CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift */,
 				927404AB28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift */,
+				927404B028CCACF80074FBEB /* OnboardingSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
 				926DE49128CB20CB0083123F /* CarListAPIManager.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
+				927404B128CCACF80074FBEB /* OnboardingSheetView.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
@@ -627,6 +634,7 @@
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
+				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
