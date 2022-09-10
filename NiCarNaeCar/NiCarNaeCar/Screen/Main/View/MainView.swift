@@ -34,7 +34,7 @@ final class MainView: BaseView {
         $0.setTitleColor(R.Color.black200, for: .normal)
         $0.setTitleColor(R.Color.gray200, for: .highlighted)
         $0.titleLabel?.font = NiCarNaeCarFont.body3.font
-        $0.layer.cornerRadius = 25
+        $0.layer.cornerRadius = 20
         $0.makeShadow(R.Color.gray100, 0.25, CGSize(width: 0, height: 4), 10)
     }
     
@@ -48,7 +48,7 @@ final class MainView: BaseView {
     
     override func setLayout() {
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(67)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(48)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
@@ -59,7 +59,7 @@ final class MainView: BaseView {
         }
         
         searchButton.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(86)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(78)
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(102)
             make.height.equalTo(43)
         }

@@ -93,18 +93,19 @@ final class MainViewController: BaseViewController {
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(67)
+            make.height.equalTo(48)
         }
         
         logoView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(19)
-            make.leading.equalToSuperview().inset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalTo(72)
             make.height.equalTo(27)
         }
         
         settingButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(9)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(9)
             make.width.height.equalTo(Metric.buttonSize)
         }
     }
@@ -212,7 +213,10 @@ extension MainViewController: MKMapViewDelegate {
                     print("거점 ID: ", spot.positnCD)
                     if let positionCD = Int(spot.positnCD) {
                         positionId = positionCD
+                        print("============================== 🔵 SOCAR 🔵 ==============================")
                         requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+                        
+                        print("============================== 🟢 GREENCAR 🟢 ==============================")
                         requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
                     }
                 }
@@ -335,7 +339,6 @@ extension MainViewController: XMLParserDelegate {
             parser.delegate = self
             
             if parser.parse() {
-                print("============================== 🔵 SOCAR 🔵 ==============================")
                 carList[0] = "SOCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
             } else {
                 print("============================== 🔴 Parse Failed 🔴 ==============================")
@@ -352,7 +355,6 @@ extension MainViewController: XMLParserDelegate {
             parser.delegate = self
             
             if parser.parse() {
-                print("============================== 🟢 GREENCAR 🟢 ==============================")
                 carList[1] = "GREENCAR : \(elements["reservAbleCnt"]) / \(elements["reservAbleAllCnt"])"
             } else {
                 print("============================== 🔴 Parse Failed 🔴 ==============================")
