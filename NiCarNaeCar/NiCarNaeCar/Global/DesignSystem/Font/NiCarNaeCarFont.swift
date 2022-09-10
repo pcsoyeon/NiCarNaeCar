@@ -31,7 +31,7 @@ public enum NiCarNaeCarFont {
     public var fontProperty: FontProperty {
         switch self {
         case .title0:
-            return FontProperty(font: .semibold, size: 90, kern: -0.3, lineHeight: 100)
+            return FontProperty(font: .extrabold, size: 90, kern: -0.3, lineHeight: 100)
         case .title1:
             return FontProperty(font: .semibold, size: 24, kern: -0.3, lineHeight: 34)
         case .title2:

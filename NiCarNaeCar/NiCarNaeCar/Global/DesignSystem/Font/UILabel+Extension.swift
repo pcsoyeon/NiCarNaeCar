@@ -2,7 +2,7 @@
 //  UILabel+Extension.swift
 //  NiCarNaeCar
 //
-//  Created by 소연 on 2022/09/09.
+//  Created by 소연 on 2022/09/10.
 //
 
 import UIKit

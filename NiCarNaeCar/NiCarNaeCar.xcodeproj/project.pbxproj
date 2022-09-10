@@ -43,7 +43,6 @@
 		926DE47628CAF23C0083123F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47228CAF23C0083123F /* Pretendard-SemiBold.otf */; };
 		926DE47728CAF23C0083123F /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47328CAF23C0083123F /* Pretendard-Bold.otf */; };
 		926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47828CAF2C10083123F /* UIFont+Extension.swift */; };
-		926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47B28CAF4190083123F /* UILabel+Extension.swift */; };
 		926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */; };
 		926DE48028CAF8020083123F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 926DE47F28CAF8020083123F /* .gitignore */; };
 		926DE48328CAF81D0083123F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48228CAF81D0083123F /* APIKey.swift */; };
@@ -53,6 +52,8 @@
 		926DE48F28CAFC9B0083123F /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48E28CAFC9B0083123F /* EndPoint.swift */; };
 		926DE49128CB20CB0083123F /* CarListAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE49028CB20CB0083123F /* CarListAPIManager.swift */; };
 		926DE49328CB223B0083123F /* CarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE49228CB223B0083123F /* CarList.swift */; };
+		927404A428CC98010074FBEB /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9274049F28CC98010074FBEB /* Pretendard-ExtraBold.otf */; };
+		927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404A528CC99D10074FBEB /* UILabel+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +137,6 @@
 		926DE47228CAF23C0083123F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		926DE47328CAF23C0083123F /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		926DE47828CAF2C10083123F /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
-		926DE47B28CAF4190083123F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCarNaeCarFont.swift; sourceTree = "<group>"; };
 		926DE47F28CAF8020083123F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		926DE48228CAF81D0083123F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -146,6 +146,8 @@
 		926DE48E28CAFC9B0083123F /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		926DE49028CB20CB0083123F /* CarListAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListAPIManager.swift; sourceTree = "<group>"; };
 		926DE49228CB223B0083123F /* CarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarList.swift; sourceTree = "<group>"; };
+		9274049F28CC98010074FBEB /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		927404A528CC99D10074FBEB /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +428,7 @@
 		926DE46B28CAF2100083123F /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				9274049F28CC98010074FBEB /* Pretendard-ExtraBold.otf */,
 				926DE47328CAF23C0083123F /* Pretendard-Bold.otf */,
 				926DE47128CAF23C0083123F /* Pretendard-Medium.otf */,
 				926DE47028CAF23C0083123F /* Pretendard-Regular.otf */,
@@ -438,8 +441,8 @@
 			isa = PBXGroup;
 			children = (
 				926DE47828CAF2C10083123F /* UIFont+Extension.swift */,
-				926DE47B28CAF4190083123F /* UILabel+Extension.swift */,
 				926DE47D28CAF4360083123F /* NiCarNaeCarFont.swift */,
+				927404A528CC99D10074FBEB /* UILabel+Extension.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 			files = (
 				926DE48028CAF8020083123F /* .gitignore in Resources */,
 				92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */,
+				927404A428CC98010074FBEB /* Pretendard-ExtraBold.otf in Resources */,
 				926DE47528CAF23C0083123F /* Pretendard-Medium.otf in Resources */,
 				926DE47728CAF23C0083123F /* Pretendard-Bold.otf in Resources */,
 				926DE47428CAF23C0083123F /* Pretendard-Regular.otf in Resources */,
@@ -612,8 +616,8 @@
 				926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */,
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
-				926DE47C28CAF4190083123F /* UILabel+Extension.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
+				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,

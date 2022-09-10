@@ -9,6 +9,7 @@ import UIKit
 
 extension UIFont {
     enum FontType: String {
+        case extrabold = "Pretendard-ExtraBold"
         case bold = "Pretendard-Bold"
         case medium = "Pretendard-Medium"
         case regular = "Pretendard-Regular"
