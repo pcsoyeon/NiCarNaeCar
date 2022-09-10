@@ -1,0 +1,60 @@
+//
+//  OnboardingCollectionViewCell.swift
+//  NiCarNaeCar
+//
+//  Created by 소연 on 2022/09/10.
+//
+
+import UIKit
+
+import NiCarNaeCar_Util
+import NiCarNaeCar_Resource
+
+import SnapKit
+import Then
+
+final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
+    
+    // MARK: - UI Property
+    
+    private var backgroundImageView = UIImageView().then {
+        $0.image = R.Image.imgBackground
+        $0.contentMode = .scaleToFill
+    }
+    
+    private var titleLabel = UILabel().then {
+        $0.text = """
+                  DON’T
+                  SIT AT
+                  HOME.
+                  GO
+                  FOR
+                  A RIDE!
+                  """
+        $0.numberOfLines = 0
+        $0.addLineSpacing(spacing: 85)
+        $0.font = NiCarNaeCarFont.title0.font
+        $0.textColor = R.Color.black200
+    }
+    
+    // MARK: - UI Method
+    
+    override func configureUI() {
+        backgroundColor = R.Color.white
+    }
+    
+    override func setLayout() {
+        contentView.addSubviews(backgroundImageView, titleLabel)
+        
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(77)
+            make.bottom.equalToSuperview().inset(94)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(100)
+            make.leading.equalToSuperview().inset(26)
+        }
+    }
+}

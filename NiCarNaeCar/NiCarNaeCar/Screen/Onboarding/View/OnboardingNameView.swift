@@ -21,6 +21,12 @@ final class OnboardingNameView: BaseView {
     
     // MARK: - UI Property
     
+    private var titleLabel = UILabel().then {
+        $0.text = "이름을 입력해주세요"
+        $0.font = NiCarNaeCarFont.title1.font
+        $0.textColor = R.Color.black200
+    }
+    
     var nameTextField = NDSTextField().then {
         $0.placeholder = "니캉내캉"
         $0.isFocusing = true
@@ -49,7 +55,12 @@ final class OnboardingNameView: BaseView {
     }
     
     override func setLayout() {
-        addSubviews(nameTextField, nameCountLabel, startButton)
+        addSubviews(titleLabel, nameTextField, nameCountLabel, startButton)
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(76)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+        }
         
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(152)
