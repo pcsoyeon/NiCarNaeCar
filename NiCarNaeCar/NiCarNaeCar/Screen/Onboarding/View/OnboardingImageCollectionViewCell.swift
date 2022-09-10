@@ -24,12 +24,12 @@ final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
     
     private var titleLabel = UILabel().then {
         $0.text = """
-                  DON’T
-                  SIT AT
-                  HOME.
-                  GO
-                  FOR
-                  A RIDE!
+                  필요할 때
+                  언제
+                  어디에서나
+
+                  내차처럼
+                  편리하게
                   """
         $0.numberOfLines = 0
         $0.addLineSpacing(spacing: 85)

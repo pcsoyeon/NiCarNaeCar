@@ -9,7 +9,7 @@ import UIKit
 
 import NiCarNaeCar_Resource
 
-enum CarType {
+enum BrandType {
     case socar
     case greencar
     
