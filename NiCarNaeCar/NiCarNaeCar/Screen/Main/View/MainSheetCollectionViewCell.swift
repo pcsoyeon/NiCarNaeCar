@@ -34,7 +34,7 @@ final class MainSheetCollectionViewCell: BaseCollectionViewCell {
     var carType: BrandType = .socar {
         didSet {
             logoImageView.image = carType.logoImage
-            titleLabel.text = carType.title
+            titleLabel.text = carType.brandNameEN
             titleLabel.textColor = carType.color
         }
     }

@@ -23,9 +23,9 @@ class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    var carType: BrandType = .socar {
+    var brandType: BrandType = .socar {
         didSet {
-            rootView.nextButton.backgroundColor = carType.color
+            rootView.openButton.backgroundColor = brandType.color
         }
     }
     
@@ -51,6 +51,12 @@ class DetailViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    // MARK: - UI Method
+    
+    override func configureUI() {
+        configureButton()
+    }
+    
     override func setLayout() {
         view.addSubview(navigationBar)
         
@@ -59,5 +65,31 @@ class DetailViewController: BaseViewController {
         }
     }
     
-    // MARK: - UI Method
+    private func configureButton() {
+        rootView.delegate = self
+    }
+}
+
+// MARK: - Custom Delegate
+
+extension DetailViewController: DetailViewDelegate {
+    func touchUpOpenButton() {
+        var url = ""
+        
+        if brandType == .socar {
+            url = "socar:"
+        } else {
+            url = "greencar:"
+        }
+        
+        if let openApp = URL(string: url), UIApplication.shared.canOpenURL(openApp) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+            }
+        } else {
+            presentAlert(title: "\(brandType.brandNameKR)앱을 설치해주세요")
+            print("링크 주소 : \(url)")
+        }
+    }
+    
 }

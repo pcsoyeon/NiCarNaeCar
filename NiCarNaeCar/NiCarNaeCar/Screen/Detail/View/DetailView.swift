@@ -13,15 +13,23 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
+protocol DetailViewDelegate: DetailViewController {
+    func touchUpOpenButton()
+}
+
 final class DetailView: BaseView {
     
     // MARK: - UI Property
     
-    lazy var nextButton = NDSButton().then {
+    lazy var openButton = NDSButton().then {
         $0.text = "앱으로 이동"
         $0.isDisabled = false
         $0.addTarget(self, action: #selector(touchUpButton), for: .touchUpInside)
     }
+    
+    // MARK: - Property
+    
+    weak var delegate: DetailViewDelegate?
     
     // MARK: - UI Method
     
@@ -30,9 +38,9 @@ final class DetailView: BaseView {
     }
     
     override func setLayout() {
-        addSubviews(nextButton)
+        addSubviews(openButton)
         
-        nextButton.snp.makeConstraints { make in
+        openButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Metric.ctaButtonLeading)
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(Metric.ctaButtonBottom)
             make.height.equalTo(Metric.ctaButtonHeight)
@@ -42,6 +50,6 @@ final class DetailView: BaseView {
     // MARK: - @objc
     
     @objc func touchUpButton() {
-        
+        delegate?.touchUpOpenButton()
     }
 }
