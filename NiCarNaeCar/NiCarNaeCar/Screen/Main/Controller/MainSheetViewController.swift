@@ -80,8 +80,10 @@ extension MainSheetViewController: UICollectionViewDelegate {
         let viewController = DetailViewController()
         if indexPath.row == 0 {
             viewController.carType = .socar
+            viewController.info = dataSource[0]
         } else {
             viewController.carType = .greencar
+            viewController.info = dataSource[1]
         }
         transition(viewController, transitionStyle: .presentFullScreen)
     }

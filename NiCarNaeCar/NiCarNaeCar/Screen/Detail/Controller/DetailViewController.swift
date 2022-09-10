@@ -29,6 +29,12 @@ class DetailViewController: BaseViewController {
         }
     }
     
+    var info: BrandInfo? {
+        didSet {
+            
+        }
+    }
+    
     // MARK: - Life Cycle
     
     override func loadView() {
