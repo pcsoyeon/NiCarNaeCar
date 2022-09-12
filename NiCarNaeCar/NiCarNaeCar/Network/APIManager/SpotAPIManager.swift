@@ -1,24 +1,27 @@
 //
-//  LocationAPIManager.swift
+//  SpotAPIManager.swift
 //  NiCarNaeCar
 //
-//  Created by 소연 on 2022/09/09.
+//  Created by 소연 on 2022/09/12.
 //
 
 import Foundation
 
-class SpotListAPIManager {
+final class SpotAPIManager {
     
-    static let shared = SpotListAPIManager()
+    static let shared = SpotAPIManager()
     
     private init() { }
     
     typealias completionHandler = (SpotList) -> Void
     
-    static func requestSpotList(startPage: Int, endPage: Int, completionHandler: @escaping completionHandler) {
-        let urlString = EndPoint.spotList.requestURL + "/\(startPage)/\(endPage)"
+    static func requestSpotWithPositionId(startPage: Int, endPage: Int, positionId: Int ,completionHandler: @escaping completionHandler) {
+        let urlString = EndPoint.spotList.requestURL + "/\(startPage)/\(endPage)/\(positionId)"
         
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else {
+            print("Wrong URL")
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
@@ -51,7 +54,7 @@ class SpotListAPIManager {
                 print("============================== 🔴 Decode Error 🔴 ==============================")
                 print(error)
             }
-            
         }.resume()
+        
     }
 }

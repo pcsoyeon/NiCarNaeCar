@@ -156,6 +156,16 @@ final class MainViewController: BaseViewController {
         }
     }
     
+    private func changeStringToCarType(_ data: String) -> CarType {
+        if data == "TO" {
+            return .TO
+        } else if data == "EV" {
+            return .EV
+        } else {
+            return .GA
+        }
+    }
+    
     // MARK: - @objc
     
     @objc func touchUpLocationButton() {
@@ -216,16 +226,23 @@ extension MainViewController: MKMapViewDelegate {
                         positionId = positionCD
                         print("============================== 🔵 SOCAR 🔵 ==============================")
                         requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+                        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
+                            self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
+
+                        }
                         
                         print("============================== 🟢 GREENCAR 🟢 ==============================")
                         requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
+                        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
+                            self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
+                        }
                     }
                 }
             }
             
             let viewController = MainSheetViewController()
             transition(viewController, transitionStyle: .presentNavigation) { _ in
-                viewController.dataSource = self.carList
+                viewController.carList = self.carList
                 viewController.positionId = self.positionId
                 viewController.positionName = title
             }
@@ -311,7 +328,6 @@ extension MainViewController: CLLocationManagerDelegate {
             
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data in
                 self.spotList = data.nanumcarSpotList.row
-                dump(self.spotList)
                 self.setSpotListAnnotation()
                 self.totalPage = data.nanumcarSpotList.listTotalCount
             }
@@ -372,12 +388,12 @@ extension MainViewController: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
-        print("currentElement = \(elementName)")
+//        print("currentElement = \(elementName)")
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-        print("data = \(data)")
+//        print("data = \(data)")
         if !data.isEmpty {
             item[currentElement] = data
         }

@@ -17,7 +17,7 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var dataSource = [BrandInfo]() {
+    var carList = [BrandInfo]() {
         didSet {
             rootView.collectionView.reloadData()
         }
@@ -80,10 +80,10 @@ extension MainSheetViewController: UICollectionViewDelegate {
         let viewController = DetailViewController()
         if indexPath.row == 0 {
             viewController.brandType = .socar
-            viewController.info = dataSource[0]
+            viewController.info = carList[0]
         } else {
             viewController.brandType = .greencar
-            viewController.info = dataSource[1]
+            viewController.info = carList[1]
         }
         viewController.positionName = positionName
         transition(viewController, transitionStyle: .presentFullScreen)
@@ -111,7 +111,7 @@ extension MainSheetViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
-        cell.setData(dataSource[indexPath.row].brandType, dataSource[indexPath.row].availableCount)
+        cell.setData(carList[indexPath.row].brandType, carList[indexPath.row].availableCount)
         return cell
     }
 }
