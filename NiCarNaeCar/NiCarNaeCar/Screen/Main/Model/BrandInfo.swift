@@ -7,8 +7,13 @@
 
 import Foundation
 
+enum CarType {
+    
+}
+
 struct BrandInfo {
-    var carType: BrandType
+    var brandType: BrandType
     var totalCount: String
     var availableCount: String
+    var carType: CarType?
 }

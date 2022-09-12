@@ -79,12 +79,13 @@ extension MainSheetViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = DetailViewController()
         if indexPath.row == 0 {
-            viewController.carType = .socar
+            viewController.brandType = .socar
             viewController.info = dataSource[0]
         } else {
-            viewController.carType = .greencar
+            viewController.brandType = .greencar
             viewController.info = dataSource[1]
         }
+        viewController.positionName = positionName
         transition(viewController, transitionStyle: .presentFullScreen)
     }
 }
@@ -110,7 +111,7 @@ extension MainSheetViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
-        cell.setData(dataSource[indexPath.row].carType, dataSource[indexPath.row].availableCount)
+        cell.setData(dataSource[indexPath.row].brandType, dataSource[indexPath.row].availableCount)
         return cell
     }
 }

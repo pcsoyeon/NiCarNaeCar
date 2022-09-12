@@ -63,8 +63,8 @@ final class MainViewController: BaseViewController {
     private var socarCount: String = ""
     private var greencarCount: String = ""
     
-    private var carList: [BrandInfo] = [BrandInfo(carType: .socar, totalCount: "0", availableCount: "0"),
-                                        BrandInfo(carType: .greencar, totalCount: "0", availableCount: "0")]
+    private var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
+                                        BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")]
     private var positionId: Int = 0
     
     // MARK: - Life Cycle
@@ -342,7 +342,7 @@ extension MainViewController: XMLParserDelegate {
             
             if parser.parse() {
                 if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[0] = BrandInfo(carType: .socar, totalCount: totalCount, availableCount: availableCount)
+                    carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
                 }
 
             } else {
@@ -361,7 +361,7 @@ extension MainViewController: XMLParserDelegate {
             
             if parser.parse() {
                 if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[1] = BrandInfo(carType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                    carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
                 }
             } else {
                 print("============================== 🔴 Parse Failed 🔴 ==============================")
