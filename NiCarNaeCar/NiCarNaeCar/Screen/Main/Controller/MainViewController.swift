@@ -225,7 +225,9 @@ extension MainViewController: MKMapViewDelegate {
                     if let positionCD = Int(spot.positnCD) {
                         positionId = positionCD
                         print("============================== 🔵 SOCAR 🔵 ==============================")
+                        // TODO: - endPage 동적으로 관리
                         requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+                        // TODO: - 차량 종류 데이터 제대로 들어오는지 확인
                         SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
                             self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
 

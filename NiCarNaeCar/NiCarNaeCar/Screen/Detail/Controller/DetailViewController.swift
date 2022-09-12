@@ -107,7 +107,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailHeaderView.identifier, for: indexPath) as? DetailHeaderView else { return UICollectionReusableView() }
         headerView.brandType = brandType
-        headerView.carType = info?.carType?.text ?? ""
+        headerView.carType = info?.carType.text ?? ""
         return headerView
     }
     

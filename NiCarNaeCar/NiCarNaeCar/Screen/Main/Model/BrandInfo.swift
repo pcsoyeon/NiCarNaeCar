@@ -11,5 +11,5 @@ struct BrandInfo {
     var brandType: BrandType
     var totalCount: String
     var availableCount: String
-    var carType: CarType?
+    var carType: CarType = .TO
 }
