@@ -38,7 +38,7 @@ final class OnboardingSheetView: BaseView {
     }
     
     private let imageView = UIImageView().then {
-        $0.backgroundColor = R.Color.gray400
+        $0.image = R.Image.imgLocation
         $0.makeRound()
     }
     
@@ -80,7 +80,7 @@ final class OnboardingSheetView: BaseView {
         imageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(26)
             make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
-            make.width.height.equalTo(37)
+            make.width.height.equalTo(42)
         }
         
         locationLabel.snp.makeConstraints { make in
