@@ -32,6 +32,7 @@ class DetailViewController: BaseViewController {
     var info: BrandInfo?
     
     var positionName: String = ""
+    var address: String = ""
     
     // MARK: - Life Cycle
     
@@ -95,7 +96,7 @@ extension DetailViewController: DetailViewDelegate {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
             }
         } else {
-            presentAlert(title: "\(brandType.brandNameKR)앱을 설치해주세요")
+            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요")
             print("링크 주소 : \(url)")
         }
     }
@@ -116,7 +117,11 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 60)
+        if indexPath.row == 0 {
+            return CGSize(width: view.frame.width, height: 90)
+        } else {
+            return CGSize(width: view.frame.width, height: 60)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -140,11 +145,11 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as? DetailCollectionViewCell else { return UICollectionViewCell() }
         if indexPath.row == 0 {
-            cell.setData(brandType, positionName, nil, indexPath.row)
+            cell.setData(brandType, positionName, address, nil, indexPath.row)
         } else if indexPath.row == 1 {
-            cell.setData(brandType, "전체 차량 수", info?.totalCount, indexPath.row)
+            cell.setData(brandType, "전체 차량 수", nil, info?.totalCount, indexPath.row)
         } else {
-            cell.setData(brandType, "예약 가능 차량 수", info?.availableCount, indexPath.row)
+            cell.setData(brandType, "예약 가능 차량 수", nil, info?.availableCount, indexPath.row)
         }
         return cell
     }

@@ -22,6 +22,11 @@ final class DetailCollectionViewCell: BaseCollectionViewCell {
         $0.font = NiCarNaeCarFont.body3.font
     }
     
+    private let subTitleLabel = UILabel().then {
+        $0.textColor = R.Color.gray100
+        $0.font = NiCarNaeCarFont.body7.font
+    }
+    
     private let countLabel = UILabel().then {
         $0.textColor = R.Color.black200
         $0.font = NiCarNaeCarFont.body3.font
@@ -34,23 +39,29 @@ final class DetailCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setLayout() {
-        contentView.addSubviews(titleLabel, countLabel)
+        contentView.addSubviews(titleLabel, subTitleLabel, countLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(25)
+        }
+        
+        subTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(9)
             make.leading.equalToSuperview().inset(25)
         }
         
         countLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().inset(25)
         }
     }
     
     // MARK: - Data Bind
     
-    func setData(_ brandType: BrandType, _ title: String, _ count: String?, _ row: Int) {
+    func setData(_ brandType: BrandType, _ title: String, _ subTitle: String?, _ count: String?, _ row: Int) {
         titleLabel.text = title
+        subTitleLabel.text = subTitle
         
         if row == 0 {
             titleLabel.font = NiCarNaeCarFont.body2.font
