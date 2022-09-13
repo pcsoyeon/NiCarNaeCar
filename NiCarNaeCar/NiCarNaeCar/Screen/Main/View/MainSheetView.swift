@@ -17,15 +17,15 @@ final class MainSheetView: BaseView {
     // MARK: - UI Property
     
     private var locationLabel = UILabel().then {
-        $0.text = "위치"
         $0.textColor = R.Color.black200
         $0.font = NiCarNaeCarFont.title3.font
     }
     
     private var descriptionLabel = UILabel().then {
-        $0.text = "도로명 주소 | 00km"
         $0.textColor = R.Color.gray200
         $0.font = NiCarNaeCarFont.body4.font
+        $0.numberOfLines = 0
+        $0.textAlignment = .left
     }
     
     private var lineView = UIView().then {
@@ -53,13 +53,13 @@ final class MainSheetView: BaseView {
     
     var distance: Int = 0 {
         didSet {
-            descriptionLabel.text = "\(address) | \(distance)km"
+            descriptionLabel.text = "\(address)\n\(distance)km"
         }
     }
     
     var address: String = "" {
         didSet {
-            descriptionLabel.text = "\(address) | \(distance)km"
+            descriptionLabel.text = "\(address)\n\(distance)km"
         }
     }
     

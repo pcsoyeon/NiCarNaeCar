@@ -155,12 +155,10 @@ extension MainSheetViewController {
     }
     
     private func fetchSocarInfo() {
-        print("============================== 🔵 SOCAR 🔵 ==============================")
         requestSocarList(startPage: 1, endPage: 500, spot: positionId)
     }
     
     private func fetchGreencarInfo() {
-        print("============================== 🟢 GREENCAR 🟢 ==============================")
         requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
     }
 }

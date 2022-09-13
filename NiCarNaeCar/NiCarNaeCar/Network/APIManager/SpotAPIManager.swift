@@ -47,7 +47,6 @@ final class SpotAPIManager {
             
             do {
                 let result = try JSONDecoder().decode(SpotList.self, from: data)
-                print("============================== 🟢 Success 🟢 ==============================")
                 completionHandler(result)
                 
             } catch let error {
