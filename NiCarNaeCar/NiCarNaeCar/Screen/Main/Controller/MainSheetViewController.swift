@@ -17,25 +17,23 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var carList = [BrandInfo]() {
+    var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
+                                        BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")] {
         didSet {
-            rootView.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.rootView.collectionView.reloadData()
+            }
         }
     }
     
     var positionId: Int = 0
     
-    var positionName: String = "" {
-        didSet {
-            rootView.positionName = positionName
-        }
-    }
+    var item: [String:String] = [:]
+    var elements: [String:String] = [:]
+    var currentElement = ""
     
-    var address: String = "" {
-        didSet {
-            rootView.address = address
-        }
-    }
+    private var positionName: String = ""
+    private var address: String = ""
     
     // MARK: - Life Cycle
     
@@ -46,6 +44,10 @@ final class MainSheetViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        
+        fetchSpotInfo()
+        fetchSocarInfo()
+        fetchGreencarInfo()
     }
     
     override func viewDidLoad() {
@@ -76,6 +78,16 @@ final class MainSheetViewController: BaseViewController {
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
+        }
+    }
+    
+    private func changeStringToCarType(_ data: String) -> CarType {
+        if data == "TO" {
+            return .TO
+        } else if data == "EV" {
+            return .EV
+        } else {
+            return .GA
         }
     }
 }
@@ -121,5 +133,95 @@ extension MainSheetViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
         cell.setData(carList[indexPath.row].brandType, carList[indexPath.row].availableCount)
         return cell
+    }
+}
+
+// MARK: - Network
+
+extension MainSheetViewController {
+    func fetchSpotInfo() {
+        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
+            self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
+            self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
+            
+            DispatchQueue.main.async {
+                self.positionName = response.nanumcarSpotList.row[0].positnNm
+                self.rootView.positionName = response.nanumcarSpotList.row[0].positnNm
+                
+                self.address = response.nanumcarSpotList.row[0].adres
+                self.rootView.address = response.nanumcarSpotList.row[0].adres
+            }
+        }
+    }
+    
+    private func fetchSocarInfo() {
+        print("============================== 🔵 SOCAR 🔵 ==============================")
+        requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+    }
+    
+    private func fetchGreencarInfo() {
+        print("============================== 🟢 GREENCAR 🟢 ==============================")
+        requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
+    }
+}
+
+// MARK: - XMLParser Delegate
+
+extension MainSheetViewController: XMLParserDelegate {
+    func requestSocarList(startPage: Int, endPage: Int, spot: Int) {
+        let urlString = EndPoint.carListSO.requestURL + "/\(startPage)/\(endPage)/\(spot)/so"
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        if let parser = XMLParser(contentsOf: url) {
+            parser.delegate = self
+            
+            if parser.parse() {
+                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
+                    carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
+                }
+
+            } else {
+                print("============================== 🔴 Parse Failed 🔴 ==============================")
+            }
+        }
+    }
+    
+    func requestGreencarList(startPage: Int, endPage: Int, spot: Int) {
+        let urlString = EndPoint.carListGR.requestURL + "/\(startPage)/\(endPage)/\(spot)/gr"
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        if let parser = XMLParser(contentsOf: url) {
+            parser.delegate = self
+            
+            if parser.parse() {
+                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
+                    carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                }
+            } else {
+                print("============================== 🔴 Parse Failed 🔴 ==============================")
+            }
+        }
+    }
+    
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+//        print("currentElement = \(elementName)")
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+//        print("data = \(data)")
+        if !data.isEmpty {
+            item[currentElement] = data
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "reservAbleCnt" {
+            elements = item
+        }
     }
 }

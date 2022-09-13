@@ -56,15 +56,6 @@ final class MainViewController: BaseViewController {
     private var endPage: Int = 30
     private var totalPage: Int = 0
     
-    var item: [String:String] = [:]
-    var elements: [String:String] = [:]
-    var currentElement = ""
-    
-    private var socarCount: String = ""
-    private var greencarCount: String = ""
-    
-    private var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
-                                        BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")]
     private var positionId: Int = 0
     private var address: String = ""
     
@@ -157,16 +148,6 @@ final class MainViewController: BaseViewController {
         }
     }
     
-    private func changeStringToCarType(_ data: String) -> CarType {
-        if data == "TO" {
-            return .TO
-        } else if data == "EV" {
-            return .EV
-        } else {
-            return .GA
-        }
-    }
-    
     // MARK: - @objc
     
     @objc func touchUpLocationButton() {
@@ -223,23 +204,9 @@ extension MainViewController: MKMapViewDelegate {
             for spot in spotList {
                 if spot.positnNm == title {
                     print("거점 ID: ", spot.positnCD)
-                    if let positionCD = Int(spot.positnCD) {
-                        positionId = positionCD
-                        print("============================== 🔵 SOCAR 🔵 ==============================")
-                        // TODO: - endPage 동적으로 관리
-                        requestSocarList(startPage: 1, endPage: 500, spot: positionId)
-                        // TODO: - 차량 종류 데이터 제대로 들어오는지 확인
-                        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
-                            self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
-                        }
-                        
-                        print("============================== 🟢 GREENCAR 🟢 ==============================")
-                        requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
-                        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
-                            self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
-                        }
+                    if let positionId = Int(spot.positnCD) {
+                        self.positionId = positionId
                     }
-                    
                     print("주소: ", spot.adres)
                     address = spot.adres
                 }
@@ -247,10 +214,7 @@ extension MainViewController: MKMapViewDelegate {
             
             let viewController = MainSheetViewController()
             transition(viewController, transitionStyle: .presentNavigation) { _ in
-                viewController.carList = self.carList
                 viewController.positionId = self.positionId
-                viewController.positionName = title
-                viewController.address = self.address
             }
         }
     }
@@ -351,63 +315,4 @@ extension MainViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - XMLParser Delegate
 
-extension MainViewController: XMLParserDelegate {
-    func requestSocarList(startPage: Int, endPage: Int, spot: Int) {
-        let urlString = EndPoint.carListSO.requestURL + "/\(startPage)/\(endPage)/\(spot)/so"
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        if let parser = XMLParser(contentsOf: url) {
-            parser.delegate = self
-            
-            if parser.parse() {
-                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
-                }
-
-            } else {
-                print("============================== 🔴 Parse Failed 🔴 ==============================")
-            }
-        }
-    }
-    
-    func requestGreencarList(startPage: Int, endPage: Int, spot: Int) {
-        let urlString = EndPoint.carListGR.requestURL + "/\(startPage)/\(endPage)/\(spot)/gr"
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        if let parser = XMLParser(contentsOf: url) {
-            parser.delegate = self
-            
-            if parser.parse() {
-                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
-                }
-            } else {
-                print("============================== 🔴 Parse Failed 🔴 ==============================")
-            }
-        }
-    }
-    
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        currentElement = elementName
-//        print("currentElement = \(elementName)")
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-//        print("data = \(data)")
-        if !data.isEmpty {
-            item[currentElement] = data
-        }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "reservAbleCnt" {
-            elements = item
-        }
-    }
-}
