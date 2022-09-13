@@ -57,7 +57,6 @@ final class MainViewController: BaseViewController {
     private var totalPage: Int = 0
     
     private var positionId: Int = 0
-    private var address: String = ""
     
     // MARK: - Life Cycle
     
@@ -148,6 +147,40 @@ final class MainViewController: BaseViewController {
         }
     }
     
+    private func drawDistanceLine(to: CLLocationCoordinate2D, from: CLLocationCoordinate2D) {
+        let overlays = self.rootView.mapView.overlays
+        for overlay in overlays {
+            self.rootView.mapView.removeOverlay(overlay)
+        }
+        
+        let sourcePlaceMark = MKPlacemark(coordinate: to, addressDictionary: nil)
+        let destinationPlaceMark = MKPlacemark(coordinate: from, addressDictionary: nil)
+        
+        let sourceMapItem = MKMapItem(placemark: sourcePlaceMark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlaceMark)
+        
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        let direction = MKDirections(request: directionRequest)
+        
+        direction.calculate { response, error in
+            guard let response = response else {
+                if let error = error {
+                    print("Error : \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let route = response.routes[0]
+            self.rootView.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+        }
+    }
+    
     // MARK: - @objc
     
     @objc func touchUpLocationButton() {
@@ -207,8 +240,12 @@ extension MainViewController: MKMapViewDelegate {
                     if let positionId = Int(spot.positnCD) {
                         self.positionId = positionId
                     }
-                    print("주소: ", spot.adres)
-                    address = spot.adres
+                    
+                    if let latitude = Double(spot.la), let longtitude = Double(spot.lo) {
+                        let to = CLLocationCoordinate2D(latitude: currentLatitude ?? 0.0, longitude: currentLongtitude ?? 0.0)
+                        let from = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        drawDistanceLine(to: to, from: from)
+                    }
                 }
             }
             
@@ -230,6 +267,21 @@ extension MainViewController: MKMapViewDelegate {
             let annotationView = DefaultAnnoationView(annotation: annotation, reuseIdentifier: DefaultAnnoationView.ReuseID)
             return annotationView
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let polyLine = overlay as? MKPolyline
+        else {
+            print("Faild To Draw")
+            return MKOverlayRenderer()
+        }
+        
+        let renderer = MKPolylineRenderer(polyline: polyLine)
+        renderer.strokeColor = .systemRed
+        renderer.lineWidth = 3.0
+        renderer.alpha = 1.0
+        
+        return renderer
     }
 }
 
