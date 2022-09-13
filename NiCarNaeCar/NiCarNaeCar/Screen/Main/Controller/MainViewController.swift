@@ -276,12 +276,10 @@ extension MainViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         
-        let renderer = MKPolylineRenderer(polyline: polyLine)
-        renderer.strokeColor = .systemRed
-        renderer.lineWidth = 3.0
-        renderer.alpha = 1.0
-        
-        return renderer
+        let gradientColors = [R.Color.green100, R.Color.blue100]
+        let polylineRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: gradientColors)
+        polylineRenderer.lineWidth = 7
+        return polylineRenderer
     }
 }
 
@@ -368,5 +366,3 @@ extension MainViewController: CLLocationManagerDelegate {
         checkUserDeviceLocationServiceAuthorization()
     }
 }
-
-
