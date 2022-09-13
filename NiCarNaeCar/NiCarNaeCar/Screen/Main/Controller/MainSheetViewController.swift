@@ -8,6 +8,7 @@
 import UIKit
 
 import NiCarNaeCar_Util
+import CoreLocation
 
 final class MainSheetViewController: BaseViewController {
     
@@ -34,6 +35,9 @@ final class MainSheetViewController: BaseViewController {
     
     private var positionName: String = ""
     private var address: String = ""
+    
+    var currentLatitude: Double = 0.0
+    var currentLongtitude: Double = 0.0
     
     // MARK: - Life Cycle
     
@@ -150,6 +154,10 @@ extension MainSheetViewController {
                 
                 self.address = response.nanumcarSpotList.row[0].adres
                 self.rootView.address = response.nanumcarSpotList.row[0].adres
+                
+                if let latitude = Double(response.nanumcarSpotList.row[0].la), let longtitude = Double(response.nanumcarSpotList.row[0].lo) {
+                    self.rootView.distance = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude).distanceToString(to: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude))
+                }
             }
         }
     }

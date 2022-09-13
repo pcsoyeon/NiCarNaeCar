@@ -51,15 +51,15 @@ final class MainSheetView: BaseView {
         }
     }
     
-    var distance: Int = 0 {
+    var distance: String = "0" {
         didSet {
-            descriptionLabel.text = "\(address)\n\(distance)km"
+            descriptionLabel.text = "\(address)\n\(distance)"
         }
     }
     
     var address: String = "" {
         didSet {
-            descriptionLabel.text = "\(address)\n\(distance)km"
+            descriptionLabel.text = "\(address)\n\(distance)"
         }
     }
     

@@ -215,6 +215,8 @@ extension MainViewController: MKMapViewDelegate {
             let viewController = MainSheetViewController()
             transition(viewController, transitionStyle: .presentNavigation) { _ in
                 viewController.positionId = self.positionId
+                viewController.currentLatitude = self.currentLatitude ?? 0.0
+                viewController.currentLongtitude = self.currentLongtitude ?? 0.0
             }
         }
     }
