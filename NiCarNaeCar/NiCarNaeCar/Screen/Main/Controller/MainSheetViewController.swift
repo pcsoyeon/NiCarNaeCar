@@ -24,9 +24,16 @@ final class MainSheetViewController: BaseViewController {
     }
     
     var positionId: Int = 0
+    
     var positionName: String = "" {
         didSet {
             rootView.positionName = positionName
+        }
+    }
+    
+    var address: String = "" {
+        didSet {
+            rootView.address = address
         }
     }
     
@@ -86,6 +93,7 @@ extension MainSheetViewController: UICollectionViewDelegate {
             viewController.info = carList[1]
         }
         viewController.positionName = positionName
+        viewController.address = address
         transition(viewController, transitionStyle: .presentFullScreen)
     }
 }

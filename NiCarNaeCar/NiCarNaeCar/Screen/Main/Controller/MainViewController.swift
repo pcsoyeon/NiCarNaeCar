@@ -66,6 +66,7 @@ final class MainViewController: BaseViewController {
     private var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
                                         BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")]
     private var positionId: Int = 0
+    private var address: String = ""
     
     // MARK: - Life Cycle
     
@@ -230,7 +231,6 @@ extension MainViewController: MKMapViewDelegate {
                         // TODO: - 차량 종류 데이터 제대로 들어오는지 확인
                         SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
                             self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
-
                         }
                         
                         print("============================== 🟢 GREENCAR 🟢 ==============================")
@@ -239,6 +239,9 @@ extension MainViewController: MKMapViewDelegate {
                             self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
                         }
                     }
+                    
+                    print("주소: ", spot.adres)
+                    address = spot.adres
                 }
             }
             
@@ -247,6 +250,7 @@ extension MainViewController: MKMapViewDelegate {
                 viewController.carList = self.carList
                 viewController.positionId = self.positionId
                 viewController.positionName = title
+                viewController.address = self.address
             }
         }
     }
