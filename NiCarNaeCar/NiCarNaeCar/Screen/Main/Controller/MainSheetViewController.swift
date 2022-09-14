@@ -179,18 +179,21 @@ extension MainSheetViewController: XMLParserDelegate {
         
         guard let url = URL(string: urlString) else { return }
         
-        if let parser = XMLParser(contentsOf: url) {
-            parser.delegate = self
-            
-            if parser.parse() {
-                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
-                }
+        DispatchQueue.global().async {
+            if let parser = XMLParser(contentsOf: url) {
+                parser.delegate = self
+                
+                if parser.parse() {
+                    if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
+                        self.carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
+                    }
 
-            } else {
-                print("============================== 🔴 Parse Failed 🔴 ==============================")
+                } else {
+                    print("============================== 🔴 Parse Failed 🔴 ==============================")
+                }
             }
         }
+        
     }
     
     func requestGreencarList(startPage: Int, endPage: Int, spot: Int) {
@@ -198,15 +201,17 @@ extension MainSheetViewController: XMLParserDelegate {
         
         guard let url = URL(string: urlString) else { return }
         
-        if let parser = XMLParser(contentsOf: url) {
-            parser.delegate = self
-            
-            if parser.parse() {
-                if let totalCount = elements["reservAbleAllCnt"], let availableCount = elements["reservAbleCnt"] {
-                    carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
+        DispatchQueue.global().async {
+            if let parser = XMLParser(contentsOf: url) {
+                parser.delegate = self
+                
+                if parser.parse() {
+                    if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
+                        self.carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                    }
+                } else {
+                    print("============================== 🔴 Parse Failed 🔴 ==============================")
                 }
-            } else {
-                print("============================== 🔴 Parse Failed 🔴 ==============================")
             }
         }
     }

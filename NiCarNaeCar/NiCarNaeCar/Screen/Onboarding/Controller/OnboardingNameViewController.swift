@@ -61,6 +61,7 @@ final class OnboardingNameViewController: BaseViewController {
 
 extension OnboardingNameViewController: OnboardingNameViewDelegate {
     func touchUpStartButton() {
+        UserDefaults.standard.set(true, forKey: Constant.UserDefaults.isNotFirst)
         transition(MainViewController(), transitionStyle: .presentFullScreen)
     }
 }

@@ -192,7 +192,7 @@ final class MainViewController: BaseViewController {
     
     @objc func touchUpSettingButton() {
         let viewController = SettingViewController()
-        transition(viewController, transitionStyle: .push)
+        transition(viewController, transitionStyle: .presentInstant)
     }
     
     @objc func touchUpSearchButton() {

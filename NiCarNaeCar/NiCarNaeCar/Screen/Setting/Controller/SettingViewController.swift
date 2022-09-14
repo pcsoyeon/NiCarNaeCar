@@ -18,7 +18,7 @@ final class SettingViewController: BaseViewController {
     
     private lazy var navigationBar = NDSNavigationBar(self).then {
         $0.viewType = .setting
-        $0.backButtonIsHidden = false
+        $0.backButtonIsHidden = true
     }
 
     // MARK: - Life Cycle
