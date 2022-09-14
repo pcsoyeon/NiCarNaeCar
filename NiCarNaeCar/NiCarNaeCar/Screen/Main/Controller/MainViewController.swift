@@ -67,8 +67,9 @@ final class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-//        setRegionAndAnnotation(title: "청년취업사관학교 영등포 캠퍼스")
+        fetchInitialAnnotation()
     }
     
     // MARK: - UI Method
@@ -176,8 +177,19 @@ final class MainViewController: BaseViewController {
             
             let route = response.routes[0]
             self.rootView.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
+        }
+    }
+    
+    private func fetchInitialAnnotation() {
+        if currentPage == 1 {
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data in
+                self.spotList = data.nanumcarSpotList.row
+                self.totalPage = data.nanumcarSpotList.listTotalCount
+                
+                DispatchQueue.main.async {
+                    self.setSpotListAnnotation()
+                }
+            }
         }
     }
     
@@ -192,14 +204,13 @@ final class MainViewController: BaseViewController {
     
     @objc func touchUpSettingButton() {
         let viewController = SettingViewController()
-        transition(viewController, transitionStyle: .presentInstant)
+        transition(viewController, transitionStyle: .push)
     }
     
     @objc func touchUpSearchButton() {
         currentPage += 30
         endPage += 30
         
-        // TODO: 코드 개선
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list in
                 dump(list)
@@ -270,15 +281,14 @@ extension MainViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let polyLine = overlay as? MKPolyline
-        else {
+        guard let polyLine = overlay as? MKPolyline else {
             print("Faild To Draw")
             return MKOverlayRenderer()
         }
         
         let gradientColors = [R.Color.green100.cgColor, R.Color.blue100.cgColor]
         let polylineRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: gradientColors)
-        polylineRenderer.lineWidth = 7
+        polylineRenderer.lineWidth = 5
         return polylineRenderer
     }
 }
@@ -298,7 +308,7 @@ extension MainViewController {
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
-            print("위치 서비스가 꺼져 있어 위치 권한 요청을 하지 못합니다.")
+            showRequestLocationServiceAlert()
         }
     }
     
@@ -347,12 +357,6 @@ extension MainViewController: CLLocationManagerDelegate {
             setRegionAndAnnotation(center: coordinate, title: "나의 현재 위치")
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
-            
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data in
-                self.spotList = data.nanumcarSpotList.row
-                self.setSpotListAnnotation()
-                self.totalPage = data.nanumcarSpotList.listTotalCount
-            }
         }
         locationManager.stopUpdatingLocation()
     }
