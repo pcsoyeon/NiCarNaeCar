@@ -28,11 +28,11 @@ final class OnboardingView: BaseView {
     // MARK: - UI Property
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
-            $0.backgroundColor = R.Color.white
-            $0.contentInsetAdjustmentBehavior = .never
-            $0.showsHorizontalScrollIndicator = false
-            $0.isScrollEnabled = false
-        }
+        $0.backgroundColor = R.Color.white
+        $0.contentInsetAdjustmentBehavior = .never
+        $0.showsHorizontalScrollIndicator = false
+        $0.isScrollEnabled = false
+    }
     
     private let collectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal

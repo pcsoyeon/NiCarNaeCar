@@ -26,7 +26,7 @@ final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
         $0.text = """
                   필요할 때
                   언제
-                  어디에서나
+                  어디서나
 
                   내차처럼
                   편리하게
