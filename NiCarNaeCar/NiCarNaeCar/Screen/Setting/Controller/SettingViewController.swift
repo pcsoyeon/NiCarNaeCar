@@ -36,6 +36,7 @@ final class SettingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(UserDefaults.standard.string(forKey: Constant.UserDefaults.userName))
     }
     
     override func setLayout() {

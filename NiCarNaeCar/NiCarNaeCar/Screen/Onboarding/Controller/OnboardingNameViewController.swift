@@ -62,6 +62,9 @@ final class OnboardingNameViewController: BaseViewController {
 extension OnboardingNameViewController: OnboardingNameViewDelegate {
     func touchUpStartButton() {
         UserDefaults.standard.set(true, forKey: Constant.UserDefaults.isNotFirst)
+        if let name = rootView.nameTextField.text {
+            UserDefaults.standard.set("\(name)", forKey: Constant.UserDefaults.userName)
+        }
         transition(MainViewController(), transitionStyle: .presentFullScreen)
     }
 }

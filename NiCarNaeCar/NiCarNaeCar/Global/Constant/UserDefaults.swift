@@ -10,5 +10,6 @@ import Foundation
 extension Constant {
     struct UserDefaults {
         static let isNotFirst: String = "isNotFirst"
+        static let userName: String = "userName"
     }
 }
