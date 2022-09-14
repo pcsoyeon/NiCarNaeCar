@@ -276,7 +276,7 @@ extension MainViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         
-        let gradientColors = [R.Color.green100, R.Color.blue100]
+        let gradientColors = [R.Color.green100.cgColor, R.Color.blue100.cgColor]
         let polylineRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: gradientColors)
         polylineRenderer.lineWidth = 7
         return polylineRenderer

@@ -24,9 +24,9 @@
 		92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */; };
 		92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* MainSheetView.swift */; };
 		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
+		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
+		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */; };
-		926DE43628CAD3950083123F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 926DE43528CAD3950083123F /* Then */; };
-		926DE43A28CAD3A70083123F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 926DE43928CAD3A70083123F /* SnapKit */; };
 		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
 		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
 		926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */; };
@@ -177,10 +177,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */,
 				92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */,
-				926DE43A28CAD3A70083123F /* SnapKit in Frameworks */,
-				926DE43628CAD3950083123F /* Then in Frameworks */,
 				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
+				9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,8 +517,8 @@
 			);
 			name = NiCarNaeCar;
 			packageProductDependencies = (
-				926DE43528CAD3950083123F /* Then */,
-				926DE43928CAD3A70083123F /* SnapKit */,
+				9241C9F728D1E3C90084F4E1 /* SnapKit */,
+				9241C9FE28D1E3D30084F4E1 /* Then */,
 			);
 			productName = NiCarNaeCar;
 			productReference = 92356D4E28C9844400EB5333 /* NiCarNaeCar.app */;
@@ -549,8 +549,8 @@
 			);
 			mainGroup = 92356D4528C9844400EB5333;
 			packageReferences = (
-				926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */,
-				926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9241C9FD28D1E3D30084F4E1 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 92356D4F28C9844400EB5333 /* Products */;
 			projectDirPath = "";
@@ -892,15 +892,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -908,18 +900,26 @@
 				kind = branch;
 			};
 		};
+		9241C9FD28D1E3D30084F4E1 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		926DE43528CAD3950083123F /* Then */ = {
+		9241C9F728D1E3C90084F4E1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 926DE43428CAD3950083123F /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
-		926DE43928CAD3A70083123F /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 926DE43828CAD3A70083123F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		9241C9FE28D1E3D30084F4E1 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9241C9FD28D1E3D30084F4E1 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

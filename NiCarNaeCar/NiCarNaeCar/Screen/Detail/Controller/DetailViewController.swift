@@ -48,7 +48,6 @@ class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dump(info)
     }
     
     // MARK: - UI Method
