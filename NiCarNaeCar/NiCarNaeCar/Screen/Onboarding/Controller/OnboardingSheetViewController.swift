@@ -34,7 +34,9 @@ final class OnboardingSheetViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLocationManager()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.requestAuthorization()
+        }
     }
     
     override func configureUI() {
@@ -59,10 +61,10 @@ final class OnboardingSheetViewController: BaseViewController {
         rootView.delegate = self
     }
     
-    // MARK: - Custom Method
-    
-    private func setLocationManager() {
+    private func requestAuthorization() {
         locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        rootView.isDisabled = false
     }
 }
 
@@ -70,7 +72,6 @@ final class OnboardingSheetViewController: BaseViewController {
 
 extension OnboardingSheetViewController: OnboardingSheetViewDelegate {
     func touchUpStartButton() {
-        locationManager.requestWhenInUseAuthorization()
         transition(OnboardingNameViewController(), transitionStyle: .presentFullScreen)
     }
 }
@@ -103,7 +104,6 @@ extension OnboardingSheetViewController {
         case .authorizedWhenInUse:
             print("WHEN IN USE")
             locationManager.startUpdatingLocation()
-            transition(OnboardingNameViewController(), transitionStyle: .presentFullScreen)
         default:
             print("DEFAULT")
         }

@@ -23,7 +23,7 @@ final class OnboardingSheetView: BaseView {
     
     private lazy var startButton = NDSButton().then {
         $0.text = "계속하기"
-        $0.isDisabled = false
+        $0.isDisabled = true
         $0.addTarget(self, action: #selector(touchUpStartButton), for: .touchUpInside)
     }
     
@@ -62,6 +62,12 @@ final class OnboardingSheetView: BaseView {
     // MARK: - Property
     
     weak var delegate: OnboardingSheetViewDelegate?
+    
+    var isDisabled: Bool = true {
+        didSet {
+            startButton.isDisabled = isDisabled
+        }
+    }
     
     // MARK: - UI Method
     
