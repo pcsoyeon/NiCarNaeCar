@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SpotListAPIManager {
+final class SpotListAPIManager {
     
     static let shared = SpotListAPIManager()
     

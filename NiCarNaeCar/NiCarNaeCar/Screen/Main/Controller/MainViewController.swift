@@ -62,14 +62,14 @@ final class MainViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        configureNavigation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-        fetchInitialAnnotation()
+        fetchSpotListAnnotation()
     }
     
     // MARK: - UI Method
@@ -77,7 +77,7 @@ final class MainViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         configureMapView()
-        registerAnnotationViewClasses()
+        registerAnnotationViewClass()
         configureButton()
     }
     
@@ -103,6 +103,10 @@ final class MainViewController: BaseViewController {
         }
     }
     
+    private func configureNavigation() {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     private func configureMapView() {
         rootView.mapView.delegate = self
     }
@@ -118,14 +122,14 @@ final class MainViewController: BaseViewController {
         locationManager.delegate = self
     }
     
-    private func setRegionAndAnnotation(center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270),title: String) {
+    private func setRegionAndAnnotation(center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270), title: String) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1200, longitudinalMeters: 1200)
         
         rootView.mapView.setRegion(region, animated: true)
         setAnnotation(center: center, title: title)
     }
     
-    func setAnnotation(center: CLLocationCoordinate2D, title: String) {
+    private func setAnnotation(center: CLLocationCoordinate2D, title: String) {
         let annotation =  MKPointAnnotation()
         
         annotation.coordinate = center
@@ -134,18 +138,8 @@ final class MainViewController: BaseViewController {
         rootView.mapView.addAnnotation(annotation)
     }
     
-    private func registerAnnotationViewClasses() {
+    private func registerAnnotationViewClass() {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
-    }
-    
-    private func setSpotListAnnotation() {
-        for spot in spotList {
-            guard let latitude = Double(spot.la) else { return }
-            guard let longtitude = Double(spot.lo) else { return }
-            
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            self.setAnnotation(center: center, title: spot.positnNm)
-        }
     }
     
     private func drawDistanceLine(to: CLLocationCoordinate2D, from: CLLocationCoordinate2D) {
@@ -180,7 +174,7 @@ final class MainViewController: BaseViewController {
         }
     }
     
-    private func fetchInitialAnnotation() {
+    private func fetchSpotListAnnotation() {
         if currentPage == 1 {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
@@ -188,7 +182,40 @@ final class MainViewController: BaseViewController {
                 self.totalPage = data.nanumcarSpotList.listTotalCount
                 
                 DispatchQueue.main.async {
-                    self.setSpotListAnnotation()
+                    for spot in self.spotList {
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
+                }
+            }
+        }
+        
+        if endPage <= totalPage {
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
+                guard let data = data else { return }
+                dump(data)
+                
+                DispatchQueue.main.async {
+                    if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
+                        let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude),
+                                                            latitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80),
+                                                            longitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80))
+                        self.rootView.mapView.setRegion(viewRegion, animated: false)
+                    }
+                    
+                    
+                    for spot in data.nanumcarSpotList.row {
+                        self.spotList.append(spot)
+                        
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
                 }
             }
         }
@@ -212,32 +239,7 @@ final class MainViewController: BaseViewController {
         currentPage += 30
         endPage += 30
         
-        if endPage <= totalPage {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list, error in
-                guard let list = list else { return }
-                dump(list)
-                
-                DispatchQueue.main.async {
-                    if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
-                        let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude),
-                                                            latitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80),
-                                                            longitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80))
-                        self.rootView.mapView.setRegion(viewRegion, animated: false)
-                    }
-                    
-                    
-                    for spot in list.nanumcarSpotList.row {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
-                    }
-                }
-            }
-        }
+        
     }
 }
 

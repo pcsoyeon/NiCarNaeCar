@@ -53,6 +53,11 @@ final class MainSheetViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let viewController = self.presentingViewController as? MainViewController else { return }
+    }
+    
     // MARK: - UI Method
     
     override func configureUI() {
