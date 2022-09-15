@@ -33,7 +33,6 @@
 		926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45128CAD9D60083123F /* DetailViewController.swift */; };
 		926DE45428CAD9DF0083123F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45328CAD9DF0083123F /* DetailView.swift */; };
 		926DE45928CADECF0083123F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45828CADECF0083123F /* SettingViewController.swift */; };
-		926DE45B28CAE0A60083123F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45A28CAE0A60083123F /* SettingView.swift */; };
 		926DE45D28CAE2380083123F /* NDSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45C28CAE2380083123F /* NDSButton.swift */; };
 		926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE45F28CAE36A0083123F /* OnboardingView.swift */; };
 		926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE46128CAE77F0083123F /* NDSTextField.swift */; };
@@ -62,6 +61,9 @@
 		9277205A28CF21C100163925 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9277205928CF21C100163925 /* DetailCollectionViewCell.swift */; };
 		9277205F28CF46D200163925 /* CarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9277205E28CF46D200163925 /* CarType.swift */; };
 		9277206128CF4D7900163925 /* SpotAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9277206028CF4D7900163925 /* SpotAPIManager.swift */; };
+		928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C6F28D3317F001A029F /* SettingViewModel.swift */; };
+		928D4C7228D331B2001A029F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7128D331B2001A029F /* Observable.swift */; };
+		928D4C7428D33261001A029F /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7328D33261001A029F /* SettingList.swift */; };
 		929C3A9A28CCD8A1004592A9 /* MainSheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */; };
 		929C3AA028CCD92D004592A9 /* BrandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9F28CCD92D004592A9 /* BrandType.swift */; };
 		929C3AA228CCE0C9004592A9 /* BrandInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3AA128CCE0C9004592A9 /* BrandInfo.swift */; };
@@ -138,7 +140,6 @@
 		926DE45128CAD9D60083123F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		926DE45328CAD9DF0083123F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		926DE45828CADECF0083123F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		926DE45A28CAE0A60083123F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		926DE45C28CAE2380083123F /* NDSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSButton.swift; sourceTree = "<group>"; };
 		926DE45F28CAE36A0083123F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		926DE46128CAE77F0083123F /* NDSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSTextField.swift; sourceTree = "<group>"; };
@@ -167,6 +168,9 @@
 		9277205928CF21C100163925 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		9277205E28CF46D200163925 /* CarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarType.swift; sourceTree = "<group>"; };
 		9277206028CF4D7900163925 /* SpotAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotAPIManager.swift; sourceTree = "<group>"; };
+		928D4C6F28D3317F001A029F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		928D4C7128D331B2001A029F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		928D4C7328D33261001A029F /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetCollectionViewCell.swift; sourceTree = "<group>"; };
 		929C3A9F28CCD92D004592A9 /* BrandType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandType.swift; sourceTree = "<group>"; };
 		929C3AA128CCE0C9004592A9 /* BrandInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandInfo.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 			children = (
 				926DE43B28CAD3DC0083123F /* DesignSystem */,
 				92356D6F28C9858D00EB5333 /* Constant */,
+				928D4C7128D331B2001A029F /* Observable.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -424,24 +429,25 @@
 		926DE45528CADEAE0083123F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				928D4C6E28D3309F001A029F /* Model */,
 				926DE45728CADEC20083123F /* View */,
-				926DE45628CADEBE0083123F /* Controller */,
+				926DE45628CADEBE0083123F /* ViewModel */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		926DE45628CADEBE0083123F /* Controller */ = {
+		926DE45628CADEBE0083123F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				926DE45828CADECF0083123F /* SettingViewController.swift */,
+				928D4C6F28D3317F001A029F /* SettingViewModel.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		926DE45728CADEC20083123F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				926DE45A28CAE0A60083123F /* SettingView.swift */,
+				926DE45828CADECF0083123F /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +503,14 @@
 				9277206028CF4D7900163925 /* SpotAPIManager.swift */,
 			);
 			path = APIManager;
+			sourceTree = "<group>";
+		};
+		928D4C6E28D3309F001A029F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				928D4C7328D33261001A029F /* SettingList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,13 +640,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928D4C7228D331B2001A029F /* Observable.swift in Sources */,
+				928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */,
 				92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */,
 				926DE48728CAF8D20083123F /* SpotListAPIManager.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */,
 				927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */,
-				926DE45B28CAE0A60083123F /* SettingView.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
@@ -657,6 +672,7 @@
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,
 				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
+				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,

@@ -58,7 +58,7 @@ final class DetailView: BaseView {
         addSubviews(collectionView, openButton)
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(44)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationHeight)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
