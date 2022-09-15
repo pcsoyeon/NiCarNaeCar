@@ -55,7 +55,6 @@ final class MainSheetViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let viewController = self.presentingViewController as? MainViewController else { return }
     }
     
     // MARK: - UI Method
@@ -80,7 +79,7 @@ final class MainSheetViewController: BaseViewController {
         isModalInPresentation = false
         
         if let sheet = sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
+            sheet.detents = [.medium()]
             sheet.selectedDetentIdentifier = .medium
             sheet.largestUndimmedDetentIdentifier = .none
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false

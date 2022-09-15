@@ -54,7 +54,7 @@ final class MainViewController: BaseViewController {
     
     private var currentPage: Int = 1
     private var endPage: Int = 30
-    private var totalPage: Int = 0
+    private var totalPage: Int = 100
     
     private var positionId: Int = 0
     
@@ -175,38 +175,14 @@ final class MainViewController: BaseViewController {
     }
     
     private func fetchSpotListAnnotation() {
-        if currentPage == 1 {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
-                guard let data = data else { return }
-                self.spotList = data.nanumcarSpotList.row
-                self.totalPage = data.nanumcarSpotList.listTotalCount
-                
-                DispatchQueue.main.async {
-                    for spot in self.spotList {
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
-                    }
-                }
-            }
-        }
-        
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
                 dump(data)
                 
+                self.totalPage = data.nanumcarSpotList.listTotalCount
+                
                 DispatchQueue.main.async {
-                    if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
-                        let viewRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude),
-                                                            latitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80),
-                                                            longitudinalMeters: CLLocationDistance(2000 + self.currentPage * 80))
-                        self.rootView.mapView.setRegion(viewRegion, animated: false)
-                    }
-                    
-                    
                     for spot in data.nanumcarSpotList.row {
                         self.spotList.append(spot)
                         
@@ -239,7 +215,16 @@ final class MainViewController: BaseViewController {
         currentPage += 30
         endPage += 30
         
+        if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            let meters = CLLocationDistance(2000 + self.currentPage * 80)
+            let viewRegion = MKCoordinateRegion(center: center,
+                                                latitudinalMeters: meters,
+                                                longitudinalMeters: meters)
+            self.rootView.mapView.setRegion(viewRegion, animated: false)
+        }
         
+        fetchSpotListAnnotation()
     }
 }
 
