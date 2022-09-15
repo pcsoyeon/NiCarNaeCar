@@ -147,6 +147,8 @@ extension MainSheetViewController: UICollectionViewDataSource {
 
 extension MainSheetViewController {
     func fetchSpotInfo() {
+        view.isUserInteractionEnabled = false
+        
         SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response, error in
             guard let response = response else { return }
             
@@ -163,6 +165,8 @@ extension MainSheetViewController {
                 if let latitude = Double(response.nanumcarSpotList.row[0].la), let longtitude = Double(response.nanumcarSpotList.row[0].lo) {
                     self.rootView.distance = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude).distanceToString(to: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude))
                 }
+                
+                self.view.isUserInteractionEnabled = true
             }
         }
     }
