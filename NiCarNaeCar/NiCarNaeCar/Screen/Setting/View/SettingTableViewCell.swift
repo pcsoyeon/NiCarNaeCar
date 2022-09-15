@@ -19,12 +19,12 @@ final class SettingTableViewCell: BaseTableViewCell {
     
     private var titleLabel = UILabel().then {
         $0.textColor = R.Color.black200
-        $0.font = NiCarNaeCarFont.body3.font
+        $0.font = NiCarNaeCarFont.body5.font
     }
     
     private var subTitleLabel = UILabel().then {
         $0.textColor = R.Color.gray200
-        $0.font = NiCarNaeCarFont.body3.font
+        $0.font = NiCarNaeCarFont.body5.font
     }
     
     // MARK: - UI Method
@@ -51,7 +51,6 @@ final class SettingTableViewCell: BaseTableViewCell {
     
     func setData(_ title: String, _ subTitle: String?) {
         titleLabel.text = title
-        
         subTitleLabel.text = subTitle
     }
 }

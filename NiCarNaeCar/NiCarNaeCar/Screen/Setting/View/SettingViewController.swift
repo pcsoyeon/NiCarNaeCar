@@ -23,6 +23,8 @@ final class SettingViewController: BaseViewController {
         $0.backgroundColor = R.Color.white
     }
     
+    private var headerView = SettingHeaderView()
+    
     // MARK: - Property
     
     private var viewModel = SettingViewModel()
@@ -85,6 +87,24 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return viewModel.didSelectRowAt(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            guard let name = UserDefaults.standard.string(forKey: Constant.UserDefaults.userName) else { return nil }
+            headerView.setData(title: name, subTitle: "내 정보 수정하기")
+            return headerView
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return viewModel.heightForHeaderInSection(at: section)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return viewModel.heightForFooterInSection(at: section)
     }
 }
 
