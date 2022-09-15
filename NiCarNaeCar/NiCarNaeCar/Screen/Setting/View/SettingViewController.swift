@@ -66,7 +66,9 @@ final class SettingViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.reuseIdentifier)
+        
+        tableView.separatorStyle = .none
     }
     
     private func bindData() {
@@ -77,7 +79,13 @@ final class SettingViewController: BaseViewController {
 // MARK: - UITableView Protocol
 
 extension SettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return viewModel.heightForRowAt(at: indexPath)
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return viewModel.didSelectRowAt(at: indexPath)
+    }
 }
 
 extension SettingViewController: UITableViewDataSource {
@@ -86,9 +94,12 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
+        
         let data = viewModel.cellForRowAt(at: indexPath)
-        cell.textLabel?.text = data.title
+        cell.setData(data.title, data.subTitle)
+        cell.selectionStyle = .none
+        
         return cell
     }
 }

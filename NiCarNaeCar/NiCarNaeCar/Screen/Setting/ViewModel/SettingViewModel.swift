@@ -30,4 +30,12 @@ final class SettingViewModel {
     func cellForRowAt(at indexPath: IndexPath) -> Setting {
         return list.value[indexPath.row]
     }
+    
+    func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+    
+    func didSelectRowAt(at indexPath: IndexPath) {
+        print(indexPath.row)
+    }
 }

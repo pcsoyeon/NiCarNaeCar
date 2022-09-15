@@ -64,6 +64,7 @@
 		928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C6F28D3317F001A029F /* SettingViewModel.swift */; };
 		928D4C7228D331B2001A029F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7128D331B2001A029F /* Observable.swift */; };
 		928D4C7428D33261001A029F /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7328D33261001A029F /* SettingList.swift */; };
+		928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */; };
 		929C3A9A28CCD8A1004592A9 /* MainSheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */; };
 		929C3AA028CCD92D004592A9 /* BrandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9F28CCD92D004592A9 /* BrandType.swift */; };
 		929C3AA228CCE0C9004592A9 /* BrandInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3AA128CCE0C9004592A9 /* BrandInfo.swift */; };
@@ -171,6 +172,7 @@
 		928D4C6F28D3317F001A029F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		928D4C7128D331B2001A029F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		928D4C7328D33261001A029F /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
+		928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetCollectionViewCell.swift; sourceTree = "<group>"; };
 		929C3A9F28CCD92D004592A9 /* BrandType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandType.swift; sourceTree = "<group>"; };
 		929C3AA128CCE0C9004592A9 /* BrandInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandInfo.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				926DE45828CADECF0083123F /* SettingViewController.swift */,
+				928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				9277205428CF1C8D00163925 /* DetailHeaderView.swift in Sources */,
 				926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */,
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
+				928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,
