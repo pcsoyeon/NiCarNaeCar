@@ -1,8 +1,6 @@
 # 니카내카
+![Frame 12](https://user-images.githubusercontent.com/59593430/190322294-2b15d988-d120-4889-bcf4-bfd613e6ecc9.png)
 
-### Don't Sit At Home, Go For A Ride!
-필요할 때, 언제 어디서나 </br>
-내차처럼 편리하게 
 
 </br>
 
