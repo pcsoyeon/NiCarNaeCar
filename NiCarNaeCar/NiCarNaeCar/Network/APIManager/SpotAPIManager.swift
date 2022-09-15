@@ -13,47 +13,11 @@ final class SpotAPIManager {
     
     private init() { }
     
-    typealias completionHandler = (SpotList) -> Void
-    
-    static func requestSpotWithPositionId(startPage: Int, endPage: Int, positionId: Int ,completionHandler: @escaping completionHandler) {
+    static func requestSpotWithPositionId(startPage: Int, endPage: Int, positionId: Int ,completionHandler: @escaping (SpotList?, APIError?) -> Void) {
         let urlString = EndPoint.spotList.requestURL + "/\(startPage)/\(endPage)/\(positionId)"
         
-        guard let url = URL(string: urlString) else {
-            print("Wrong URL")
-            return
-        }
+        guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            guard error == nil else {
-                print("Failed Request")
-                return
-            }
-            
-            guard let data = data else {
-                print("No Data Returned")
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else {
-                print("Unable Response")
-                return
-            }
-            
-            guard response.statusCode == 200 else {
-                print("Failed Response")
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(SpotList.self, from: data)
-                completionHandler(result)
-                
-            } catch let error {
-                print("============================== 🔴 Decode Error 🔴 ==============================")
-                print(error)
-            }
-        }.resume()
-        
+        URLSession.request(endpoint: URLRequest(url: url), completionHandler: completionHandler)
     }
 }

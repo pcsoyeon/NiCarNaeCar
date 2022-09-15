@@ -182,7 +182,8 @@ final class MainViewController: BaseViewController {
     
     private func fetchInitialAnnotation() {
         if currentPage == 1 {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data in
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
+                guard let data = data else { return }
                 self.spotList = data.nanumcarSpotList.row
                 self.totalPage = data.nanumcarSpotList.listTotalCount
                 
@@ -212,7 +213,8 @@ final class MainViewController: BaseViewController {
         endPage += 30
         
         if endPage <= totalPage {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list in
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { list, error in
+                guard let list = list else { return }
                 dump(list)
                 
                 DispatchQueue.main.async {
@@ -281,11 +283,6 @@ extension MainViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let polyLine = overlay as? MKPolyline else {
-            print("Faild To Draw")
-            return MKOverlayRenderer()
-        }
-        
         let gradientColors = [R.Color.green100.cgColor, R.Color.blue100.cgColor]
         let polylineRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: gradientColors)
         polylineRenderer.lineWidth = 5
@@ -299,11 +296,7 @@ extension MainViewController {
     func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
         
-        if #available(iOS 14.0, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
+        authorizationStatus = locationManager.authorizationStatus
         
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)

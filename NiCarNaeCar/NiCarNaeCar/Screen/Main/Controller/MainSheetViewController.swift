@@ -43,12 +43,7 @@ final class MainSheetViewController: BaseViewController {
     
     override func loadView() {
         self.view = rootView
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-        
+        configureNavigation()
         fetchSpotInfo()
         fetchSocarInfo()
         fetchGreencarInfo()
@@ -63,6 +58,10 @@ final class MainSheetViewController: BaseViewController {
     override func configureUI() {
         configureCollectionView()
         configureSheet()
+    }
+    
+    private func configureNavigation() {
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func configureCollectionView() {
@@ -144,7 +143,9 @@ extension MainSheetViewController: UICollectionViewDataSource {
 
 extension MainSheetViewController {
     func fetchSpotInfo() {
-        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response in
+        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response, error in
+            guard let response = response else { return }
+            
             self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
             self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
             
