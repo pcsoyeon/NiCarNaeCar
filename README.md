@@ -1,5 +1,5 @@
 # 니카내카
-![Frame 12](https://user-images.githubusercontent.com/59593430/190322294-2b15d988-d120-4889-bcf4-bfd613e6ecc9.png)
+![Frame 12](https://user-images.githubusercontent.com/59593430/190400639-1d3b796d-7950-4aa2-84eb-e718d268fc43.png)
 
 
 </br>
