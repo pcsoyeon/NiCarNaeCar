@@ -22,7 +22,7 @@ final class MainViewController: BaseViewController {
     private let rootView = MainView()
     
     private lazy var navigationBar = UIView().then {
-        $0.addSubviews(logoView, settingButton)
+        $0.addSubviews(logoView, searchButton, settingButton)
     }
     
     private let logoView = UIImageView().then {
@@ -31,15 +31,16 @@ final class MainViewController: BaseViewController {
         $0.contentMode = .scaleToFill
     }
     
+    private lazy var searchButton = UIButton().then {
+        $0.setImage(R.Image.btnSearch, for: .normal)
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
+    }
+    
     private lazy var settingButton = UIButton().then {
         $0.setImage(R.Image.btnSetting, for: .normal)
         $0.setTitle("", for: .normal)
         $0.addTarget(self, action: #selector(touchUpSettingButton), for: .touchUpInside)
-    }
-    
-    override func loadView() {
-        super.loadView()
-        self.view = rootView
     }
     
     // MARK: - Property
@@ -60,6 +61,11 @@ final class MainViewController: BaseViewController {
     
     // MARK: - Life Cycle
     
+    override func loadView() {
+        super.loadView()
+        self.view = rootView
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigation()
@@ -77,7 +83,7 @@ final class MainViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         configureMapView()
-        registerAnnotationViewClass()
+        registerAnnotationView()
         configureButton()
     }
     
@@ -86,19 +92,25 @@ final class MainViewController: BaseViewController {
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(48)
+            make.height.equalTo(57)
         }
         
         logoView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.centerY.equalToSuperview()
             make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.width.equalTo(72)
             make.height.equalTo(27)
         }
         
         settingButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerY.equalToSuperview()
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(9)
+            make.width.height.equalTo(Metric.buttonSize)
+        }
+        
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(3 + Metric.buttonSize)
             make.width.height.equalTo(Metric.buttonSize)
         }
     }
@@ -113,7 +125,7 @@ final class MainViewController: BaseViewController {
     
     private func configureButton() {
         rootView.currentLocationButton.addTarget(self, action: #selector(touchUpLocationButton), for: .touchUpInside)
-        rootView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
+        rootView.searchButton.addTarget(self, action: #selector(touchUpMoreSearchButton), for: .touchUpInside)
     }
     
     // MARK: - Custom Method
@@ -138,7 +150,7 @@ final class MainViewController: BaseViewController {
         rootView.mapView.addAnnotation(annotation)
     }
     
-    private func registerAnnotationViewClass() {
+    private func registerAnnotationView() {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
@@ -211,7 +223,7 @@ final class MainViewController: BaseViewController {
         transition(viewController, transitionStyle: .push)
     }
     
-    @objc func touchUpSearchButton() {
+    @objc func touchUpMoreSearchButton() {
         currentPage += 30
         endPage += 30
         
@@ -225,6 +237,10 @@ final class MainViewController: BaseViewController {
         }
         
         fetchSpotListAnnotation()
+    }
+    
+    @objc func touchUpSearchButton() {
+        transition(MainSearchViewController(), transitionStyle: .push)
     }
 }
 

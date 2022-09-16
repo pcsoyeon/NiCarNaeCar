@@ -43,7 +43,7 @@ class DetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        configureNavigation()
     }
 
     override func viewDidLoad() {
@@ -63,6 +63,11 @@ class DetailViewController: BaseViewController {
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func configureNavigation() {
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     private func configureButton() {

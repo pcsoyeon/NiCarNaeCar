@@ -71,6 +71,9 @@
 		929C3A9A28CCD8A1004592A9 /* MainSheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */; };
 		929C3AA028CCD92D004592A9 /* BrandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3A9F28CCD92D004592A9 /* BrandType.swift */; };
 		929C3AA228CCE0C9004592A9 /* BrandInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C3AA128CCE0C9004592A9 /* BrandInfo.swift */; };
+		92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475428D421B9003B973A /* MainSearchViewController.swift */; };
+		92BA475728D42956003B973A /* MainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475628D42956003B973A /* MainSearchView.swift */; };
+		92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +185,9 @@
 		929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetCollectionViewCell.swift; sourceTree = "<group>"; };
 		929C3A9F28CCD92D004592A9 /* BrandType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandType.swift; sourceTree = "<group>"; };
 		929C3AA128CCE0C9004592A9 /* BrandInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandInfo.swift; sourceTree = "<group>"; };
+		92BA475428D421B9003B973A /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
+		92BA475628D42956003B973A /* MainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchView.swift; sourceTree = "<group>"; };
+		92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +347,7 @@
 			children = (
 				92356D7B28C98A6900EB5333 /* MainViewController.swift */,
 				92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */,
+				92BA475428D421B9003B973A /* MainSearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -368,6 +375,8 @@
 				92356E1A28C9C71500EB5333 /* MainSheetView.swift */,
 				92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */,
 				929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */,
+				92BA475628D42956003B973A /* MainSearchView.swift */,
+				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -682,6 +691,7 @@
 				926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */,
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */,
+				92BA475728D42956003B973A /* MainSearchView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,
@@ -691,7 +701,9 @@
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */,
+				92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */,
 				929C3AA028CCD92D004592A9 /* BrandType.swift in Sources */,
+				92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */,
 				926DE46828CAE93E0083123F /* OnboardingNameView.swift in Sources */,
 				929C3AA228CCE0C9004592A9 /* BrandInfo.swift in Sources */,
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,

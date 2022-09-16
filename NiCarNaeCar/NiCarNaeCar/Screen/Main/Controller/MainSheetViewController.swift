@@ -19,7 +19,7 @@ final class MainSheetViewController: BaseViewController {
     // MARK: - Property
     
     var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
-                                        BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")] {
+                                BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")] {
         didSet {
             DispatchQueue.main.async {
                 self.rootView.collectionView.reloadData()

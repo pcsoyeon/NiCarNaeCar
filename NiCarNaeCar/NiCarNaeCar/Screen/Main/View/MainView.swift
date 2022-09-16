@@ -48,7 +48,7 @@ final class MainView: BaseView {
     
     override func setLayout() {
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(48)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(57)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
