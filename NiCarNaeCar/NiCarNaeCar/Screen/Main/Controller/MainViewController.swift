@@ -242,9 +242,14 @@ final class MainViewController: BaseViewController {
                         self.setAnnotation(center: center, title: spot.positnNm)
                     }
                 }
-                
-                let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: self.currentLatitude ?? 0.0, longitude: self.currentLongtitude ?? 0.0), latitudinalMeters: 12000, longitudinalMeters: 12000)
-                self.rootView.mapView.setRegion(region, animated: true)
+            }
+        }
+        
+        for locality in LocalityType.allCases {
+            if selectedLocality == locality.rawValue {
+                let center = locality.location
+                let region = MKCoordinateRegion(center: center, latitudinalMeters: 8000, longitudinalMeters: 8000)
+                rootView.mapView.setRegion(region, animated: true)
             }
         }
     }
