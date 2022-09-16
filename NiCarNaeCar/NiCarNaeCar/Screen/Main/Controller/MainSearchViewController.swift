@@ -32,7 +32,7 @@ final class MainSearchViewController: BaseViewController {
     var isFiltering: Bool = false
 
     var location = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
-    var filterredLocation: [String] = []
+    var filterredLocation: [String] = [""]
     
     // MARK: - Life Cycle
     
@@ -77,9 +77,6 @@ final class MainSearchViewController: BaseViewController {
     private func configureSearchBar() {
         searchBar.delegate = self
         
-        searchBar.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
-        searchBar.setImage(R.Image.btnClose, for: .clear, state: .normal)
-        
         searchBar.setValue("취소", forKey: "cancelButtonText")
         searchBar.tintColor = R.Color.black200
         
@@ -96,23 +93,17 @@ final class MainSearchViewController: BaseViewController {
         rootView.tableView.dataSource = self
         
         rootView.tableView.register(MainSearchTableViewCell.self, forCellReuseIdentifier: MainSearchTableViewCell.reuseIdentifier)
-        
-        rootView.tableView.separatorStyle = .none
     }
 }
 
 // MARK: - UISearchBar Protocol
 
 extension MainSearchViewController: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.isFiltering = true
-        self.searchBar.showsCancelButton = true
-        rootView.tableView.reloadData()
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let text = searchBar.text?.lowercased() else { return }
-        self.filterredLocation = self.location.filter { $0.localizedCaseInsensitiveContains(text) }
+        self.isFiltering = true
+        
+        guard let text = searchBar.text else { return }
+        self.filterredLocation = self.location.filter { $0.contains(text) }
        
         rootView.tableView.reloadData()
     }
@@ -120,8 +111,8 @@ extension MainSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
 
-        guard let text = searchBar.text?.lowercased() else { return }
-        self.filterredLocation = self.location.filter { $0.localizedCaseInsensitiveContains(text) }
+        guard let text = searchBar.text else { return }
+        self.filterredLocation = self.location.filter { $0.contains(text) }
        
         rootView.tableView.reloadData()
     }
@@ -130,10 +121,6 @@ extension MainSearchViewController: UISearchBarDelegate {
         self.searchBar.text = ""
         self.searchBar.resignFirstResponder()
         self.isFiltering = false
-        rootView.tableView.reloadData()
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         rootView.tableView.reloadData()
     }
     
@@ -148,16 +135,34 @@ extension MainSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFiltering {
+            print(filterredLocation[indexPath.row])
+        } else {
+            print(location[indexPath.row])
+        }
+    }
 }
 
 extension MainSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return location.count
+        if isFiltering {
+            return filterredLocation.count
+        } else {
+            return location.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainSearchTableViewCell.reuseIdentifier, for: indexPath) as? MainSearchTableViewCell else { return UITableViewCell() }
-        cell.setData(location[indexPath.row])
+        
+        if isFiltering {
+            cell.setData(filterredLocation[indexPath.row])
+        } else {
+            cell.setData(location[indexPath.row])
+        }
+        
         cell.selectionStyle = .none
         return cell
     }

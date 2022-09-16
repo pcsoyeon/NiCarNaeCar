@@ -17,8 +17,9 @@ final class MainSearchView: BaseView {
     
     // MARK: - UI Property
     
-    var tableView = UITableView().then {
+    lazy var tableView = UITableView().then {
         $0.backgroundColor = R.Color.white
+        $0.separatorStyle = .none
     }
     
     // MARK: - UI Method
