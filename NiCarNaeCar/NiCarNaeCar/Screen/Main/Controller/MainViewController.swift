@@ -59,6 +59,8 @@ final class MainViewController: BaseViewController {
     
     private var positionId: Int = 0
     
+    private var selectedLocality: String = ""
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -209,6 +211,44 @@ final class MainViewController: BaseViewController {
         }
     }
     
+    private func searchLocalitySpot() {
+        SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
+            guard let data = data else { return }
+            
+            self.currentPage = 1
+            self.endPage = 30
+            self.spotList.removeAll()
+            
+            self.rootView.mapView.annotations.forEach {
+                if !($0.title == "나의 현재 위치") {
+                  self.rootView.mapView.removeAnnotation($0)
+              }
+            }
+            
+            DispatchQueue.main.async {
+                for spot in data.nanumcarSpotList.row {
+                    self.spotList.append(spot)
+                    
+                    let addressArr = spot.adres.split(separator: " ")
+                    let locality = String(addressArr[1])
+                    
+                    print(locality)
+                    
+                    if locality == self.selectedLocality {
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
+                }
+                
+                let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: self.currentLatitude ?? 0.0, longitude: self.currentLongtitude ?? 0.0), latitudinalMeters: 12000, longitudinalMeters: 12000)
+                self.rootView.mapView.setRegion(region, animated: true)
+            }
+        }
+    }
+    
     // MARK: - @objc
     
     @objc func touchUpLocationButton() {
@@ -240,7 +280,12 @@ final class MainViewController: BaseViewController {
     }
     
     @objc func touchUpSearchButton() {
-        transition(MainSearchViewController(), transitionStyle: .push)
+        let viewController = MainSearchViewController()
+        viewController.locationClosure = { locality in
+            self.selectedLocality = locality
+            self.searchLocalitySpot()
+        }
+        transition(viewController, transitionStyle: .push)
     }
 }
 
