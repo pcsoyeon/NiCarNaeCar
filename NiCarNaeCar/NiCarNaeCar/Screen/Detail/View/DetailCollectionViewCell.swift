@@ -43,17 +43,17 @@ final class DetailCollectionViewCell: BaseCollectionViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
         
         subTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(9)
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
         
         countLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(Metric.margin)
         }
     }
     

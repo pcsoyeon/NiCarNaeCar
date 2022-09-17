@@ -75,7 +75,7 @@ final class DetailHeaderView: UICollectionReusableView {
         
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(24)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(24)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
             make.width.height.equalTo(60)
         }
         
