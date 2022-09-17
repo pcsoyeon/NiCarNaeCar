@@ -10,21 +10,39 @@ import UIKit
 // MARK: - Metric Enum
 
 public enum Metric {
+    
+}
+
+// MARK: - Common
+
+extension Metric {
+    static let margin: CGFloat = 25
+}
+
+// MARK: - Navigation
+
+extension Metric {
     static let navigationHeight: CGFloat = UIScreen.main.hasNotch ? 44 : 50
     static let navigationTitleTop: CGFloat = 12
-    static let buttonLeading: CGFloat = 4
-    static let buttonTrailing: CGFloat = 9
-    static let buttonSize: CGFloat = 44
+    static let navigationButtonLeading: CGFloat = 4
+    static let navigationButtonTrailing: CGFloat = 9
+    static let navigationButtonSize: CGFloat = 44
 }
+
+// MARK: - TextField
 
 extension Metric {
     static let textFieldHeight = 36
 }
 
+// MARK: - FloatingButton
+
 extension Metric {
-    static let circleButtonSize: CGFloat = 50
-    static let circleButtonRadius: CGFloat = 25
+    static let floatingButtonSize: CGFloat = 50
+    static let floatingButtonRadius: CGFloat = 25
 }
+
+// MARK: - CTAButton
 
 extension Metric {
     static let ctaButtonLeading: CGFloat = 20
