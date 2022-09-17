@@ -13,12 +13,6 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
-extension Metric {
-    static let ctaButtonLeading: CGFloat = 20
-    static let ctaButtonBottom: CGFloat = 25
-    static let ctaButtonHeight: CGFloat = 52
-}
-
 protocol OnboardingViewDelegate: OnboardingViewController {
     func touchUpStartButton()
 }

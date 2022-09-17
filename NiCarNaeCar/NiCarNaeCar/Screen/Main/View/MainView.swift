@@ -39,31 +39,17 @@ final class MainView: BaseView {
         $0.addTarget(self, action: #selector(touchUpSearchBarButton), for: .touchUpInside)
     }
     
-    private lazy var refreshButton = UIButton().then {
-        $0.setTitle("", for: .normal)
-        $0.backgroundColor = R.Color.white
-        $0.layer.cornerRadius = 22
-        $0.makeShadow(R.Color.black100, 0.25, CGSize(width: 0, height: 4), 10)
+    private lazy var refreshButton = NDSCircleButton().then {
         $0.addTarget(self, action: #selector(touchUpRefreshButton), for: .touchUpInside)
     }
     
-    private lazy var addButton = UIButton().then {
-        $0.backgroundColor = R.Color.white
-        $0.setTitle("+30", for: .normal)
-        $0.setTitleColor(R.Color.black200, for: .normal)
-        $0.setTitleColor(R.Color.gray200, for: .highlighted)
-        $0.titleLabel?.font = NiCarNaeCarFont.body3.font
-        $0.layer.cornerRadius = 22
-        $0.makeShadow(R.Color.gray100, 0.25, CGSize(width: 0, height: 4), 10)
+    private lazy var addButton = NDSCircleButton().then {
+        $0.text = "+30"
         $0.addTarget(self, action: #selector(touchUpAddButton), for: .touchUpInside)
     }
     
-    private lazy var currentLocationButton = UIButton().then {
-        $0.setTitle("", for: .normal)
-        $0.setImage(R.Image.btnLocation, for: .normal)
-        $0.backgroundColor = R.Color.white
-        $0.layer.cornerRadius = 22
-        $0.makeShadow(R.Color.black100, 0.25, CGSize(width: 0, height: 4), 10)
+    private lazy var currentLocationButton = NDSCircleButton().then {
+        $0.image = R.Image.btnLocation
         $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
     }
     
@@ -75,12 +61,12 @@ final class MainView: BaseView {
     
     override func configureUI() {
         self.backgroundColor = R.Color.white
-        
-        addSubview(mapView)
-        mapView.addSubviews(searchBarButton, currentLocationButton, addButton, refreshButton)
     }
     
     override func setLayout() {
+        addSubview(mapView)
+        mapView.addSubviews(searchBarButton, currentLocationButton, addButton, refreshButton)
+        
         mapView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(57)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
@@ -95,19 +81,16 @@ final class MainView: BaseView {
         currentLocationButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(40)
             make.trailing.equalToSuperview().inset(25)
-            make.width.height.equalTo(44)
         }
         
         addButton.snp.makeConstraints { make in
-            make.bottom.equalTo(currentLocationButton.snp.top).offset(-12)
+            make.bottom.equalTo(currentLocationButton.snp.top).offset(-15)
             make.trailing.equalToSuperview().inset(25)
-            make.width.height.equalTo(44)
         }
         
         refreshButton.snp.makeConstraints { make in
-            make.bottom.equalTo(addButton.snp.top).offset(-12)
+            make.bottom.equalTo(addButton.snp.top).offset(-15)
             make.trailing.equalToSuperview().inset(25)
-            make.width.height.equalTo(44)
         }
     }
     

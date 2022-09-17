@@ -12,16 +12,6 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
-// MARK: - Metric Enum
-
-public enum Metric {
-    static let navigationHeight: CGFloat = UIScreen.main.hasNotch ? 44 : 50
-    static let titleTop: CGFloat = 11
-    static let buttonLeading: CGFloat = 4
-    static let buttonTrailing: CGFloat = 9
-    static let buttonSize: CGFloat = 44
-}
-
 final class NDSNavigationBar: UIView {
     
     // MARK: - PageView Enum
@@ -120,7 +110,7 @@ final class NDSNavigationBar: UIView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(9)
+            make.top.equalToSuperview().inset(Metric.navigationTitleTop)
             make.centerX.equalToSuperview()
         }
         

@@ -7,7 +7,6 @@
 
 import UIKit
 
-import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
 final class NDSButton: UIButton {

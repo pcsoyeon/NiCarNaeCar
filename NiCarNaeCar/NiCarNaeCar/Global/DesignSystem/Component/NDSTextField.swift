@@ -7,15 +7,10 @@
 
 import UIKit
 
-import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
 import SnapKit
 import Then
-
-extension Metric {
-    static let textFieldHeight = 36
-}
 
 final class NDSTextField: UITextField {
     
