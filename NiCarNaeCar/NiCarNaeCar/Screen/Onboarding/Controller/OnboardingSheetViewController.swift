@@ -64,7 +64,10 @@ final class OnboardingSheetViewController: BaseViewController {
     private func requestAuthorization() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        rootView.isDisabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.rootView.isDisabled = false
+        }
     }
 }
 
