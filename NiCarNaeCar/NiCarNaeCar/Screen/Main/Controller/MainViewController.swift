@@ -22,19 +22,13 @@ final class MainViewController: BaseViewController {
     private let rootView = MainView()
     
     private lazy var navigationBar = UIView().then {
-        $0.addSubviews(logoView, searchButton, settingButton)
+        $0.addSubviews(logoView, settingButton)
     }
     
     private let logoView = UIImageView().then {
         $0.image = R.Image.imgLogo
         $0.backgroundColor = R.Color.white
         $0.contentMode = .scaleToFill
-    }
-    
-    private lazy var searchButton = UIButton().then {
-        $0.setImage(R.Image.btnSearch, for: .normal)
-        $0.setTitle("", for: .normal)
-        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
     }
     
     private lazy var settingButton = UIButton().then {
@@ -109,12 +103,6 @@ final class MainViewController: BaseViewController {
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(9)
             make.width.height.equalTo(Metric.buttonSize)
         }
-        
-        searchButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(3 + Metric.buttonSize)
-            make.width.height.equalTo(Metric.buttonSize)
-        }
     }
     
     private func configureNavigation() {
@@ -126,8 +114,7 @@ final class MainViewController: BaseViewController {
     }
     
     private func configureButton() {
-        rootView.currentLocationButton.addTarget(self, action: #selector(touchUpLocationButton), for: .touchUpInside)
-        rootView.searchButton.addTarget(self, action: #selector(touchUpMoreSearchButton), for: .touchUpInside)
+        rootView.buttonDelegate = self
     }
     
     // MARK: - Custom Method
@@ -256,40 +243,8 @@ final class MainViewController: BaseViewController {
     
     // MARK: - @objc
     
-    @objc func touchUpLocationButton() {
-        if let latitude = currentLatitude, let longtitude = currentLongtitude {
-            let currentLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude), latitudinalMeters: 1200, longitudinalMeters: 1200)
-            rootView.mapView.setRegion(currentLocation, animated: true)
-        }
-    }
-    
     @objc func touchUpSettingButton() {
         let viewController = SettingViewController()
-        transition(viewController, transitionStyle: .push)
-    }
-    
-    @objc func touchUpMoreSearchButton() {
-        currentPage += 30
-        endPage += 30
-        
-        if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            let meters = CLLocationDistance(2000 + self.currentPage * 80)
-            let viewRegion = MKCoordinateRegion(center: center,
-                                                latitudinalMeters: meters,
-                                                longitudinalMeters: meters)
-            self.rootView.mapView.setRegion(viewRegion, animated: false)
-        }
-        
-        fetchSpotListAnnotation()
-    }
-    
-    @objc func touchUpSearchButton() {
-        let viewController = MainSearchViewController()
-        viewController.locationClosure = { locality in
-            self.selectedLocality = locality
-            self.searchLocalitySpot()
-        }
         transition(viewController, transitionStyle: .push)
     }
 }
@@ -413,5 +368,46 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(#function)
         checkUserDeviceLocationServiceAuthorization()
+    }
+}
+
+// MARK: - Custom Delegate
+
+extension MainViewController: MainViewDelegate {
+    func touchUpSearchBarButton() {
+        let viewController = MainSearchViewController()
+        viewController.locationClosure = { locality in
+            self.selectedLocality = locality
+            self.searchLocalitySpot()
+        }
+        transition(viewController, transitionStyle: .push)
+    }
+    
+    func touchUpRefreshButton() {
+        print("Refresh Button Tapped!!")
+    }
+    
+    func touchUpAddButton() {
+        currentPage += 30
+        endPage += 30
+        
+        if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            let meters = CLLocationDistance(2000 + self.currentPage * 80)
+            let viewRegion = MKCoordinateRegion(center: center,
+                                                latitudinalMeters: meters,
+                                                longitudinalMeters: meters)
+            self.rootView.mapView.setRegion(viewRegion, animated: false)
+        }
+        
+        fetchSpotListAnnotation()
+    }
+    
+    func touchUpCurrentLocationButton() {
+        if let latitude = currentLatitude, let longtitude = currentLongtitude {
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            let currentLocation = MKCoordinateRegion(center: center, latitudinalMeters: 1200, longitudinalMeters: 1200)
+            rootView.mapView.setRegion(currentLocation, animated: true)
+        }
     }
 }
