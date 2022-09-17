@@ -416,16 +416,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
+		923B7EED28D585950064700C /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				926DE47A28CAF4090083123F /* Font */,
 				926DE44828CAD47D0083123F /* BackButton.swift */,
 				926DE44A28CAD4850083123F /* CloseButton.swift */,
 				926DE44C28CAD48E0083123F /* NDSNavigationBar.swift */,
 				926DE45C28CAE2380083123F /* NDSButton.swift */,
 				926DE46128CAE77F0083123F /* NDSTextField.swift */,
 				9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				923B7EED28D585950064700C /* Component */,
+				926DE47A28CAF4090083123F /* Font */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
