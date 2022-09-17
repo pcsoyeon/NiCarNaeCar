@@ -64,12 +64,12 @@ final class SettingHeaderView: UIView {
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
         
         changeNameButton.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(11)
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
         
         lineView.snp.makeConstraints { make in

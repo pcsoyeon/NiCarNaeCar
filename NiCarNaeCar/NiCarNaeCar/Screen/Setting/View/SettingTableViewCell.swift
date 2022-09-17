@@ -37,12 +37,12 @@ final class SettingTableViewCell: BaseTableViewCell {
         contentView.addSubviews(titleLabel, subTitleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
             make.centerY.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(Metric.margin)
             make.centerY.equalToSuperview()
         }
     }
