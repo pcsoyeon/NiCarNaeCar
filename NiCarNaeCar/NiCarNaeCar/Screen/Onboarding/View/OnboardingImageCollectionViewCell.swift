@@ -33,7 +33,7 @@ final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
                   """
         $0.numberOfLines = 0
         $0.addLineSpacing(spacing: 85)
-        $0.font = NiCarNaeCarFont.title0.font
+        $0.font = NiCarNaeCarFont.title05.font
         $0.textColor = R.Color.black200
     }
     

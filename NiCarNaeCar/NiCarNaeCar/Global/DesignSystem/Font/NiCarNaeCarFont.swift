@@ -16,6 +16,7 @@ public struct FontProperty {
 
 public enum NiCarNaeCarFont {
     case title0
+    case title05
     case title1
     case title2
     case title3
@@ -31,6 +32,8 @@ public enum NiCarNaeCarFont {
     public var fontProperty: FontProperty {
         switch self {
         case .title0:
+            return FontProperty(font: .extrabold, size: 90, kern: -0.3, lineHeight: 100)
+        case .title05:
             return FontProperty(font: .extrabold, size: 74, kern: -0.3, lineHeight: 100)
         case .title1:
             return FontProperty(font: .semibold, size: 24, kern: -0.3, lineHeight: 34)
