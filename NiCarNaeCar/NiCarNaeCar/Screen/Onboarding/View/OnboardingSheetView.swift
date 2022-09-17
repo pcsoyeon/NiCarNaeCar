@@ -80,12 +80,12 @@ final class OnboardingSheetView: BaseView {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(29)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
         imageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(26)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Metric.margin)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
             make.width.height.equalTo(42)
         }
         

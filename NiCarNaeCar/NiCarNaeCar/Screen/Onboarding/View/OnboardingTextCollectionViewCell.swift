@@ -44,12 +44,12 @@ final class OnboardingTextCollectionViewCell: BaseCollectionViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(126)
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
         
         subTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(21)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
     }
 }

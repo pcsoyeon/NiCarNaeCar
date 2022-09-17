@@ -54,7 +54,7 @@ final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(100)
-            make.leading.equalToSuperview().inset(26)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
     }
 }

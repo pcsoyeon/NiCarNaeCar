@@ -59,17 +59,17 @@ final class OnboardingNameView: BaseView {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(76)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(152)
-            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.ctaButtonLeading)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
         nameCountLabel.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(8)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(24)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
             make.height.equalTo(16)
         }
         
