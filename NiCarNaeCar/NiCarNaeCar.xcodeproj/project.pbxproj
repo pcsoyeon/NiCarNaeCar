@@ -77,7 +77,7 @@
 		92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475428D421B9003B973A /* MainSearchViewController.swift */; };
 		92BA475728D42956003B973A /* MainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475628D42956003B973A /* MainSearchView.swift */; };
 		92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */; };
-		92BA475B28D45CBB003B973A /* Locality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475A28D45CBB003B973A /* Locality.swift */; };
+		92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475A28D45CBB003B973A /* LocalityType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,7 +195,7 @@
 		92BA475428D421B9003B973A /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		92BA475628D42956003B973A /* MainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchView.swift; sourceTree = "<group>"; };
 		92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchTableViewCell.swift; sourceTree = "<group>"; };
-		92BA475A28D45CBB003B973A /* Locality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locality.swift; sourceTree = "<group>"; };
+		92BA475A28D45CBB003B973A /* LocalityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalityType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,7 +407,7 @@
 				929C3A9F28CCD92D004592A9 /* BrandType.swift */,
 				929C3AA128CCE0C9004592A9 /* BrandInfo.swift */,
 				9277205E28CF46D200163925 /* CarType.swift */,
-				92BA475A28D45CBB003B973A /* Locality.swift */,
+				92BA475A28D45CBB003B973A /* LocalityType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -728,7 +728,7 @@
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,
 				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
 				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
-				92BA475B28D45CBB003B973A /* Locality.swift in Sources */,
+				92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
