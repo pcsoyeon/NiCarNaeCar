@@ -33,7 +33,7 @@ final class MainSearchTableViewCell: BaseTableViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(25)
+            make.leading.equalToSuperview().inset(Metric.margin)
         }
     }
     

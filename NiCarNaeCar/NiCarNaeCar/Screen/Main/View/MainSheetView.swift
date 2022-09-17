@@ -74,12 +74,12 @@ final class MainSheetView: BaseView {
         
         locationLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(33)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(locationLabel.snp.bottom).offset(8)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
         lineView.snp.makeConstraints { make in

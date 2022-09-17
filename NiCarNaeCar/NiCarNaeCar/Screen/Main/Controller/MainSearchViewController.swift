@@ -66,7 +66,7 @@ final class MainSearchViewController: BaseViewController {
         
         searchBar.snp.makeConstraints { make in
             make.leading.equalTo(view.safeAreaLayoutGuide).inset(50)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Metric.margin)
             make.top.bottom.equalToSuperview()
         }
     }

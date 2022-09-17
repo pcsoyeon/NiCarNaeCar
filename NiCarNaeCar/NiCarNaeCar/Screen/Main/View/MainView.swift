@@ -80,17 +80,17 @@ final class MainView: BaseView {
         
         currentLocationButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(40)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(Metric.margin)
         }
         
         addButton.snp.makeConstraints { make in
             make.bottom.equalTo(currentLocationButton.snp.top).offset(-15)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(Metric.margin)
         }
         
         refreshButton.snp.makeConstraints { make in
             make.bottom.equalTo(addButton.snp.top).offset(-15)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(Metric.margin)
         }
     }
     

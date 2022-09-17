@@ -100,8 +100,8 @@ final class MainViewController: BaseViewController {
         
         settingButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(9)
-            make.width.height.equalTo(Metric.buttonSize)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
+            make.width.height.equalTo(Metric.navigationButtonSize)
         }
     }
     
