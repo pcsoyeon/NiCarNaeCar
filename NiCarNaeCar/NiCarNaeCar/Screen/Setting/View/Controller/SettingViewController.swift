@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
@@ -76,6 +77,12 @@ final class SettingViewController: BaseViewController {
     private func bindData() {
         viewModel.fetchSetting()
     }
+    
+    private func pushToNotion() {
+        guard let url = NSURL(string: URLConstant.NotionURL) else { return }
+        let safariView: SFSafariViewController = SFSafariViewController(url: url as URL)
+        transition(safariView, transitionStyle: .present)
+    }
 }
 
 // MARK: - UITableView Protocol
@@ -90,7 +97,7 @@ extension SettingViewController: UITableViewDelegate {
         case 0:
             transition(SettingNameController(), transitionStyle: .presentFullScreen)
         case 1, 3, 4:
-            transition(SettingWebViewController(), transitionStyle: .presentFullScreen)
+            pushToNotion()
         case 2:
             print("문의하기")
         default: return
