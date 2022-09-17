@@ -36,7 +36,7 @@ final class SettingViewModel {
     
     func heightForHeaderInSection(at section: Int) -> CGFloat {
         if section == 0 {
-            return 78
+            return 88
         } else {
             return CGFloat.leastNormalMagnitude
         }

@@ -12,21 +12,36 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
+protocol SettingHeaderViewDelegate: SettingViewController {
+    func touchUpButton()
+}
+
 final class SettingHeaderView: UIView {
     
-    private var titleLabel = UILabel().then {
+    // MARK: - UI Property
+    
+    private var nameLabel = UILabel().then {
         $0.textColor = R.Color.black200
         $0.font = NiCarNaeCarFont.title2.font
     }
     
-    private var subTitleLabel = UILabel().then {
-        $0.textColor = R.Color.gray100
-        $0.font = NiCarNaeCarFont.body7.font
+    private var changeNameButton = UIButton().then {
+        $0.setTitle("내 정보 수정하기", for: .normal)
+        $0.setTitleColor(R.Color.gray100, for: .normal)
+        $0.setTitleColor(R.Color.black200, for: .highlighted)
+        $0.titleLabel?.font = NiCarNaeCarFont.body7.font
+        $0.addTarget(self, action: #selector(touchUpButton), for: .touchUpInside)
     }
     
     private var lineView = UIView().then {
         $0.backgroundColor = R.Color.gray400
     }
+    
+    // MARK: - Property
+    
+    weak var delegate: SettingHeaderViewDelegate?
+    
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,31 +53,40 @@ final class SettingHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI Method
+    
     private func configureUI() {
         backgroundColor = R.Color.white
     }
     
     private func setLayout() {
-        addSubviews(titleLabel, subTitleLabel, lineView)
+        addSubviews(nameLabel, changeNameButton, lineView)
         
-        titleLabel.snp.makeConstraints { make in
+        nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(25)
         }
         
-        subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(11)
+        changeNameButton.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(11)
             make.leading.equalToSuperview().inset(25)
         }
         
         lineView.snp.makeConstraints { make in
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(16)
+            make.height.equalTo(10)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
-    func setData(title: String, subTitle: String) {
-        titleLabel.text = title
-        subTitleLabel.text = subTitle
+    // MARK: - @objc
+    
+    @objc func touchUpButton() {
+        delegate?.touchUpButton()
+    }
+    
+    // MARK: - Custom Method
+    
+    func setData(_ name: String) {
+        nameLabel.text = name
     }
 }

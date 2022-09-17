@@ -35,6 +35,7 @@ final class SettingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigation()
+        tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -94,11 +95,9 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0:
-            transition(SettingNameController(), transitionStyle: .presentFullScreen)
-        case 1, 3, 4:
+        case 0, 2, 3:
             pushToNotion()
-        case 2:
+        case 1:
             print("문의하기")
         default: return
         }
@@ -107,7 +106,8 @@ extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let name = UserDefaults.standard.string(forKey: Constant.UserDefaults.userName) else { return nil }
-            headerView.setData(title: name, subTitle: "내 정보 수정하기")
+            headerView.setData(name)
+            headerView.delegate = self
             return headerView
         } else {
             return nil
@@ -133,8 +133,15 @@ extension SettingViewController: UITableViewDataSource {
         
         let data = viewModel.cellForRowAt(at: indexPath)
         cell.setData(data.title, data.subTitle)
-        cell.selectionStyle = .none
         
         return cell
+    }
+}
+
+// MARK: - Custom Delegate
+
+extension SettingViewController: SettingHeaderViewDelegate {
+    func touchUpButton() {
+        transition(SettingNameController(), transitionStyle: .presentFullScreen)
     }
 }

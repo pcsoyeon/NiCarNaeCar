@@ -68,6 +68,18 @@ final class NDSNavigationBar: UIView {
         }
     }
     
+    var title: String = "" {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
+    var isCloseButtonDisabled = true {
+        didSet {
+            closeButton.isDisabled = isCloseButtonDisabled
+        }
+    }
+    
     // MARK: - Initializer
     
     public init(_ viewController: UIViewController) {

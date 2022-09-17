@@ -13,6 +13,14 @@ import SnapKit
 
 final class CloseButton: UIButton {
     
+    // MARK: - Property
+    
+    var isDisabled: Bool = false {
+        didSet {
+            self.isHidden = isDisabled
+        }
+    }
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
