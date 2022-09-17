@@ -21,11 +21,14 @@ final class MainSheetView: BaseView {
         $0.font = NiCarNaeCarFont.title3.font
     }
     
-    private var descriptionLabel = UILabel().then {
-        $0.textColor = R.Color.gray200
-        $0.font = NiCarNaeCarFont.body4.font
-        $0.numberOfLines = 0
-        $0.textAlignment = .left
+    private var addressLabel = UILabel().then {
+        $0.textColor = R.Color.gray100
+        $0.font = NiCarNaeCarFont.body5.font
+    }
+    
+    private var distanceLabel = UILabel().then {
+        $0.textColor = R.Color.gray100
+        $0.font = NiCarNaeCarFont.body5.font
     }
     
     private var lineView = UIView().then {
@@ -53,13 +56,13 @@ final class MainSheetView: BaseView {
     
     var distance: String = "0" {
         didSet {
-            descriptionLabel.text = "\(address)\n\(distance)"
+            distanceLabel.text = distance
         }
     }
     
     var address: String = "" {
         didSet {
-            descriptionLabel.text = "\(address)\n\(distance)"
+            addressLabel.text = address
         }
     }
     
@@ -70,27 +73,32 @@ final class MainSheetView: BaseView {
     }
     
     override func setLayout() {
-        addSubviews(locationLabel, descriptionLabel, lineView, collectionView)
+        addSubviews(locationLabel, addressLabel, distanceLabel, lineView, collectionView)
         
         locationLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(33)
             make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
-        descriptionLabel.snp.makeConstraints { make in
+        addressLabel.snp.makeConstraints { make in
             make.top.equalTo(locationLabel.snp.bottom).offset(8)
             make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
         
+        distanceLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressLabel.snp.bottom).offset(3)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
+        }
+        
         lineView.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(18)
+            make.top.equalTo(distanceLabel.snp.bottom).offset(20)
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             make.height.equalTo(1)
         }
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(lineView.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(25)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(46)
         }
     }
