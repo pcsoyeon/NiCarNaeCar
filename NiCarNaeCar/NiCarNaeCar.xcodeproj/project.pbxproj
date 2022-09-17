@@ -25,7 +25,7 @@
 		92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* MainSheetView.swift */; };
 		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
 		923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EE828D56C0A0064700C /* SettingNameController.swift */; };
-		923B7EEF28D58D740064700C /* NDSCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSCircleButton.swift */; };
+		923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSFloatingButton.swift */; };
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
 		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
@@ -145,7 +145,7 @@
 		92356E1A28C9C71500EB5333 /* MainSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetView.swift; sourceTree = "<group>"; };
 		92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotationView.swift; sourceTree = "<group>"; };
 		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
-		923B7EEE28D58D740064700C /* NDSCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSCircleButton.swift; sourceTree = "<group>"; };
+		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSGradientPathRenderer.swift; sourceTree = "<group>"; };
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -430,7 +430,7 @@
 				926DE45C28CAE2380083123F /* NDSButton.swift */,
 				926DE46128CAE77F0083123F /* NDSTextField.swift */,
 				9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */,
-				923B7EEE28D58D740064700C /* NDSCircleButton.swift */,
+				923B7EEE28D58D740064700C /* NDSFloatingButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -709,7 +709,7 @@
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
 				929C3A9A28CCD8A1004592A9 /* MainSheetCollectionViewCell.swift in Sources */,
 				923B7EF128D58F600064700C /* Metric.swift in Sources */,
-				923B7EEF28D58D740064700C /* NDSCircleButton.swift in Sources */,
+				923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */,
 				923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				928D4C8B28D387D7001A029F /* URLSession+Extension.swift in Sources */,

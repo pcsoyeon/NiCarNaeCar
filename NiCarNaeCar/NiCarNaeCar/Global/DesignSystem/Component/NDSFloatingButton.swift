@@ -13,7 +13,7 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
-final class NDSCircleButton: UIButton {
+final class NDSFloatingButton: UIButton {
     
     // MARK: - Property
     

@@ -39,16 +39,16 @@ final class MainView: BaseView {
         $0.addTarget(self, action: #selector(touchUpSearchBarButton), for: .touchUpInside)
     }
     
-    private lazy var refreshButton = NDSCircleButton().then {
+    private lazy var refreshButton = NDSFloatingButton().then {
         $0.addTarget(self, action: #selector(touchUpRefreshButton), for: .touchUpInside)
     }
     
-    private lazy var addButton = NDSCircleButton().then {
+    private lazy var addButton = NDSFloatingButton().then {
         $0.text = "+30"
         $0.addTarget(self, action: #selector(touchUpAddButton), for: .touchUpInside)
     }
     
-    private lazy var currentLocationButton = NDSCircleButton().then {
+    private lazy var currentLocationButton = NDSFloatingButton().then {
         $0.image = R.Image.btnLocation
         $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
     }
