@@ -36,7 +36,7 @@ final class NDSFloatingButton: UIButton {
         super.init(frame: frame)
         configureUI()
         setLayout()
-        makeRound(radius: Metric.circleButtonRadius)
+        makeRound(radius: Metric.floatingButtonRadius)
     }
     
     required init?(coder: NSCoder) {
@@ -58,7 +58,7 @@ final class NDSFloatingButton: UIButton {
     
     private func setLayout() {
         self.snp.makeConstraints { make in
-            make.width.height.equalTo(Metric.circleButtonSize)
+            make.width.height.equalTo(Metric.floatingButtonSize)
         }
     }
 }

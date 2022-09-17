@@ -38,7 +38,7 @@ final class BackButton: UIButton {
     
     private func setLayout() {
         self.snp.makeConstraints { make in
-            make.width.height.equalTo(Metric.buttonSize)
+            make.width.height.equalTo(Metric.navigationButtonSize)
         }
     }
     

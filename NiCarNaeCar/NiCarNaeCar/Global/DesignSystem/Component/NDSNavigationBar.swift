@@ -105,8 +105,8 @@ final class NDSNavigationBar: UIView {
         
         backButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(Metric.buttonLeading)
-            make.width.height.equalTo(Metric.buttonSize)
+            make.leading.equalToSuperview().inset(Metric.navigationButtonLeading)
+            make.width.height.equalTo(Metric.navigationButtonSize)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -116,8 +116,8 @@ final class NDSNavigationBar: UIView {
         
         closeButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.trailing.equalToSuperview().inset(Metric.buttonTrailing)
-            make.width.height.equalTo(Metric.buttonSize)
+            make.trailing.equalToSuperview().inset(Metric.navigationButtonTrailing)
+            make.width.height.equalTo(Metric.navigationButtonSize)
         }
     }
     
