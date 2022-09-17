@@ -348,14 +348,14 @@ extension MainViewController {
             
             DispatchQueue.main.async {
                 for spot in data.nanumcarSpotList.row {
-                    self.spotList.append(spot)
-                    
                     let addressArr = spot.adres.split(separator: " ")
                     let locality = String(addressArr[1])
                     
                     print(locality)
                     
                     if locality == self.selectedLocality {
+                        self.spotList.append(spot)
+                        
                         guard let latitude = Double(spot.la) else { return }
                         guard let longtitude = Double(spot.lo) else { return }
                         
