@@ -313,7 +313,6 @@ extension MainViewController {
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
-                dump(data)
                 
                 self.totalPage = data.nanumcarSpotList.listTotalCount
                 
@@ -350,8 +349,6 @@ extension MainViewController {
                 for spot in data.nanumcarSpotList.row {
                     let addressArr = spot.adres.split(separator: " ")
                     let locality = String(addressArr[1])
-                    
-                    print(locality)
                     
                     if locality == self.selectedLocality {
                         self.spotList.append(spot)
