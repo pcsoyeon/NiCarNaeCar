@@ -302,7 +302,6 @@ extension MainViewController: MKMapViewDelegate {
             guard let title = annotationTitle else { return }
             for spot in spotList {
                 if spot.positnNm == title {
-                    print("거점 ID: ", spot.positnCD)
                     if let positionId = Int(spot.positnCD) {
                         self.positionId = positionId
                     }
