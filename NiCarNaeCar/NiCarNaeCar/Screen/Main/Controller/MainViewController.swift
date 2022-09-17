@@ -21,22 +21,6 @@ final class MainViewController: BaseViewController {
     
     private let rootView = MainView()
     
-    private lazy var navigationBar = UIView().then {
-        $0.addSubviews(logoView, settingButton)
-    }
-    
-    private let logoView = UIImageView().then {
-        $0.image = R.Image.imgLogo
-        $0.backgroundColor = R.Color.white
-        $0.contentMode = .scaleToFill
-    }
-    
-    private lazy var settingButton = UIButton().then {
-        $0.setImage(R.Image.btnSetting, for: .normal)
-        $0.setTitle("", for: .normal)
-        $0.addTarget(self, action: #selector(touchUpSettingButton), for: .touchUpInside)
-    }
-    
     // MARK: - Property
     
     private let locationManager = CLLocationManager()
@@ -81,28 +65,6 @@ final class MainViewController: BaseViewController {
         configureMapView()
         registerAnnotationView()
         configureButton()
-    }
-    
-    override func setLayout() {
-        view.addSubview(navigationBar)
-        
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(57)
-        }
-        
-        logoView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalTo(72)
-            make.height.equalTo(27)
-        }
-        
-        settingButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
-            make.width.height.equalTo(Metric.navigationButtonSize)
-        }
     }
     
     private func configureNavigation() {
@@ -173,79 +135,6 @@ final class MainViewController: BaseViewController {
             let route = response.routes[0]
             self.rootView.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
         }
-    }
-    
-    private func fetchSpotListAnnotation() {
-        if endPage <= totalPage {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
-                guard let data = data else { return }
-                dump(data)
-                
-                self.totalPage = data.nanumcarSpotList.listTotalCount
-                
-                DispatchQueue.main.async {
-                    for spot in data.nanumcarSpotList.row {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func searchLocalitySpot() {
-        SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
-            guard let data = data else { return }
-            
-            self.currentPage = 1
-            self.endPage = 30
-            self.spotList.removeAll()
-            
-            self.rootView.mapView.annotations.forEach {
-                if !($0.title == "나의 현재 위치") {
-                  self.rootView.mapView.removeAnnotation($0)
-              }
-            }
-            
-            DispatchQueue.main.async {
-                for spot in data.nanumcarSpotList.row {
-                    self.spotList.append(spot)
-                    
-                    let addressArr = spot.adres.split(separator: " ")
-                    let locality = String(addressArr[1])
-                    
-                    print(locality)
-                    
-                    if locality == self.selectedLocality {
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
-                    }
-                }
-            }
-        }
-        
-        for locality in LocalityType.allCases {
-            if selectedLocality == locality.rawValue {
-                let center = locality.location
-                let region = MKCoordinateRegion(center: center, latitudinalMeters: 8000, longitudinalMeters: 8000)
-                rootView.mapView.setRegion(region, animated: true)
-            }
-        }
-    }
-    
-    // MARK: - @objc
-    
-    @objc func touchUpSettingButton() {
-        let viewController = SettingViewController()
-        transition(viewController, transitionStyle: .push)
     }
 }
 
@@ -378,7 +267,7 @@ extension MainViewController: MainViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.searchLocalitySpot()
+            self.fetchLocalitySpot()
         }
         transition(viewController, transitionStyle: .push)
     }
@@ -408,6 +297,81 @@ extension MainViewController: MainViewDelegate {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
             let currentLocation = MKCoordinateRegion(center: center, latitudinalMeters: 1200, longitudinalMeters: 1200)
             rootView.mapView.setRegion(currentLocation, animated: true)
+        }
+    }
+    
+    func touchUpSettingButton() {
+        let viewController = SettingViewController()
+        transition(viewController, transitionStyle: .push)
+    }
+}
+
+// MARK: - Network
+
+extension MainViewController {
+    private func fetchSpotListAnnotation() {
+        if endPage <= totalPage {
+            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
+                guard let data = data else { return }
+                dump(data)
+                
+                self.totalPage = data.nanumcarSpotList.listTotalCount
+                
+                DispatchQueue.main.async {
+                    for spot in data.nanumcarSpotList.row {
+                        self.spotList.append(spot)
+                        
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func fetchLocalitySpot() {
+        SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
+            guard let data = data else { return }
+            
+            self.currentPage = 1
+            self.endPage = 30
+            self.spotList.removeAll()
+            
+            self.rootView.mapView.annotations.forEach {
+                if !($0.title == "나의 현재 위치") {
+                  self.rootView.mapView.removeAnnotation($0)
+              }
+            }
+            
+            DispatchQueue.main.async {
+                for spot in data.nanumcarSpotList.row {
+                    self.spotList.append(spot)
+                    
+                    let addressArr = spot.adres.split(separator: " ")
+                    let locality = String(addressArr[1])
+                    
+                    print(locality)
+                    
+                    if locality == self.selectedLocality {
+                        guard let latitude = Double(spot.la) else { return }
+                        guard let longtitude = Double(spot.lo) else { return }
+                        
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                        self.setAnnotation(center: center, title: spot.positnNm)
+                    }
+                }
+            }
+        }
+        
+        for locality in LocalityType.allCases {
+            if selectedLocality == locality.rawValue {
+                let center = locality.location
+                let region = MKCoordinateRegion(center: center, latitudinalMeters: 8000, longitudinalMeters: 8000)
+                rootView.mapView.setRegion(region, animated: true)
+            }
         }
     }
 }

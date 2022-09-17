@@ -15,6 +15,8 @@ import SnapKit
 import Then
 
 protocol MainViewDelegate: MainViewController {
+    func touchUpSettingButton()
+    
     func touchUpSearchBarButton()
     func touchUpRefreshButton()
     func touchUpAddButton()
@@ -25,6 +27,23 @@ protocol MainViewDelegate: MainViewController {
 final class MainView: BaseView {
     
     // MARK: - UI Property
+    
+    private lazy var navigationBar = UIView().then {
+        $0.backgroundColor = R.Color.white
+        $0.addSubviews(logoView, settingButton)
+    }
+    
+    private let logoView = UIImageView().then {
+        $0.image = R.Image.imgLogo
+        $0.backgroundColor = R.Color.white
+        $0.contentMode = .scaleToFill
+    }
+    
+    private lazy var settingButton = UIButton().then {
+        $0.setImage(R.Image.btnSetting, for: .normal)
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSettingButton), for: .touchUpInside)
+    }
     
     var mapView = MKMapView()
     
@@ -64,11 +83,29 @@ final class MainView: BaseView {
     }
     
     override func setLayout() {
-        addSubview(mapView)
+        addSubviews(navigationBar, mapView)
         mapView.addSubviews(searchBarButton, currentLocationButton, addButton, refreshButton)
         
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            make.height.equalTo(57)
+        }
+        
+        logoView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(20)
+            make.width.equalTo(72)
+            make.height.equalTo(27)
+        }
+        
+        settingButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
+            make.width.height.equalTo(Metric.navigationButtonSize)
+        }
+        
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(57)
+            make.top.equalTo(navigationBar.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
@@ -110,5 +147,9 @@ final class MainView: BaseView {
     
     @objc func touchUpCurrentLocationButton() {
         buttonDelegate?.touchUpCurrentLocationButton()
+    }
+    
+    @objc func touchUpSettingButton() {
+        buttonDelegate?.touchUpSearchBarButton()
     }
 }
