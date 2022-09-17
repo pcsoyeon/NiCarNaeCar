@@ -86,7 +86,15 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return viewModel.didSelectRowAt(at: indexPath)
+        switch indexPath.row {
+        case 0:
+            transition(SettingNameController(), transitionStyle: .presentFullScreen)
+        case 1, 3, 4:
+            transition(SettingWebViewController(), transitionStyle: .presentFullScreen)
+        case 2:
+            print("문의하기")
+        default: return
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

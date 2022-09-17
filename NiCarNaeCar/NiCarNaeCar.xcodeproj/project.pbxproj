@@ -24,6 +24,8 @@
 		92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */; };
 		92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* MainSheetView.swift */; };
 		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
+		923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EE828D56C0A0064700C /* SettingNameController.swift */; };
+		923B7EEC28D56F290064700C /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEB28D56F290064700C /* SettingWebViewController.swift */; };
 		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */; };
@@ -141,6 +143,8 @@
 		92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetViewController.swift; sourceTree = "<group>"; };
 		92356E1A28C9C71500EB5333 /* MainSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetView.swift; sourceTree = "<group>"; };
 		92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotationView.swift; sourceTree = "<group>"; };
+		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
+		923B7EEB28D56F290064700C /* SettingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebViewController.swift; sourceTree = "<group>"; };
 		9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSGradientPathRenderer.swift; sourceTree = "<group>"; };
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -405,6 +409,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		923B7EEA28D56CAE0064700C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45828CADECF0083123F /* SettingViewController.swift */,
+				923B7EE828D56C0A0064700C /* SettingNameController.swift */,
+				923B7EEB28D56F290064700C /* SettingWebViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,7 +481,7 @@
 		926DE45728CADEC20083123F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				926DE45828CADECF0083123F /* SettingViewController.swift */,
+				923B7EEA28D56CAE0064700C /* Controller */,
 				928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */,
 				928D4C7F28D370EF001A029F /* SettingHeaderView.swift */,
 			);
@@ -672,6 +686,7 @@
 				927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
 				927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */,
+				923B7EEC28D56F290064700C /* SettingWebViewController.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
@@ -683,6 +698,7 @@
 				926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */,
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,
 				929C3A9A28CCD8A1004592A9 /* MainSheetCollectionViewCell.swift in Sources */,
+				923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */,
 				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
 				928D4C8B28D387D7001A029F /* URLSession+Extension.swift in Sources */,
 				9277205A28CF21C100163925 /* DetailCollectionViewCell.swift in Sources */,

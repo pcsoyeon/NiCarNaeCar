@@ -7,6 +7,8 @@
 
 import Foundation
 
+import NiCarNaeCar_Util
+
 final class SettingViewModel {
     var list: Observable<[Setting]> = Observable([Setting(title: "",
                                                                subTitle: nil,
@@ -30,10 +32,6 @@ final class SettingViewModel {
     
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
         return 65
-    }
-    
-    func didSelectRowAt(at indexPath: IndexPath) {
-        print(indexPath.row)
     }
     
     func heightForHeaderInSection(at section: Int) -> CGFloat {
