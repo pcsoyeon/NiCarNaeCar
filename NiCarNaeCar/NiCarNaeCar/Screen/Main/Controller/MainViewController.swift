@@ -73,6 +73,7 @@ final class MainViewController: BaseViewController {
     
     private func configureMapView() {
         rootView.mapView.delegate = self
+        rootView.mapView.showsCompass = false
     }
     
     private func configureButton() {

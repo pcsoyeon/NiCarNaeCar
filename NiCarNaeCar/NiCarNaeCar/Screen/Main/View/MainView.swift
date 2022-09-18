@@ -48,17 +48,19 @@ final class MainView: BaseView {
     var mapView = MKMapView()
     
     private lazy var searchBarButton = UIButton().then {
-        $0.setTitle("행정구를 검색해보세요", for: .normal)
+        $0.setTitle("행정구/자치구 검색", for: .normal)
         $0.backgroundColor = R.Color.white
-        $0.setTitleColor(R.Color.black200, for: .normal)
-        $0.setTitleColor(R.Color.gray200, for: .highlighted)
+        $0.setTitleColor(R.Color.gray200, for: .normal)
         $0.titleLabel?.font = NiCarNaeCarFont.body3.font
         $0.layer.cornerRadius = 5
-        $0.makeShadow(R.Color.gray100, 0.25, CGSize(width: 0, height: 4), 10)
         $0.addTarget(self, action: #selector(touchUpSearchBarButton), for: .touchUpInside)
     }
     
-    private lazy var refreshButton = NDSFloatingButton().then {
+    private lazy var refreshButton = UIButton().then {
+        $0.setTitle("", for: .normal)
+        $0.backgroundColor = R.Color.white
+        $0.setImage(R.Image.btnRefresh, for: .normal)
+        $0.layer.cornerRadius = 5
         $0.addTarget(self, action: #selector(touchUpRefreshButton), for: .touchUpInside)
     }
     
@@ -80,6 +82,7 @@ final class MainView: BaseView {
     
     override func configureUI() {
         self.backgroundColor = R.Color.white
+        configureButton()
     }
     
     override func setLayout() {
@@ -109,9 +112,16 @@ final class MainView: BaseView {
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
+        refreshButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(24)
+            make.leading.equalToSuperview().inset(Metric.margin)
+            make.width.height.equalTo(47)
+        }
+        
         searchBarButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
-            make.leading.trailing.equalToSuperview().inset(32)
+            make.leading.equalTo(refreshButton.snp.trailing).offset(19)
+            make.trailing.equalToSuperview().inset(Metric.margin)
             make.height.equalTo(47)
         }
         
@@ -124,10 +134,11 @@ final class MainView: BaseView {
             make.bottom.equalTo(currentLocationButton.snp.top).offset(-15)
             make.trailing.equalToSuperview().inset(Metric.margin)
         }
-        
-        refreshButton.snp.makeConstraints { make in
-            make.bottom.equalTo(addButton.snp.top).offset(-15)
-            make.trailing.equalToSuperview().inset(Metric.margin)
+    }
+    
+    private func configureButton() {
+        [refreshButton, searchBarButton, currentLocationButton, addButton].forEach { button in
+            button.layer.applySketchShadow(color: R.Color.gray100, alpha: 0.3, x: 0, y: 4, blur: 10, spread: 0)
         }
     }
     
@@ -150,6 +161,6 @@ final class MainView: BaseView {
     }
     
     @objc func touchUpSettingButton() {
-        buttonDelegate?.touchUpSearchBarButton()
+        buttonDelegate?.touchUpSettingButton()
     }
 }

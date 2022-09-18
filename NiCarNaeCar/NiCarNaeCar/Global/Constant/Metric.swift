@@ -38,8 +38,8 @@ extension Metric {
 // MARK: - FloatingButton
 
 extension Metric {
-    static let floatingButtonSize: CGFloat = 50
-    static let floatingButtonRadius: CGFloat = 25
+    static let floatingButtonSize: CGFloat = 47
+    static let floatingButtonRadius: CGFloat = 5
 }
 
 // MARK: - CTAButton
