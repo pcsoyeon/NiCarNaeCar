@@ -87,11 +87,9 @@ final class MainViewController: BaseViewController {
         locationManager.delegate = self
     }
     
-    private func setRegionAndAnnotation(center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270), title: String) {
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 1200, longitudinalMeters: 1200)
-        
+    private func setRegion(center: CLLocationCoordinate2D, meters: CLLocationDistance) {
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
         rootView.mapView.setRegion(region, animated: true)
-        setAnnotation(center: center, title: title)
     }
     
     private func setAnnotation(center: CLLocationCoordinate2D, title: String) {
@@ -253,9 +251,11 @@ extension MainViewController: CLLocationManagerDelegate {
         print(#function, locations)
         
         if let coordinate = locations.last?.coordinate {
-            setRegionAndAnnotation(center: coordinate, title: "나의 현재 위치")
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
+            
+            setRegion(center: coordinate, meters: 1200)
+            setAnnotation(center: coordinate, title: "나의 현재 위치")
         }
         locationManager.stopUpdatingLocation()
     }
@@ -293,10 +293,8 @@ extension MainViewController: MainViewDelegate {
         if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
             let meters = CLLocationDistance(2000 + self.currentPage * 80)
-            let viewRegion = MKCoordinateRegion(center: center,
-                                                latitudinalMeters: meters,
-                                                longitudinalMeters: meters)
-            self.rootView.mapView.setRegion(viewRegion, animated: false)
+            
+            setRegion(center: center, meters: meters)
         }
         
         addSpotListAnnotation()
@@ -305,8 +303,7 @@ extension MainViewController: MainViewDelegate {
     func touchUpCurrentLocationButton() {
         if let latitude = currentLatitude, let longtitude = currentLongtitude {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            let currentLocation = MKCoordinateRegion(center: center, latitudinalMeters: 1200, longitudinalMeters: 1200)
-            rootView.mapView.setRegion(currentLocation, animated: true)
+            setRegion(center: center, meters: 1200)
         }
     }
     
@@ -368,8 +365,7 @@ extension MainViewController {
         for locality in LocalityType.allCases {
             if selectedLocality == locality.rawValue {
                 let center = locality.location
-                let region = MKCoordinateRegion(center: center, latitudinalMeters: 8000, longitudinalMeters: 8000)
-                rootView.mapView.setRegion(region, animated: true)
+                setRegion(center: center, meters: 8000)
             }
         }
     }
