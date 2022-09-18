@@ -254,7 +254,7 @@ extension MainViewController: CLLocationManagerDelegate {
             currentLongtitude = coordinate.longitude
             
             setRegion(center: coordinate, meters: 1200)
-            setAnnotation(center: coordinate, title: "나의 현재 위치")
+            setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
         }
         locationManager.stopUpdatingLocation()
     }
@@ -276,7 +276,7 @@ extension MainViewController: MainViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.fetchLocalitySpot()
+            self.fetchSelectedLocalitySpotList()
         }
         transition(viewController, transitionStyle: .push)
     }
@@ -337,7 +337,7 @@ extension MainViewController {
         }
     }
     
-    private func fetchLocalitySpot() {
+    private func fetchSelectedLocalitySpotList() {
         SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
             guard let data = data else { return }
             
