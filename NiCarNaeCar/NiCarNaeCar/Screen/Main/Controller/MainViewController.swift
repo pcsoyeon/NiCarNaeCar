@@ -142,6 +142,28 @@ final class MainViewController: BaseViewController {
           }
         }
     }
+    
+    private func convertLocationToSublocality(_ location: CLLocation) -> String {
+        var subLocality = ""
+        
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: "Ko-kr")
+        
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler: {(placemarks, error) in
+            if let address: [CLPlacemark] = placemarks {
+                if let result: String = address.last?.subLocality {
+                    print(result)
+                    subLocality = result
+                }
+            }
+        })
+        
+        return subLocality
+    }
+    
+    private func convertSublocalityToLocality(_ location: CLLocation) -> String {
+        return ""
+    }
 }
 
 // MARK: - MapView Protocol
@@ -255,6 +277,8 @@ extension MainViewController: CLLocationManagerDelegate {
             
             setRegion(center: coordinate, meters: 1200)
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
+            
+            convertLocationToSublocality(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
         locationManager.stopUpdatingLocation()
     }
