@@ -7,8 +7,6 @@
 
 import Foundation
 
-import NiCarNaeCar_Util
-
 final class SettingViewModel {
     var list: Observable<[Setting]> = Observable([Setting(title: "",
                                                                subTitle: nil,

@@ -26,6 +26,8 @@
 		92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1A28C9C71500EB5333 /* MainSheetView.swift */; };
 		92356E2028C9CED700EB5333 /* CarAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */; };
 		9235C54128D6F59D0092D252 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235C54028D6F59D0092D252 /* Annotation.swift */; };
+		9235C54C28D77B850092D252 /* DetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235C54B28D77B850092D252 /* DetailInfo.swift */; };
+		9235C54F28D77CA60092D252 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235C54E28D77CA60092D252 /* DetailViewModel.swift */; };
 		923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EE828D56C0A0064700C /* SettingNameController.swift */; };
 		923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSFloatingButton.swift */; };
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
@@ -148,6 +150,8 @@
 		92356E1A28C9C71500EB5333 /* MainSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetView.swift; sourceTree = "<group>"; };
 		92356E1F28C9CED700EB5333 /* CarAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarAnnotationView.swift; sourceTree = "<group>"; };
 		9235C54028D6F59D0092D252 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		9235C54B28D77B850092D252 /* DetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfo.swift; sourceTree = "<group>"; };
+		9235C54E28D77CA60092D252 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
@@ -426,6 +430,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9235C54A28D77AE60092D252 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9235C54B28D77B850092D252 /* DetailInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9235C54D28D77BA70092D252 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				926DE45128CAD9D60083123F /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		923B7EEA28D56CAE0064700C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,23 +481,25 @@
 		926DE44E28CAD9490083123F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				9235C54A28D77AE60092D252 /* Model */,
 				926DE45028CAD9570083123F /* View */,
-				926DE44F28CAD9520083123F /* Controller */,
+				926DE44F28CAD9520083123F /* ViewModel */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		926DE44F28CAD9520083123F /* Controller */ = {
+		926DE44F28CAD9520083123F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				926DE45128CAD9D60083123F /* DetailViewController.swift */,
+				9235C54E28D77CA60092D252 /* DetailViewModel.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		926DE45028CAD9570083123F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9235C54D28D77BA70092D252 /* Controller */,
 				926DE45328CAD9DF0083123F /* DetailView.swift */,
 				9277205328CF1C8D00163925 /* DetailHeaderView.swift */,
 				9277205928CF21C100163925 /* DetailCollectionViewCell.swift */,
@@ -706,6 +728,7 @@
 				928D4C7228D331B2001A029F /* Observable.swift in Sources */,
 				928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */,
 				92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */,
+				9235C54C28D77B850092D252 /* DetailInfo.swift in Sources */,
 				926DE48728CAF8D20083123F /* SpotListAPIManager.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */,
 				927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */,
@@ -745,6 +768,7 @@
 				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
 				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
 				92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */,
+				9235C54F28D77CA60092D252 /* DetailViewModel.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
