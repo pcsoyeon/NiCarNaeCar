@@ -15,6 +15,20 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
+enum SearchType {
+    case locality
+    case subLocality
+    
+    var index: Int {
+        switch self {
+        case .locality:
+            return 1
+        case .subLocality:
+            return 2
+        }
+    }
+}
+
 final class MainViewController: BaseViewController {
     
     // MARK: - UI Property
@@ -31,7 +45,6 @@ final class MainViewController: BaseViewController {
     
     private var spotList: [Row] = [] {
         didSet {
-            
             for spot in spotList {
                 DispatchQueue.main.async {
                     guard let latitude = Double(spot.la) else { return }
@@ -45,10 +58,6 @@ final class MainViewController: BaseViewController {
         }
     }
     
-    private var currentPage: Int = 1
-    private var endPage: Int = 30
-    private var totalPage: Int = 100
-    
     private var positionId: Int = 0
     
     private var selectedLocality: String = ""
@@ -57,7 +66,8 @@ final class MainViewController: BaseViewController {
     private var locationUpdateCount: Int = 0 {
         didSet {
             if locationUpdateCount == 1 {
-                fetchCurrentLocalitySpotList()
+                self.fetchSpotList(.subLocality, startPage: 1, endPage: 1000)
+                self.fetchSpotList(.subLocality, startPage: 1001, endPage: 1870)
             }
         }
     }
@@ -154,8 +164,6 @@ final class MainViewController: BaseViewController {
     }
     
     private func refreshSpotListAndAnnotation() {
-        currentPage = 1
-        endPage = 30
         spotList.removeAll()
         
         rootView.mapView.annotations.forEach {
@@ -314,7 +322,15 @@ extension MainViewController: MainViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.fetchSelectedLocalitySpotList()
+            self.fetchSpotList(.locality, startPage: 1, endPage: 1000)
+            self.fetchSpotList(.locality, startPage: 1001, endPage: 1870)
+            
+            for locality in LocalityType.allCases {
+                if self.selectedLocality == locality.rawValue {
+                    let center = locality.location
+                    self.setRegion(center: center, meters: 8000)
+                }
+            }
         }
         transition(viewController, transitionStyle: .push)
     }
@@ -339,55 +355,36 @@ extension MainViewController: MainViewDelegate {
 // MARK: - Network
 
 extension MainViewController {
-    private func fetchCurrentLocalitySpotList() {
-        DispatchQueue.global().async {
-            SpotListAPIManager.requestSpotList(startPage: 1, endPage: 1000) { data, error in
-                guard let data = data else { return }
-                
-                var list: [Row] = []
-                
-                for spot in data.nanumcarSpotList.row {
-                    let addressArr = spot.adres.split(separator: " ")
-                    let locality = String(addressArr[2])
-                    
-                    if locality == self.currentSublocality {
-                        list.append(spot)
-                    }
-                }
-                
-                self.spotList = list
-            }
-        }
-        
-    }
     
-    private func fetchSelectedLocalitySpotList() {
+    private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
+        
+        self.refreshSpotListAndAnnotation()
+        var list: [Row] = []
+        
         DispatchQueue.global().async {
-            SpotListAPIManager.requestSpotList(startPage: 1, endPage: 1000) { data, error in
+            
+            SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
-                
-                self.refreshSpotListAndAnnotation()
-                
-                var list: [Row] = []
                 
                 for spot in data.nanumcarSpotList.row {
                     let addressArr = spot.adres.split(separator: " ")
-                    let locality = String(addressArr[1])
+                    let locality = String(addressArr[searchType.index])
                     
-                    if locality == self.selectedLocality {
-                        list.append(spot)
+                    switch searchType {
+                    case .locality:
+                        if locality == self.selectedLocality {
+                            list.append(spot)
+                        }
+                    case .subLocality:
+                        if locality == self.currentSublocality {
+                            list.append(spot)
+                        }
                     }
                 }
-                
                 self.spotList = list
             }
         }
         
-        for locality in LocalityType.allCases {
-            if selectedLocality == locality.rawValue {
-                let center = locality.location
-                setRegion(center: center, meters: 8000)
-            }
-        }
+        
     }
 }
