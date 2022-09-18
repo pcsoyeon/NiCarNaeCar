@@ -318,7 +318,7 @@ extension MainViewController: CLLocationManagerDelegate {
 // MARK: - Custom Delegate
 
 extension MainViewController: MainViewDelegate {
-    func touchUpSearchBarButton() {
+    func touchUpSearchButton() {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality

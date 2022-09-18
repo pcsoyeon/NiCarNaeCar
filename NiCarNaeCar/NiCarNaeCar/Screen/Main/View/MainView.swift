@@ -16,11 +16,9 @@ import Then
 
 protocol MainViewDelegate: MainViewController {
     func touchUpSettingButton()
-    
-    func touchUpSearchBarButton()
+    func touchUpSearchButton()
     func touchUpRefreshButton()
     func touchUpCurrentLocationButton()
-    
 }
 
 final class MainView: BaseView {
@@ -29,13 +27,19 @@ final class MainView: BaseView {
     
     private lazy var navigationBar = UIView().then {
         $0.backgroundColor = R.Color.white
-        $0.addSubviews(logoView, settingButton)
+        $0.addSubviews(logoView, settingButton, searchButton)
     }
     
     private let logoView = UIImageView().then {
         $0.image = R.Image.imgLogo
         $0.backgroundColor = R.Color.white
         $0.contentMode = .scaleToFill
+    }
+    
+    private lazy var searchButton = UIButton().then {
+        $0.setImage(R.Image.btnSearch, for: .normal)
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
     }
     
     private lazy var settingButton = UIButton().then {
@@ -46,20 +50,8 @@ final class MainView: BaseView {
     
     var mapView = MKMapView()
     
-    private lazy var searchBarButton = UIButton().then {
-        $0.setTitle("행정구/자치구 검색", for: .normal)
-        $0.backgroundColor = R.Color.white
-        $0.setTitleColor(R.Color.gray200, for: .normal)
-        $0.titleLabel?.font = NiCarNaeCarFont.body3.font
-        $0.layer.cornerRadius = 5
-        $0.addTarget(self, action: #selector(touchUpSearchBarButton), for: .touchUpInside)
-    }
-    
-    private lazy var refreshButton = UIButton().then {
-        $0.setTitle("", for: .normal)
-        $0.backgroundColor = R.Color.white
-        $0.setImage(R.Image.btnRefresh, for: .normal)
-        $0.layer.cornerRadius = 5
+    private lazy var refreshButton = NDSFloatingButton().then {
+        $0.image = R.Image.btnRefresh
         $0.addTarget(self, action: #selector(touchUpRefreshButton), for: .touchUpInside)
     }
     
@@ -81,7 +73,7 @@ final class MainView: BaseView {
     
     override func setLayout() {
         addSubviews(navigationBar, mapView)
-        mapView.addSubviews(searchBarButton, currentLocationButton, refreshButton)
+        mapView.addSubviews(currentLocationButton, refreshButton)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
@@ -101,40 +93,38 @@ final class MainView: BaseView {
             make.width.height.equalTo(Metric.navigationButtonSize)
         }
         
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(settingButton.snp.leading)
+            make.width.height.equalTo(Metric.navigationButtonSize)
+        }
+        
         mapView.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom)
-            make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
-        }
-        
-        refreshButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(24)
-            make.leading.equalToSuperview().inset(Metric.margin)
-            make.width.height.equalTo(47)
-        }
-        
-        searchBarButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(24)
-            make.leading.equalTo(refreshButton.snp.trailing).offset(19)
-            make.trailing.equalToSuperview().inset(Metric.margin)
-            make.height.equalTo(47)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         currentLocationButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(60)
+            make.trailing.equalToSuperview().inset(Metric.margin)
+        }
+        
+        refreshButton.snp.makeConstraints { make in
+            make.bottom.equalTo(currentLocationButton.snp.top).offset(-18)
             make.trailing.equalToSuperview().inset(Metric.margin)
         }
     }
     
     private func configureButton() {
-        [refreshButton, searchBarButton, currentLocationButton].forEach { button in
+        [refreshButton, currentLocationButton].forEach { button in
             button.layer.applySketchShadow(color: R.Color.gray100, alpha: 0.3, x: 0, y: 4, blur: 10, spread: 0)
         }
     }
     
     // MARK: - @objc
     
-    @objc func touchUpSearchBarButton() {
-        buttonDelegate?.touchUpSearchBarButton()
+    @objc func touchUpSearchButton() {
+        buttonDelegate?.touchUpSearchButton()
     }
     
     @objc func touchUpRefreshButton() {
