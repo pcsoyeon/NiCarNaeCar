@@ -55,7 +55,7 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-        fetchSpotListAnnotation()
+        addSpotListAnnotation()
     }
     
     // MARK: - UI Method
@@ -63,7 +63,6 @@ final class MainViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         configureMapView()
-        registerAnnotationView()
         configureButton()
     }
     
@@ -74,6 +73,8 @@ final class MainViewController: BaseViewController {
     private func configureMapView() {
         rootView.mapView.delegate = self
         rootView.mapView.showsCompass = false
+        
+        rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
     private func configureButton() {
@@ -100,10 +101,6 @@ final class MainViewController: BaseViewController {
         annotation.title = title
         
         rootView.mapView.addAnnotation(annotation)
-    }
-    
-    private func registerAnnotationView() {
-        rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
     private func drawDistanceLine(to: CLLocationCoordinate2D, from: CLLocationCoordinate2D) {
@@ -135,6 +132,18 @@ final class MainViewController: BaseViewController {
             
             let route = response.routes[0]
             self.rootView.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+        }
+    }
+    
+    private func refreshSpotListAndAnnotation() {
+        currentPage = 1
+        endPage = 30
+        spotList.removeAll()
+        
+        rootView.mapView.annotations.forEach {
+            if !($0.title == "나의 현재 위치") {
+              self.rootView.mapView.removeAnnotation($0)
+          }
         }
     }
 }
@@ -274,7 +283,7 @@ extension MainViewController: MainViewDelegate {
     }
     
     func touchUpRefreshButton() {
-        print("Refresh Button Tapped!!")
+        refreshSpotListAndAnnotation()
     }
     
     func touchUpAddButton() {
@@ -290,7 +299,7 @@ extension MainViewController: MainViewDelegate {
             self.rootView.mapView.setRegion(viewRegion, animated: false)
         }
         
-        fetchSpotListAnnotation()
+        addSpotListAnnotation()
     }
     
     func touchUpCurrentLocationButton() {
@@ -310,7 +319,7 @@ extension MainViewController: MainViewDelegate {
 // MARK: - Network
 
 extension MainViewController {
-    private func fetchSpotListAnnotation() {
+    private func addSpotListAnnotation() {
         if endPage <= totalPage {
             SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
@@ -336,15 +345,7 @@ extension MainViewController {
         SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
             guard let data = data else { return }
             
-            self.currentPage = 1
-            self.endPage = 30
-            self.spotList.removeAll()
-            
-            self.rootView.mapView.annotations.forEach {
-                if !($0.title == "나의 현재 위치") {
-                  self.rootView.mapView.removeAnnotation($0)
-              }
-            }
+            self.refreshSpotListAndAnnotation()
             
             DispatchQueue.main.async {
                 for spot in data.nanumcarSpotList.row {
