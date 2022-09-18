@@ -29,7 +29,21 @@ final class MainViewController: BaseViewController {
     private var currentLatitude: Double?
     private var currentLongtitude: Double?
     
-    private var spotList: [Row] = []
+    private var spotList: [Row] = [] {
+        didSet {
+            
+            for spot in spotList {
+                DispatchQueue.main.async {
+                    guard let latitude = Double(spot.la) else { return }
+                    guard let longtitude = Double(spot.lo) else { return }
+                    
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    self.setAnnotation(center: center, title: spot.positnNm)
+                }
+            }
+            
+        }
+    }
     
     private var currentPage: Int = 1
     private var endPage: Int = 30
@@ -38,6 +52,15 @@ final class MainViewController: BaseViewController {
     private var positionId: Int = 0
     
     private var selectedLocality: String = ""
+    private var currentSublocality: String = ""
+    
+    private var locationUpdateCount: Int = 0 {
+        didSet {
+            if locationUpdateCount == 1 {
+                fetchCurrentLocalitySpotList()
+            }
+        }
+    }
     
     // MARK: - Life Cycle
     
@@ -55,7 +78,6 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-        addSpotListAnnotation()
     }
     
     // MARK: - UI Method
@@ -143,26 +165,17 @@ final class MainViewController: BaseViewController {
         }
     }
     
-    private func convertLocationToSublocality(_ location: CLLocation) -> String {
-        var subLocality = ""
-        
+    private func convertLocationToSublocality(_ location: CLLocation){
         let geocoder = CLGeocoder()
         let locale = Locale(identifier: "Ko-kr")
         
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler: {(placemarks, error) in
             if let address: [CLPlacemark] = placemarks {
                 if let result: String = address.last?.subLocality {
-                    print(result)
-                    subLocality = result
+                    self.currentSublocality = result
                 }
             }
         })
-        
-        return subLocality
-    }
-    
-    private func convertSublocalityToLocality(_ location: CLLocation) -> String {
-        return ""
     }
 }
 
@@ -278,6 +291,7 @@ extension MainViewController: CLLocationManagerDelegate {
             setRegion(center: coordinate, meters: 1200)
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
             
+            locationUpdateCount += 1
             convertLocationToSublocality(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
         locationManager.stopUpdatingLocation()
@@ -309,20 +323,6 @@ extension MainViewController: MainViewDelegate {
         refreshSpotListAndAnnotation()
     }
     
-    func touchUpAddButton() {
-        currentPage += 30
-        endPage += 30
-        
-        if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            let meters = CLLocationDistance(2000 + self.currentPage * 80)
-            
-            setRegion(center: center, meters: meters)
-        }
-        
-        addSpotListAnnotation()
-    }
-    
     func touchUpCurrentLocationButton() {
         if let latitude = currentLatitude, let longtitude = currentLongtitude {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
@@ -339,49 +339,47 @@ extension MainViewController: MainViewDelegate {
 // MARK: - Network
 
 extension MainViewController {
-    private func addSpotListAnnotation() {
-        if endPage <= totalPage {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
+    private func fetchCurrentLocalitySpotList() {
+        DispatchQueue.global().async {
+            SpotListAPIManager.requestSpotList(startPage: 1, endPage: 1000) { data, error in
                 guard let data = data else { return }
                 
-                self.totalPage = data.nanumcarSpotList.listTotalCount
+                var list: [Row] = []
                 
-                DispatchQueue.main.async {
-                    for spot in data.nanumcarSpotList.row {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
+                for spot in data.nanumcarSpotList.row {
+                    let addressArr = spot.adres.split(separator: " ")
+                    let locality = String(addressArr[2])
+                    
+                    if locality == self.currentSublocality {
+                        list.append(spot)
                     }
                 }
+                
+                self.spotList = list
             }
         }
+        
     }
     
     private func fetchSelectedLocalitySpotList() {
-        SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
-            guard let data = data else { return }
-            
-            self.refreshSpotListAndAnnotation()
-            
-            DispatchQueue.main.async {
+        DispatchQueue.global().async {
+            SpotListAPIManager.requestSpotList(startPage: 1, endPage: 1000) { data, error in
+                guard let data = data else { return }
+                
+                self.refreshSpotListAndAnnotation()
+                
+                var list: [Row] = []
+                
                 for spot in data.nanumcarSpotList.row {
                     let addressArr = spot.adres.split(separator: " ")
                     let locality = String(addressArr[1])
                     
                     if locality == self.selectedLocality {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
+                        list.append(spot)
                     }
                 }
+                
+                self.spotList = list
             }
         }
         
