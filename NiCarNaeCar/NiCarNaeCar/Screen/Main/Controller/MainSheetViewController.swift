@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import CoreLocation
 
 import NiCarNaeCar_Util
-import CoreLocation
 
 final class MainSheetViewController: BaseViewController {
     
@@ -18,8 +18,15 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var carList: [BrandInfo] = [BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0"),
-                                BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")] {
+    var socarInfo: BrandInfo = BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0") {
+        didSet {
+            DispatchQueue.main.async {
+                self.rootView.collectionView.reloadData()
+            }
+        }
+    }
+    
+    var greencarInfo: BrandInfo = BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0") {
         didSet {
             DispatchQueue.main.async {
                 self.rootView.collectionView.reloadData()
@@ -29,9 +36,9 @@ final class MainSheetViewController: BaseViewController {
     
     var positionId: Int = 0
     
-    var item: [String:String] = [:]
-    var elements: [String:String] = [:]
-    var currentElement = ""
+    private var item: [String:String] = [:]
+    private var elements: [String:String] = [:]
+    private var currentElement = ""
     
     private var positionName: String = ""
     private var address: String = ""
@@ -42,19 +49,16 @@ final class MainSheetViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func loadView() {
+        super.loadView()
         self.view = rootView
-        configureNavigation()
-        fetchSpotInfo()
-        fetchSocarInfo()
-        fetchGreencarInfo()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        configureNavigation()
+        fetchSpotInfo()
+        fetchSocarInfo()
+        fetchGreencarInfo()
     }
     
     // MARK: - UI Method
@@ -106,10 +110,10 @@ extension MainSheetViewController: UICollectionViewDelegate {
         let viewController = DetailViewController()
         if indexPath.row == 0 {
             viewController.brandType = .socar
-            viewController.info = carList[0]
+            viewController.info = socarInfo
         } else {
             viewController.brandType = .greencar
-            viewController.info = carList[1]
+            viewController.info = greencarInfo
         }
         viewController.positionName = positionName
         viewController.address = address
@@ -138,7 +142,11 @@ extension MainSheetViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSheetCollectionViewCell.reuseIdentifier, for: indexPath) as? MainSheetCollectionViewCell else { return UICollectionViewCell() }
-        cell.setData(carList[indexPath.row].brandType, carList[indexPath.row].availableCount)
+        if indexPath.row == 0 {
+            cell.setData(socarInfo.brandType, socarInfo.availableCount)
+        } else if indexPath.row == 1 {
+            cell.setData(greencarInfo.brandType, greencarInfo.availableCount)
+        }
         return cell
     }
 }
@@ -151,32 +159,35 @@ extension MainSheetViewController {
         
         SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response, error in
             guard let response = response else { return }
+            let carInfo = response.nanumcarSpotList.row[0]
             
-            self.carList[0].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
-            self.carList[1].carType = self.changeStringToCarType(response.nanumcarSpotList.row[0].elctyvhcleAt)
+            self.socarInfo.carType = self.changeStringToCarType(carInfo.elctyvhcleAt)
+            self.greencarInfo.carType = self.changeStringToCarType(carInfo.elctyvhcleAt)
+            
+            self.positionName = carInfo.positnNm
+            self.rootView.positionName = carInfo.positnNm
+            
+            self.address = carInfo.adres
+            self.rootView.address = carInfo.adres
             
             DispatchQueue.main.async {
-                self.positionName = response.nanumcarSpotList.row[0].positnNm
-                self.rootView.positionName = response.nanumcarSpotList.row[0].positnNm
-                
-                self.address = response.nanumcarSpotList.row[0].adres
-                self.rootView.address = response.nanumcarSpotList.row[0].adres
-                
-                if let latitude = Double(response.nanumcarSpotList.row[0].la), let longtitude = Double(response.nanumcarSpotList.row[0].lo) {
-                    self.rootView.distance = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude).distanceToString(to: CLLocationCoordinate2D(latitude: latitude, longitude: longtitude))
+                if let latitude = Double(carInfo.la), let longtitude = Double(carInfo.lo) {
+                    let destination: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude)
+                    let departure: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    
+                    self.rootView.distance = destination.distanceToString(to: departure)
                 }
-                
                 self.view.isUserInteractionEnabled = true
             }
         }
     }
     
     private func fetchSocarInfo() {
-        requestSocarList(startPage: 1, endPage: 500, spot: positionId)
+        requestSocarList(startPage: 1, endPage: 5, spot: positionId)
     }
     
     private func fetchGreencarInfo() {
-        requestGreencarList(startPage: 1, endPage: 500, spot: positionId)
+        requestGreencarList(startPage: 1, endPage: 5, spot: positionId)
     }
 }
 
@@ -194,15 +205,13 @@ extension MainSheetViewController: XMLParserDelegate {
                 
                 if parser.parse() {
                     if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
-                        self.carList[0] = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
+                        self.socarInfo = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
                     }
-
                 } else {
-                    print("============================== 🔴 Parse Failed 🔴 ==============================")
+                    print("🔴 SOCAR XML Parse Failed 🔴")
                 }
             }
         }
-        
     }
     
     func requestGreencarList(startPage: Int, endPage: Int, spot: Int) {
@@ -216,10 +225,10 @@ extension MainSheetViewController: XMLParserDelegate {
                 
                 if parser.parse() {
                     if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
-                        self.carList[1] = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                        self.greencarInfo = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
                     }
                 } else {
-                    print("============================== 🔴 Parse Failed 🔴 ==============================")
+                    print("🔴 GREENCAR XML Parse Failed 🔴")
                 }
             }
         }
