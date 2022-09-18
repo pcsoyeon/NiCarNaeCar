@@ -94,10 +94,8 @@ final class MainViewController: BaseViewController {
     
     private func setAnnotation(center: CLLocationCoordinate2D, title: String) {
         let annotation =  MKPointAnnotation()
-        
         annotation.coordinate = center
         annotation.title = title
-        
         rootView.mapView.addAnnotation(annotation)
     }
     
@@ -139,7 +137,7 @@ final class MainViewController: BaseViewController {
         spotList.removeAll()
         
         rootView.mapView.annotations.forEach {
-            if !($0.title == "나의 현재 위치") {
+            if !($0.title == Constant.Annotation.currentLocationTitle) {
               self.rootView.mapView.removeAnnotation($0)
           }
         }
@@ -176,7 +174,7 @@ extension MainViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.title == "나의 현재 위치" {
+        if annotation.title == Constant.Annotation.currentLocationTitle {
             let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
             annotationView.markerTintColor = .systemRed
             return annotationView
@@ -205,6 +203,7 @@ extension MainViewController {
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
+            presentAlert(title: "")
             showRequestLocationServiceAlert()
         }
     }
