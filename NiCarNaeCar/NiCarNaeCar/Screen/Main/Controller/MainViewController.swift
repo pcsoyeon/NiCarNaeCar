@@ -15,6 +15,20 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
+enum SearchType {
+    case locality
+    case subLocality
+    
+    var index: Int {
+        switch self {
+        case .locality:
+            return 1
+        case .subLocality:
+            return 2
+        }
+    }
+}
+
 final class MainViewController: BaseViewController {
     
     // MARK: - UI Property
@@ -29,15 +43,34 @@ final class MainViewController: BaseViewController {
     private var currentLatitude: Double?
     private var currentLongtitude: Double?
     
-    private var spotList: [Row] = []
-    
-    private var currentPage: Int = 1
-    private var endPage: Int = 30
-    private var totalPage: Int = 100
+    private var spotList: [Row] = [] {
+        didSet {
+            for spot in spotList {
+                DispatchQueue.main.async {
+                    guard let latitude = Double(spot.la) else { return }
+                    guard let longtitude = Double(spot.lo) else { return }
+                    
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    self.setAnnotation(center: center, title: spot.positnNm)
+                }
+            }
+            
+        }
+    }
     
     private var positionId: Int = 0
     
     private var selectedLocality: String = ""
+    private var currentSublocality: String = ""
+    
+    private var locationUpdateCount: Int = 0 {
+        didSet {
+            if locationUpdateCount == 1 {
+                self.fetchSpotList(.subLocality, startPage: 1, endPage: 1000)
+                self.fetchSpotList(.subLocality, startPage: 1001, endPage: 1870)
+            }
+        }
+    }
     
     // MARK: - Life Cycle
     
@@ -55,7 +88,6 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-        addSpotListAnnotation()
     }
     
     // MARK: - UI Method
@@ -132,8 +164,6 @@ final class MainViewController: BaseViewController {
     }
     
     private func refreshSpotListAndAnnotation() {
-        currentPage = 1
-        endPage = 30
         spotList.removeAll()
         
         rootView.mapView.annotations.forEach {
@@ -141,6 +171,19 @@ final class MainViewController: BaseViewController {
               self.rootView.mapView.removeAnnotation($0)
           }
         }
+    }
+    
+    private func convertLocationToSublocality(_ location: CLLocation){
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: "Ko-kr")
+        
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler: {(placemarks, error) in
+            if let address: [CLPlacemark] = placemarks {
+                if let result: String = address.last?.subLocality {
+                    self.currentSublocality = result
+                }
+            }
+        })
     }
 }
 
@@ -255,6 +298,9 @@ extension MainViewController: CLLocationManagerDelegate {
             
             setRegion(center: coordinate, meters: 1200)
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
+            
+            locationUpdateCount += 1
+            convertLocationToSublocality(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
         locationManager.stopUpdatingLocation()
     }
@@ -276,27 +322,21 @@ extension MainViewController: MainViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.fetchSelectedLocalitySpotList()
+            self.fetchSpotList(.locality, startPage: 1, endPage: 1000)
+            self.fetchSpotList(.locality, startPage: 1001, endPage: 1870)
+            
+            for locality in LocalityType.allCases {
+                if self.selectedLocality == locality.rawValue {
+                    let center = locality.location
+                    self.setRegion(center: center, meters: 8000)
+                }
+            }
         }
         transition(viewController, transitionStyle: .push)
     }
     
     func touchUpRefreshButton() {
         refreshSpotListAndAnnotation()
-    }
-    
-    func touchUpAddButton() {
-        currentPage += 30
-        endPage += 30
-        
-        if let latitude = self.currentLatitude, let longtitude = self.currentLongtitude {
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            let meters = CLLocationDistance(2000 + self.currentPage * 80)
-            
-            setRegion(center: center, meters: meters)
-        }
-        
-        addSpotListAnnotation()
     }
     
     func touchUpCurrentLocationButton() {
@@ -315,57 +355,36 @@ extension MainViewController: MainViewDelegate {
 // MARK: - Network
 
 extension MainViewController {
-    private func addSpotListAnnotation() {
-        if endPage <= totalPage {
-            SpotListAPIManager.requestSpotList(startPage: currentPage, endPage: endPage) { data, error in
+    
+    private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
+        
+        self.refreshSpotListAndAnnotation()
+        var list: [Row] = []
+        
+        DispatchQueue.global().async {
+            
+            SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
                 
-                self.totalPage = data.nanumcarSpotList.listTotalCount
-                
-                DispatchQueue.main.async {
-                    for spot in data.nanumcarSpotList.row {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func fetchSelectedLocalitySpotList() {
-        SpotListAPIManager.requestSpotList(startPage: 1, endPage: 500) { data, error in
-            guard let data = data else { return }
-            
-            self.refreshSpotListAndAnnotation()
-            
-            DispatchQueue.main.async {
                 for spot in data.nanumcarSpotList.row {
                     let addressArr = spot.adres.split(separator: " ")
-                    let locality = String(addressArr[1])
+                    let locality = String(addressArr[searchType.index])
                     
-                    if locality == self.selectedLocality {
-                        self.spotList.append(spot)
-                        
-                        guard let latitude = Double(spot.la) else { return }
-                        guard let longtitude = Double(spot.lo) else { return }
-                        
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        self.setAnnotation(center: center, title: spot.positnNm)
+                    switch searchType {
+                    case .locality:
+                        if locality == self.selectedLocality {
+                            list.append(spot)
+                        }
+                    case .subLocality:
+                        if locality == self.currentSublocality {
+                            list.append(spot)
+                        }
                     }
                 }
+                self.spotList = list
             }
         }
         
-        for locality in LocalityType.allCases {
-            if selectedLocality == locality.rawValue {
-                let center = locality.location
-                setRegion(center: center, meters: 8000)
-            }
-        }
+        
     }
 }
