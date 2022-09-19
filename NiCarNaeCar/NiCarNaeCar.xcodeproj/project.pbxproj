@@ -30,6 +30,7 @@
 		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
+		925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */; };
 		9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */; };
 		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
 		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
@@ -149,6 +150,7 @@
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
+		925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnnotationView.swift; sourceTree = "<group>"; };
 		9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSGradientPathRenderer.swift; sourceTree = "<group>"; };
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */,
 				92BA475628D42956003B973A /* MainSearchView.swift */,
 				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
+				925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */,
 				920B474F28D5D7A600411255 /* SplashViewController.swift in Sources */,
 				92BA475728D42956003B973A /* MainSearchView.swift in Sources */,
+				925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,

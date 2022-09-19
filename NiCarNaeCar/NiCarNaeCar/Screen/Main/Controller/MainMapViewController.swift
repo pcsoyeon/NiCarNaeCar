@@ -29,20 +29,7 @@ final class MainMapViewController: BaseViewController {
     private var currentLatitude: Double?
     private var currentLongtitude: Double?
     
-    private var spotList: [Row] = [] {
-        didSet {
-            dispatchGroup.notify(queue: .main) {
-                print("이제 끝났습니다.")
-                for spot in self.spotList {
-                    guard let latitude = Double(spot.la) else { return }
-                    guard let longtitude = Double(spot.lo) else { return }
-                    
-                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                    self.setAnnotation(center: center, title: spot.positnNm)
-                }
-            }
-        }
-    }
+    private var spotList: [Row] = []
     
     private var positionId: Int = 0
     
@@ -52,9 +39,7 @@ final class MainMapViewController: BaseViewController {
     private var locationUpdateCount: Int = 0 {
         didSet {
             if locationUpdateCount == 1 {
-                self.fetchSpotList(.subLocality, startPage: 1, endPage: 500)
-                self.fetchSpotList(.subLocality, startPage: 501, endPage: 1000)
-                self.fetchSpotList(.subLocality, startPage: 1001, endPage: 1870)
+                requestSpotList(.subLocality)
             }
         }
     }
@@ -94,6 +79,8 @@ final class MainMapViewController: BaseViewController {
     private func configureMapView() {
         rootView.mapView.delegate = self
         rootView.mapView.showsCompass = false
+        
+        rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
     private func configureButton() {
@@ -206,19 +193,13 @@ extension MainMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
-        
         if annotation.title == Constant.Annotation.currentLocationTitle {
+            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
             annotationView.markerTintColor = .systemRed
             return annotationView
         } else {
+            let annotationView = DefaultAnnoationView(annotation: annotation, reuseIdentifier: DefaultAnnoationView.ReuseID)
             annotationView.markerTintColor = R.Color.black200
-            if #available(iOS 16.0, *) {
-                if let featureAnnoation = annotation as? MKMapFeatureAnnotation {
-                    annotationView.selectedGlyphImage = featureAnnoation.iconStyle?.image
-                    annotationView.glyphImage = featureAnnoation.iconStyle?.image
-                }
-            }
             return annotationView
         }
     }
@@ -292,7 +273,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
             
-            setRegion(center: coordinate, meters: 1200)
+            setRegion(center: coordinate, meters: 800)
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
             
             locationUpdateCount += 1
@@ -318,9 +299,8 @@ extension MainMapViewController: MainMapViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.fetchSpotList(.locality, startPage: 1, endPage: 500)
-            self.fetchSpotList(.locality, startPage: 501, endPage: 1000)
-            self.fetchSpotList(.locality, startPage: 1001, endPage: 1870)
+            
+            self.requestSpotList(.locality)
             
             for locality in LocalityType.allCases {
                 if self.selectedLocality == locality.rawValue {
@@ -352,34 +332,52 @@ extension MainMapViewController: MainMapViewDelegate {
 // MARK: - Network
 
 extension MainMapViewController {
-    private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
-        print("서버통신을 해볼게요?")
-        self.refreshSpotListAndAnnotation()
-        var list: [Row] = []
+    private func requestSpotList(_ searchType: SearchType) {
+        print("서버통신 함수를 호출한다???")
+        self.fetchSpotList(searchType, startPage: 1, endPage: 1000)
+        self.fetchSpotList(searchType, startPage: 1001, endPage: 1870)
         
-        DispatchQueue.global().async(group: dispatchGroup) {
-            
-            SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
-                guard let data = data else { return }
+        dispatchGroup.notify(queue: .main) {
+            print("서버 통신 끝났는디")
+            dump(self.spotList)
+            for spot in self.spotList {
+                guard let latitude = Double(spot.la) else { return }
+                guard let longtitude = Double(spot.lo) else { return }
                 
-                for spot in data.nanumcarSpotList.row {
-                    let addressArr = spot.adres.split(separator: " ")
-                    let locality = String(addressArr[searchType.index])
-                    
-                    switch searchType {
-                    case .locality:
-                        if locality == self.selectedLocality {
-                            list.append(spot)
-                        }
-                    case .subLocality:
-                        if locality == self.currentSublocality {
-                            list.append(spot)
-                        }
-                    }
-                }
-                self.spotList = list
+                let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                self.setAnnotation(center: center, title: spot.positnNm)
             }
         }
+    }
+    
+    
+    private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
+        print("서버통신을 해볼게요???")
+        
+        dispatchGroup.enter()
+        SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
+            guard let data = data else { return }
+            
+            for spot in data.nanumcarSpotList.row {
+                let addressArr = spot.adres.split(separator: " ")
+                let locality = String(addressArr[searchType.index])
+                
+                switch searchType {
+                case .locality:
+                    if locality == self.selectedLocality {
+                        self.spotList.append(spot)
+                    }
+                case .subLocality:
+                    if locality == self.currentSublocality {
+                        print(spot)
+                        self.spotList.append(spot)
+                    }
+                }
+            }
+            
+            self.dispatchGroup.leave()
+        }
+        
     }
 }
 
