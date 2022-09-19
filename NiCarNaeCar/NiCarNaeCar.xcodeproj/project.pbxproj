@@ -11,7 +11,6 @@
 		92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5128C9844400EB5333 /* AppDelegate.swift */; };
 		92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5328C9844400EB5333 /* SceneDelegate.swift */; };
 		92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5528C9844400EB5333 /* OnboardingViewController.swift */; };
-		92356D5928C9844400EB5333 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5728C9844400EB5333 /* Main.storyboard */; };
 		92356D5B28C9844500EB5333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5A28C9844500EB5333 /* Assets.xcassets */; };
 		92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */; };
 		92356D7128C9859900EB5333 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7028C9859900EB5333 /* Constant.swift */; };
@@ -134,7 +133,6 @@
 		92356D5128C9844400EB5333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92356D5328C9844400EB5333 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		92356D5528C9844400EB5333 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		92356D5828C9844400EB5333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92356D5A28C9844500EB5333 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92356D5D28C9844500EB5333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92356D5F28C9844500EB5333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -310,7 +308,6 @@
 		92356D6A28C9849C00EB5333 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				92356D5728C9844400EB5333 /* Main.storyboard */,
 				92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
@@ -692,7 +689,6 @@
 				926DE47428CAF23C0083123F /* Pretendard-Regular.otf in Resources */,
 				926DE47628CAF23C0083123F /* Pretendard-SemiBold.otf in Resources */,
 				92356D5B28C9844500EB5333 /* Assets.xcassets in Resources */,
-				92356D5928C9844400EB5333 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,14 +763,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		92356D5728C9844400EB5333 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92356D5828C9844400EB5333 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -911,9 +899,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NiCarNaeCar/Resource/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "니카내카";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 주차 정보를 보여주기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -944,9 +932,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NiCarNaeCar/Resource/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "니카내카";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 주차 정보를 보여주기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
