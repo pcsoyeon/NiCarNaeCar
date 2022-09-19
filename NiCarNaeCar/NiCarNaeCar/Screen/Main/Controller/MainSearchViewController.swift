@@ -77,6 +77,7 @@ final class MainSearchViewController: BaseViewController {
     }
     
     private func configureSearchBar() {
+        searchBar.becomeFirstResponder()
         searchBar.delegate = self
         
         searchBar.setValue("취소", forKey: "cancelButtonText")
