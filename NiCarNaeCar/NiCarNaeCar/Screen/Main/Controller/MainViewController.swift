@@ -105,8 +105,6 @@ final class MainViewController: BaseViewController {
     private func configureMapView() {
         rootView.mapView.delegate = self
         rootView.mapView.showsCompass = false
-        
-        rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
     private func configureButton() {
