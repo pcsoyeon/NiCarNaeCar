@@ -45,8 +45,8 @@ final class MainViewController: BaseViewController {
     
     private var spotList: [Row] = [] {
         didSet {
-            for spot in spotList {
-                DispatchQueue.main.async {
+            dispatchGroup.notify(queue: .main) {
+                for spot in self.spotList {
                     guard let latitude = Double(spot.la) else { return }
                     guard let longtitude = Double(spot.lo) else { return }
                     
@@ -54,7 +54,6 @@ final class MainViewController: BaseViewController {
                     self.setAnnotation(center: center, title: spot.positnNm)
                 }
             }
-            
         }
     }
     
@@ -66,11 +65,14 @@ final class MainViewController: BaseViewController {
     private var locationUpdateCount: Int = 0 {
         didSet {
             if locationUpdateCount == 1 {
-                self.fetchSpotList(.subLocality, startPage: 1, endPage: 1000)
+                self.fetchSpotList(.subLocality, startPage: 1, endPage: 500)
+                self.fetchSpotList(.subLocality, startPage: 501, endPage: 1000)
                 self.fetchSpotList(.subLocality, startPage: 1001, endPage: 1870)
             }
         }
     }
+    
+    private let dispatchGroup = DispatchGroup()
     
     // MARK: - Life Cycle
     
@@ -366,7 +368,7 @@ extension MainViewController {
         self.refreshSpotListAndAnnotation()
         var list: [Row] = []
         
-        DispatchQueue.global().async {
+        DispatchQueue.global().async(group: dispatchGroup) {
             
             SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
                 guard let data = data else { return }
