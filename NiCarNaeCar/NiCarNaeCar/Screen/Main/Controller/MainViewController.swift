@@ -46,6 +46,7 @@ final class MainViewController: BaseViewController {
     private var spotList: [Row] = [] {
         didSet {
             dispatchGroup.notify(queue: .main) {
+                print("이제 끝났습니다.")
                 for spot in self.spotList {
                     guard let latitude = Double(spot.la) else { return }
                     guard let longtitude = Double(spot.lo) else { return }
@@ -192,9 +193,8 @@ final class MainViewController: BaseViewController {
 extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotationTitle = view.annotation?.title {
-            guard let title = annotationTitle else { return }
             for spot in spotList {
-                if spot.positnNm == title {
+                if spot.positnNm == annotationTitle {
                     if let positionId = Int(spot.positnCD) {
                         self.positionId = positionId
                     }
@@ -329,7 +329,8 @@ extension MainViewController: MainViewDelegate {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
-            self.fetchSpotList(.locality, startPage: 1, endPage: 1000)
+            self.fetchSpotList(.locality, startPage: 1, endPage: 500)
+            self.fetchSpotList(.locality, startPage: 501, endPage: 1000)
             self.fetchSpotList(.locality, startPage: 1001, endPage: 1870)
             
             for locality in LocalityType.allCases {
@@ -362,9 +363,8 @@ extension MainViewController: MainViewDelegate {
 // MARK: - Network
 
 extension MainViewController {
-    
     private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
-        
+        print("서버통신을 해볼게요?")
         self.refreshSpotListAndAnnotation()
         var list: [Row] = []
         
@@ -391,7 +391,6 @@ extension MainViewController {
                 self.spotList = list
             }
         }
-        
-        
     }
 }
+

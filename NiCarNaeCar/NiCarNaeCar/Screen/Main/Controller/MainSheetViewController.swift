@@ -101,6 +101,15 @@ final class MainSheetViewController: BaseViewController {
             return .GA
         }
     }
+    
+    private func calculateDistance(_ spotInfo: Row) {
+        if let latitude = Double(spotInfo.la), let longtitude = Double(spotInfo.lo) {
+            let arrival: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude)
+            let departure: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            
+            self.rootView.distance = arrival.distanceToString(to: departure)
+        }
+    }
 }
 
 // MARK: - UICollectionView Protocol
@@ -157,26 +166,21 @@ extension MainSheetViewController {
     func fetchSpotInfo() {
         view.isUserInteractionEnabled = false
         
-        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 900, positionId: positionId) { response, error in
+        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 5, positionId: positionId) { response, error in
             guard let response = response else { return }
-            let carInfo = response.nanumcarSpotList.row[0]
+            let spotInfo = response.nanumcarSpotList.row[0]
             
-            self.socarInfo.carType = self.changeStringToCarType(carInfo.elctyvhcleAt)
-            self.greencarInfo.carType = self.changeStringToCarType(carInfo.elctyvhcleAt)
+            self.socarInfo.carType = self.changeStringToCarType(spotInfo.elctyvhcleAt)
+            self.greencarInfo.carType = self.changeStringToCarType(spotInfo.elctyvhcleAt)
             
-            self.positionName = carInfo.positnNm
-            self.rootView.positionName = carInfo.positnNm
+            self.positionName = spotInfo.positnNm
+            self.rootView.positionName = spotInfo.positnNm
             
-            self.address = carInfo.adres
-            self.rootView.address = carInfo.adres
+            self.address = spotInfo.adres
+            self.rootView.address = spotInfo.adres
             
             DispatchQueue.main.async {
-                if let latitude = Double(carInfo.la), let longtitude = Double(carInfo.lo) {
-                    let destination: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.currentLatitude, longitude: self.currentLongtitude)
-                    let departure: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                    
-                    self.rootView.distance = destination.distanceToString(to: departure)
-                }
+                self.calculateDistance(spotInfo)
                 self.view.isUserInteractionEnabled = true
             }
         }
