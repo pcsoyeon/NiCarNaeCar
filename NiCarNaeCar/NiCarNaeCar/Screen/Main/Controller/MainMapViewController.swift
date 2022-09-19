@@ -158,6 +158,9 @@ final class MainMapViewController: BaseViewController {
               self.rootView.mapView.removeAnnotation($0)
           }
         }
+        
+        let overlays = rootView.mapView.overlays
+        rootView.mapView.removeOverlays(overlays)
     }
     
     private func convertLocationToSublocality(_ location: CLLocation){
