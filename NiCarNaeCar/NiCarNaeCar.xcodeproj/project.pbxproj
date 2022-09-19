@@ -16,10 +16,10 @@
 		92356D5E28C9844500EB5333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92356D5C28C9844500EB5333 /* LaunchScreen.storyboard */; };
 		92356D7128C9859900EB5333 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7028C9859900EB5333 /* Constant.swift */; };
 		92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7228C985A700EB5333 /* UserDefaults.swift */; };
-		92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainViewController.swift */; };
+		92356D7C28C98A6900EB5333 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D7B28C98A6900EB5333 /* MainMapViewController.swift */; };
 		92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; };
 		92356DBB28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DB628C98EDA00EB5333 /* NiCarNaeCar_Util.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		92356DF028C9937800EB5333 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356DEF28C9937800EB5333 /* MainView.swift */; };
+		92356DF028C9937800EB5333 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356DEF28C9937800EB5333 /* MainMapView.swift */; };
 		92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; };
 		92356DFB28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92356DF728C994BA00EB5333 /* NiCarNaeCar_Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */; };
@@ -30,6 +30,7 @@
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
 		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
+		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
 		9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */; };
 		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
 		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
@@ -139,9 +140,9 @@
 		92356D5F28C9844500EB5333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92356D7028C9859900EB5333 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		92356D7228C985A700EB5333 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		92356D7B28C98A6900EB5333 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		92356D7B28C98A6900EB5333 /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
 		92356DB028C98EDA00EB5333 /* NiCarNaeCar-Util.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Util.xcodeproj"; path = "../../NiCarNaeCar-Util/NiCarNaeCar-Util.xcodeproj"; sourceTree = "<group>"; };
-		92356DEF28C9937800EB5333 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		92356DEF28C9937800EB5333 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		92356DF128C994BA00EB5333 /* NiCarNaeCar-Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "NiCarNaeCar-Resource.xcodeproj"; path = "../../NiCarNaeCar-Resource/NiCarNaeCar-Resource.xcodeproj"; sourceTree = "<group>"; };
 		92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetViewController.swift; sourceTree = "<group>"; };
 		92356E1A28C9C71500EB5333 /* MainSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSheetView.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
+		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSGradientPathRenderer.swift; sourceTree = "<group>"; };
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -366,7 +368,7 @@
 		92356D7A28C98A5C00EB5333 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				92356D7B28C98A6900EB5333 /* MainViewController.swift */,
+				92356D7B28C98A6900EB5333 /* MainMapViewController.swift */,
 				92356E1428C9C4B100EB5333 /* MainSheetViewController.swift */,
 				92BA475428D421B9003B973A /* MainSearchViewController.swift */,
 			);
@@ -392,7 +394,7 @@
 		92356DEC28C9936E00EB5333 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				92356DEF28C9937800EB5333 /* MainView.swift */,
+				92356DEF28C9937800EB5333 /* MainMapView.swift */,
 				92356E1A28C9C71500EB5333 /* MainSheetView.swift */,
 				929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */,
 				92BA475628D42956003B973A /* MainSearchView.swift */,
@@ -419,6 +421,7 @@
 				929C3AA128CCE0C9004592A9 /* BrandInfo.swift */,
 				9277205E28CF46D200163925 /* CarType.swift */,
 				92BA475A28D45CBB003B973A /* LocalityType.swift */,
+				925F7E2D28D85FB000F6C9DA /* SearchType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -706,7 +709,7 @@
 				926DE48728CAF8D20083123F /* SpotListAPIManager.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */,
 				927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */,
-				92356DF028C9937800EB5333 /* MainView.swift in Sources */,
+				92356DF028C9937800EB5333 /* MainMapView.swift in Sources */,
 				927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
@@ -723,10 +726,11 @@
 				923B7EF128D58F600064700C /* Metric.swift in Sources */,
 				923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */,
 				923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */,
-				92356D7C28C98A6900EB5333 /* MainViewController.swift in Sources */,
+				92356D7C28C98A6900EB5333 /* MainMapViewController.swift in Sources */,
 				928D4C8B28D387D7001A029F /* URLSession+Extension.swift in Sources */,
 				9277205A28CF21C100163925 /* DetailCollectionViewCell.swift in Sources */,
 				926DE44B28CAD4850083123F /* CloseButton.swift in Sources */,
+				925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */,
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,

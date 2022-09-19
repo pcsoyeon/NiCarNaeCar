@@ -109,7 +109,7 @@ final class SplashViewController: BaseViewController {
                     self.showLabel(self.fourthLabel) {
                         
                         if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
-                            let viewController = UINavigationController(rootViewController: MainViewController())
+                            let viewController = UINavigationController(rootViewController: MainMapViewController())
                             self.transition(viewController, transitionStyle: .presentCrossDissolve)
                         } else {
                             let viewController = UINavigationController(rootViewController: OnboardingViewController())

@@ -65,7 +65,7 @@ extension OnboardingNameViewController: OnboardingNameViewDelegate {
         if let name = rootView.nameTextField.text {
             UserDefaults.standard.set("\(name)", forKey: Constant.UserDefaults.userName)
         }
-        transition(MainViewController(), transitionStyle: .presentFullScreen)
+        transition(MainMapViewController(), transitionStyle: .presentFullScreen)
     }
 }
 

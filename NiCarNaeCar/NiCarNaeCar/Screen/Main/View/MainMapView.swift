@@ -14,14 +14,14 @@ import NiCarNaeCar_Util
 import SnapKit
 import Then
 
-protocol MainViewDelegate: MainViewController {
+protocol MainMapViewDelegate: MainMapViewController {
     func touchUpSettingButton()
     func touchUpSearchButton()
     func touchUpRefreshButton()
     func touchUpCurrentLocationButton()
 }
 
-final class MainView: BaseView {
+final class MainMapView: BaseView {
     
     // MARK: - UI Property
     
@@ -62,7 +62,7 @@ final class MainView: BaseView {
     
     // MARK: - Property
     
-    weak var buttonDelegate: MainViewDelegate?
+    weak var buttonDelegate: MainMapViewDelegate?
     
     // MARK: - UI Method
     

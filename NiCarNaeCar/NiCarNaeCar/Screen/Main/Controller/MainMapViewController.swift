@@ -15,25 +15,11 @@ import NiCarNaeCar_Resource
 import SnapKit
 import Then
 
-enum SearchType {
-    case locality
-    case subLocality
-    
-    var index: Int {
-        switch self {
-        case .locality:
-            return 1
-        case .subLocality:
-            return 2
-        }
-    }
-}
-
-final class MainViewController: BaseViewController {
+final class MainMapViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private let rootView = MainView()
+    private let rootView = MainMapView()
     
     // MARK: - Property
     
@@ -190,7 +176,7 @@ final class MainViewController: BaseViewController {
 
 // MARK: - MapView Protocol
 
-extension MainViewController: MKMapViewDelegate {
+extension MainMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotationTitle = view.annotation?.title {
             for spot in spotList {
@@ -244,7 +230,7 @@ extension MainViewController: MKMapViewDelegate {
 
 // MARK: - Authorization Method
 
-extension MainViewController {
+extension MainMapViewController {
     func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
         
@@ -295,7 +281,7 @@ extension MainViewController {
 
 // MARK: - CLLocation Protocol
 
-extension MainViewController: CLLocationManagerDelegate {
+extension MainMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function, locations)
         
@@ -324,7 +310,7 @@ extension MainViewController: CLLocationManagerDelegate {
 
 // MARK: - Custom Delegate
 
-extension MainViewController: MainViewDelegate {
+extension MainMapViewController: MainMapViewDelegate {
     func touchUpSearchButton() {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
@@ -362,7 +348,7 @@ extension MainViewController: MainViewDelegate {
 
 // MARK: - Network
 
-extension MainViewController {
+extension MainMapViewController {
     private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
         print("서버통신을 해볼게요?")
         self.refreshSpotListAndAnnotation()
