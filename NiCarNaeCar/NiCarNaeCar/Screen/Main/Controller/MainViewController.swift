@@ -217,12 +217,19 @@ extension MainViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
         if annotation.title == Constant.Annotation.currentLocationTitle {
-            let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
             annotationView.markerTintColor = .systemRed
             return annotationView
         } else {
-            let annotationView = DefaultAnnoationView(annotation: annotation, reuseIdentifier: DefaultAnnoationView.ReuseID)
+            annotationView.markerTintColor = R.Color.black200
+            if #available(iOS 16.0, *) {
+                if let featureAnnoation = annotation as? MKMapFeatureAnnotation {
+                    annotationView.selectedGlyphImage = featureAnnoation.iconStyle?.image
+                    annotationView.glyphImage = featureAnnoation.iconStyle?.image
+                }
+            }
             return annotationView
         }
     }
