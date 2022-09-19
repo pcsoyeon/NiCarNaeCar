@@ -146,6 +146,10 @@ final class MainMapViewController: BaseViewController {
           }
         }
         
+        removeMapViewOverlays()
+    }
+    
+    private func removeMapViewOverlays() {
         let overlays = rootView.mapView.overlays
         rootView.mapView.removeOverlays(overlays)
     }
@@ -273,7 +277,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
             currentLatitude = coordinate.latitude
             currentLongtitude = coordinate.longitude
             
-            setRegion(center: coordinate, meters: 800)
+            setRegion(center: coordinate, meters: 1200)
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
             
             locationUpdateCount += 1
@@ -301,6 +305,8 @@ extension MainMapViewController: MainMapViewDelegate {
             self.selectedLocality = locality
             
             self.requestSpotList(.locality)
+            
+            self.removeMapViewOverlays()
             
             for locality in LocalityType.allCases {
                 if self.selectedLocality == locality.rawValue {
