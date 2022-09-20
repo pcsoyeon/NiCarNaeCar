@@ -215,26 +215,6 @@ extension MainMapViewController: MKMapViewDelegate {
         polylineRenderer.lineWidth = 5
         return polylineRenderer
     }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let neCoordinate = mapView.northEastCoordinate
-        let swCoordinate = mapView.southWestCoordinate
-
-        print(neCoordinate, swCoordinate)
-
-        removeAnnotations()
-
-        for item in filteredList {
-            guard let latitude = Double(item.la) else { return }
-            guard let longtitude = Double(item.lo) else { return }
-            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-
-            if swCoordinate.latitude < latitude && swCoordinate.longitude < longtitude && neCoordinate.latitude > latitude && neCoordinate.longitude > longtitude {
-                setAnnotation(center: location, title: item.positnNm)
-            }
-        }
-    }
-    
 }
 
 // MARK: - Authorization Method

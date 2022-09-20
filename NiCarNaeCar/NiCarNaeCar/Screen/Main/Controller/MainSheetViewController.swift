@@ -18,21 +18,8 @@ final class MainSheetViewController: BaseViewController {
     
     // MARK: - Property
     
-    var socarInfo: BrandInfo = BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0") {
-        didSet {
-            DispatchQueue.main.async {
-                self.rootView.collectionView.reloadData()
-            }
-        }
-    }
-    
-    var greencarInfo: BrandInfo = BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0") {
-        didSet {
-            DispatchQueue.main.async {
-                self.rootView.collectionView.reloadData()
-            }
-        }
-    }
+    var socarInfo: BrandInfo = BrandInfo(brandType: .socar, totalCount: "0", availableCount: "0")
+    var greencarInfo: BrandInfo = BrandInfo(brandType: .greencar, totalCount: "0", availableCount: "0")
     
     var positionId: Int = 0
     
@@ -45,6 +32,10 @@ final class MainSheetViewController: BaseViewController {
     
     var currentLatitude: Double = 0.0
     var currentLongtitude: Double = 0.0
+    
+    private let dispatchGroup = DispatchGroup()
+    
+    private var spotInfo: Row = Row(la: "", lo: "", positnCD: "", elctyvhcleAt: "", adres: "", positnNm: "")
     
     // MARK: - Life Cycle
     
@@ -166,23 +157,29 @@ extension MainSheetViewController {
     func fetchSpotInfo() {
         view.isUserInteractionEnabled = false
         
+        dispatchGroup.enter()
         SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 5, positionId: positionId) { response, error in
+            print("거점지 서버통신한다???")
             guard let response = response else { return }
-            let spotInfo = response.nanumcarSpotList.row[0]
+            self.spotInfo = response.nanumcarSpotList.row[0]
             
-            self.socarInfo.carType = self.changeStringToCarType(spotInfo.elctyvhcleAt)
-            self.greencarInfo.carType = self.changeStringToCarType(spotInfo.elctyvhcleAt)
+            self.socarInfo.carType = self.changeStringToCarType(self.spotInfo.elctyvhcleAt)
+            self.greencarInfo.carType = self.changeStringToCarType(self.spotInfo.elctyvhcleAt)
             
-            self.positionName = spotInfo.positnNm
-            self.rootView.positionName = spotInfo.positnNm
+            self.positionName = self.spotInfo.positnNm
+            self.rootView.positionName = self.spotInfo.positnNm
             
-            self.address = spotInfo.adres
-            self.rootView.address = spotInfo.adres
+            self.address = self.spotInfo.adres
+            self.rootView.address = self.spotInfo.adres
             
-            DispatchQueue.main.async {
-                self.calculateDistance(spotInfo)
-                self.view.isUserInteractionEnabled = true
-            }
+            self.dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            print("서버통신 끝났는디")
+            self.calculateDistance(self.spotInfo)
+            self.rootView.collectionView.reloadData()
+            self.view.isUserInteractionEnabled = true
         }
     }
     
@@ -203,7 +200,9 @@ extension MainSheetViewController: XMLParserDelegate {
         
         guard let url = URL(string: urlString) else { return }
         
+        dispatchGroup.enter()
         DispatchQueue.global().async {
+            print("쏘카 서버통신한다???")
             if let parser = XMLParser(contentsOf: url) {
                 parser.delegate = self
                 
@@ -215,6 +214,8 @@ extension MainSheetViewController: XMLParserDelegate {
                     print("🔴 SOCAR XML Parse Failed 🔴")
                 }
             }
+            
+            self.dispatchGroup.leave()
         }
     }
     
@@ -223,7 +224,9 @@ extension MainSheetViewController: XMLParserDelegate {
         
         guard let url = URL(string: urlString) else { return }
         
+        dispatchGroup.enter()
         DispatchQueue.global().async {
+            print("그린카 서버통신한다???")
             if let parser = XMLParser(contentsOf: url) {
                 parser.delegate = self
                 
@@ -235,6 +238,8 @@ extension MainSheetViewController: XMLParserDelegate {
                     print("🔴 GREENCAR XML Parse Failed 🔴")
                 }
             }
+            
+            self.dispatchGroup.leave()
         }
     }
     
