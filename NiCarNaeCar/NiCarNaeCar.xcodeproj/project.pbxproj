@@ -393,12 +393,9 @@
 		92356DEC28C9936E00EB5333 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				92356DEF28C9937800EB5333 /* MainMapView.swift */,
-				92356E1A28C9C71500EB5333 /* MainSheetView.swift */,
-				929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */,
-				92BA475628D42956003B973A /* MainSearchView.swift */,
-				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
-				925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */,
+				925F7E4A28D9B70E00F6C9DA /* Search */,
+				925F7E4928D9B70600F6C9DA /* Sheet */,
+				925F7E4628D9B6C000F6C9DA /* Map */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,6 +444,33 @@
 				923B7EEE28D58D740064700C /* NDSFloatingButton.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		925F7E4628D9B6C000F6C9DA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				92356DEF28C9937800EB5333 /* MainMapView.swift */,
+				925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		925F7E4928D9B70600F6C9DA /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				92356E1A28C9C71500EB5333 /* MainSheetView.swift */,
+				929C3A9928CCD8A1004592A9 /* MainSheetCollectionViewCell.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		925F7E4A28D9B70E00F6C9DA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				92BA475628D42956003B973A /* MainSearchView.swift */,
+				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		926DE43B28CAD3DC0083123F /* DesignSystem */ = {
