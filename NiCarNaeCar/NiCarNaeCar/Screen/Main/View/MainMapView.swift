@@ -17,7 +17,6 @@ import Then
 protocol MainMapViewDelegate: MainMapViewController {
     func touchUpSettingButton()
     func touchUpSearchButton()
-    func touchUpRefreshButton()
     func touchUpCurrentLocationButton()
 }
 
@@ -50,11 +49,6 @@ final class MainMapView: BaseView {
     
     var mapView = MKMapView()
     
-    private lazy var refreshButton = NDSFloatingButton().then {
-        $0.image = R.Image.btnRefresh
-        $0.addTarget(self, action: #selector(touchUpRefreshButton), for: .touchUpInside)
-    }
-    
     private lazy var currentLocationButton = NDSFloatingButton().then {
         $0.image = R.Image.btnLocation
         $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
@@ -73,7 +67,7 @@ final class MainMapView: BaseView {
     
     override func setLayout() {
         addSubviews(navigationBar, mapView)
-        mapView.addSubviews(currentLocationButton, refreshButton)
+        mapView.addSubviews(currentLocationButton)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
@@ -108,27 +102,16 @@ final class MainMapView: BaseView {
             make.bottom.equalToSuperview().inset(60)
             make.trailing.equalToSuperview().inset(Metric.margin)
         }
-        
-        refreshButton.snp.makeConstraints { make in
-            make.bottom.equalTo(currentLocationButton.snp.top).offset(-18)
-            make.trailing.equalToSuperview().inset(Metric.margin)
-        }
     }
     
     private func configureButton() {
-        [refreshButton, currentLocationButton].forEach { button in
-            button.layer.applySketchShadow(color: R.Color.gray100, alpha: 0.3, x: 0, y: 4, blur: 10, spread: 0)
-        }
+        currentLocationButton.layer.applySketchShadow(color: R.Color.gray100, alpha: 0.3, x: 0, y: 4, blur: 10, spread: 0)
     }
     
     // MARK: - @objc
     
     @objc func touchUpSearchButton() {
         buttonDelegate?.touchUpSearchButton()
-    }
-    
-    @objc func touchUpRefreshButton() {
-        buttonDelegate?.touchUpRefreshButton()
     }
     
     @objc func touchUpCurrentLocationButton() {
