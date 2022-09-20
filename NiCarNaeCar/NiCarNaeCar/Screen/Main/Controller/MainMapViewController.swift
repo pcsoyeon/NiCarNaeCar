@@ -30,6 +30,7 @@ final class MainMapViewController: BaseViewController {
     private var currentLongtitude: Double?
     
     private var spotList: [Row] = []
+    private var filteredList: [Row] = []
     
     private var positionId: Int = 0
     
@@ -39,7 +40,7 @@ final class MainMapViewController: BaseViewController {
     private var locationUpdateCount: Int = 0 {
         didSet {
             if locationUpdateCount == 1 {
-                requestSpotList(.subLocality)
+                fetchAllSpotList()
             }
         }
     }
@@ -137,16 +138,12 @@ final class MainMapViewController: BaseViewController {
         }
     }
     
-    private func refreshSpotListAndAnnotation() {
-        spotList.removeAll()
-        
+    private func removeAnnotations() {
         rootView.mapView.annotations.forEach {
             if !($0.title == Constant.Annotation.currentLocationTitle) {
               self.rootView.mapView.removeAnnotation($0)
           }
         }
-        
-        removeMapViewOverlays()
     }
     
     private func removeMapViewOverlays() {
@@ -173,26 +170,30 @@ final class MainMapViewController: BaseViewController {
 extension MainMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotationTitle = view.annotation?.title {
-            for spot in spotList {
-                if spot.positnNm == annotationTitle {
-                    if let positionId = Int(spot.positnCD) {
-                        self.positionId = positionId
+            
+            if annotationTitle != Constant.Annotation.currentLocationTitle {
+                for spot in filteredList {
+                    if spot.positnNm == annotationTitle {
+                        if let positionId = Int(spot.positnCD) {
+                            self.positionId = positionId
+                        }
+                        
+                        if let latitude = Double(spot.la), let longtitude = Double(spot.lo) {
+                            let to = CLLocationCoordinate2D(latitude: currentLatitude ?? 0.0, longitude: currentLongtitude ?? 0.0)
+                            let from = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                            drawDistanceLine(to: to, from: from)
+                        }
                     }
-                    
-                    if let latitude = Double(spot.la), let longtitude = Double(spot.lo) {
-                        let to = CLLocationCoordinate2D(latitude: currentLatitude ?? 0.0, longitude: currentLongtitude ?? 0.0)
-                        let from = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                        drawDistanceLine(to: to, from: from)
-                    }
+                }
+                
+                let viewController = MainSheetViewController()
+                transition(viewController, transitionStyle: .presentNavigation) { _ in
+                    viewController.positionId = self.positionId
+                    viewController.currentLatitude = self.currentLatitude ?? 0.0
+                    viewController.currentLongtitude = self.currentLongtitude ?? 0.0
                 }
             }
             
-            let viewController = MainSheetViewController()
-            transition(viewController, transitionStyle: .presentNavigation) { _ in
-                viewController.positionId = self.positionId
-                viewController.currentLatitude = self.currentLatitude ?? 0.0
-                viewController.currentLongtitude = self.currentLongtitude ?? 0.0
-            }
         }
     }
     
@@ -304,8 +305,10 @@ extension MainMapViewController: MainMapViewDelegate {
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
             
-            self.refreshSpotListAndAnnotation()
-            self.requestSpotList(.locality)
+            self.removeAnnotations()
+            self.removeMapViewOverlays()
+            
+            self.filterSpotList(.locality)
             
             for locality in LocalityType.allCases {
                 if self.selectedLocality == locality.rawValue {
@@ -315,10 +318,6 @@ extension MainMapViewController: MainMapViewDelegate {
             }
         }
         transition(viewController, transitionStyle: .push)
-    }
-    
-    func touchUpRefreshButton() {
-        refreshSpotListAndAnnotation()
     }
     
     func touchUpCurrentLocationButton() {
@@ -337,13 +336,12 @@ extension MainMapViewController: MainMapViewDelegate {
 // MARK: - Network
 
 extension MainMapViewController {
-    private func requestSpotList(_ searchType: SearchType) {
-        print("서버통신 함수를 호출한다???")
-        self.fetchSpotList(searchType, startPage: 1, endPage: 1000)
-        self.fetchSpotList(searchType, startPage: 1001, endPage: 1870)
+    private func fetchAllSpotList() {
+        self.fetchSpotList(startPage: 1, endPage: 1000)
+        self.fetchSpotList(startPage: 1001, endPage: 1870)
         
         dispatchGroup.notify(queue: .main) {
-            print("서버 통신 끝났는디")
+            print("🔴 서버 통신 끝났는디")
             for spot in self.spotList {
                 guard let latitude = Double(spot.la) else { return }
                 guard let longtitude = Double(spot.lo) else { return }
@@ -351,34 +349,49 @@ extension MainMapViewController {
                 let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
                 self.setAnnotation(center: center, title: spot.positnNm)
             }
+            
+            self.filteredList = self.spotList
         }
     }
     
-    
-    private func fetchSpotList(_ searchType: SearchType, startPage: Int, endPage: Int) {
-        print("서버통신을 해볼게요???")
-        
+    private func fetchSpotList(startPage: Int, endPage: Int) {
+        print("🟢 서버통신을 해볼게요???")
         dispatchGroup.enter()
         SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
             guard let data = data else { return }
             
-            for spot in data.nanumcarSpotList.row {
-                let addressArr = spot.adres.split(separator: " ")
-                let locality = String(addressArr[searchType.index]).components(separatedBy: "동")[0]
-                
-                switch searchType {
-                case .locality:
-                    if locality == self.selectedLocality {
-                        self.spotList.append(spot)
-                    }
-                case .subLocality:
-                    if locality == self.currentSublocality {
-                        self.spotList.append(spot)
-                    }
+            self.spotList = data.nanumcarSpotList.row
+            self.dispatchGroup.leave()
+        }
+    }
+    
+    private func filterSpotList(_ searchType: SearchType) {
+        filteredList.removeAll()
+        
+        for spot in spotList {
+            let addressArr = spot.adres.split(separator: " ")
+            let locality = String(addressArr[searchType.index])
+            
+            filteredList.append(spot)
+            
+            switch searchType {
+            case .locality:
+                if locality == self.selectedLocality {
+                    guard let latitude = Double(spot.la) else { return }
+                    guard let longtitude = Double(spot.lo) else { return }
+                    
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    self.setAnnotation(center: center, title: spot.positnNm)
+                }
+            case .subLocality:
+                if locality == self.currentSublocality {
+                    guard let latitude = Double(spot.la) else { return }
+                    guard let longtitude = Double(spot.lo) else { return }
+                    
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    self.setAnnotation(center: center, title: spot.positnNm)
                 }
             }
-            
-            self.dispatchGroup.leave()
         }
     }
 }
