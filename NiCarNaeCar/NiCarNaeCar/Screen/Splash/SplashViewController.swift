@@ -17,16 +17,6 @@ final class SplashViewController: BaseViewController {
     
     // MARK: - UI Property
     
-//    private lazy var labelStackView = UIStackView().then {
-//        $0.addArrangedSubview(firstLabel)
-//        $0.addArrangedSubview(secondLabel)
-//        $0.addArrangedSubview(thirdLabel)
-//        $0.addArrangedSubview(fourthLabel)
-//
-//        $0.axis = .horizontal
-//        $0.distribution = .fillEqually
-//    }
-    
     private let firstLabel = UILabel().then {
         $0.text = "니"
         $0.textColor = R.Color.black200
@@ -91,16 +81,32 @@ final class SplashViewController: BaseViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(303)
             make.leading.equalTo(thirdLabel.snp.trailing)
         }
-        
-//        view.addSubview(labelStackView)
-//        labelStackView.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.height.equalTo(118)
-//            make.top.equalTo(view.safeAreaLayoutGuide).inset(303)
-//        }
     }
     
     // MARK: - Custom Method
+    
+    private func checkDeviceNetworkStatus() {
+        NetworkConnectionStatus.shared.startMonitoring { isConnected in
+            if isConnected {
+                print("🟢 네트워크 연결")
+                DispatchQueue.main.async {
+                    if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
+                        let viewController = UINavigationController(rootViewController: MainMapViewController())
+                        self.transition(viewController, transitionStyle: .presentCrossDissolve)
+                    } else {
+                        let viewController = UINavigationController(rootViewController: OnboardingViewController())
+                        self.transition(viewController, transitionStyle: .presentCrossDissolve)
+                    }
+                }
+                
+            } else {
+                print("🟠 네트워크 연결 해제!")
+                DispatchQueue.main.async {
+                    self.presentAlert()
+                }
+            }
+        }
+    }
     
     private func setAnimation() {
         showLabel(firstLabel) {
@@ -108,13 +114,7 @@ final class SplashViewController: BaseViewController {
                 self.showLabel(self.thirdLabel) {
                     self.showLabel(self.fourthLabel) {
                         
-                        if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
-                            let viewController = UINavigationController(rootViewController: MainMapViewController())
-                            self.transition(viewController, transitionStyle: .presentCrossDissolve)
-                        } else {
-                            let viewController = UINavigationController(rootViewController: OnboardingViewController())
-                            self.transition(viewController, transitionStyle: .presentCrossDissolve)
-                        }
+                        self.checkDeviceNetworkStatus()
                         
                     }
                 }
@@ -122,12 +122,40 @@ final class SplashViewController: BaseViewController {
         }
     }
     
-    func showLabel(_ component: UILabel, completion: @escaping () -> Void) {
+    private func showLabel(_ component: UILabel, completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
             component.transform = CGAffineTransform(translationX: 0, y: -16)
             component.alpha = 1
         } completion: { _ in
             completion()
         }
+    }
+    
+    private func presentAlert() {
+        let alertController = UIAlertController(
+            title: "네트워크에 접속할 수 없습니다.",
+            message: "네트워크 연결 상태를 확인해주세요.",
+            preferredStyle: .alert
+        )
+        
+        let endAction = UIAlertAction(title: "종료", style: .destructive) { _ in
+            // 앱 종료
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                exit(0)
+            }
+        }
+        
+        let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+            // 설정앱 켜주기
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+        
+        alertController.addAction(endAction)
+        alertController.addAction(confirmAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

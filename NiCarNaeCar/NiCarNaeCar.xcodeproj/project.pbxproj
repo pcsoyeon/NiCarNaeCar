@@ -31,6 +31,7 @@
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
 		925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */; };
+		925F7E5428DA259900F6C9DA /* NetworkConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */; };
 		9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */; };
 		926DE44928CAD47D0083123F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44828CAD47D0083123F /* BackButton.swift */; };
 		926DE44B28CAD4850083123F /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE44A28CAD4850083123F /* CloseButton.swift */; };
@@ -151,6 +152,7 @@
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnnotationView.swift; sourceTree = "<group>"; };
+		925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionStatus.swift; sourceTree = "<group>"; };
 		9267150D28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSGradientPathRenderer.swift; sourceTree = "<group>"; };
 		926DE44828CAD47D0083123F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		926DE44A28CAD4850083123F /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				926DE48528CAF8C00083123F /* APIManager */,
 				926DE48128CAF8150083123F /* Base */,
+				925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				9277205A28CF21C100163925 /* DetailCollectionViewCell.swift in Sources */,
 				926DE44B28CAD4850083123F /* CloseButton.swift in Sources */,
 				925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */,
+				925F7E5428DA259900F6C9DA /* NetworkConnectionStatus.swift in Sources */,
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,
