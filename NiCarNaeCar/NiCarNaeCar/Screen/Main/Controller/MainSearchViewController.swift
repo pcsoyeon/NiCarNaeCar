@@ -25,6 +25,7 @@ final class MainSearchViewController: BaseViewController {
     private lazy var searchBar = UISearchBar().then {
         $0.placeholder = "행정구를 검색해보세요"
         $0.delegate = self
+        $0.backgroundImage = UIImage()
     }
 
     // MARK: - Property
@@ -85,7 +86,7 @@ final class MainSearchViewController: BaseViewController {
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             textfield.tintColor = R.Color.black200
-            textfield.backgroundColor = R.Color.white
+            textfield.backgroundColor = R.Color.gray400
             textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : R.Color.gray200])
             textfield.textColor = R.Color.black200
         }
