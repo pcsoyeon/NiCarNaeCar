@@ -161,7 +161,8 @@ final class MainMapViewController: BaseViewController {
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler: {(placemarks, error) in
             if let address: [CLPlacemark] = placemarks {
                 if let result: String = address.last?.subLocality {
-                    self.currentSublocality = result
+                    self.currentSublocality = result.components(separatedBy: "동")[0]
+                    print(self.currentSublocality)
                 }
             }
         })
@@ -366,7 +367,7 @@ extension MainMapViewController {
             
             for spot in data.nanumcarSpotList.row {
                 let addressArr = spot.adres.split(separator: " ")
-                let locality = String(addressArr[searchType.index])
+                let locality = String(addressArr[searchType.index]).components(separatedBy: "동")[0]
                 
                 switch searchType {
                 case .locality:
@@ -383,7 +384,6 @@ extension MainMapViewController {
             
             self.dispatchGroup.leave()
         }
-        
     }
 }
 
