@@ -19,7 +19,7 @@ final class MainSearchView: BaseView {
     
     lazy var tableView = UITableView().then {
         $0.backgroundColor = R.Color.white
-        $0.separatorColor = R.Color.gray300
+        $0.separatorColor = R.Color.gray400
         $0.separatorInset = UIEdgeInsets(top: 0, left: Metric.margin, bottom: 0, right: Metric.margin)
     }
     
