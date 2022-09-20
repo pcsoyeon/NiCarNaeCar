@@ -76,7 +76,7 @@ enum LocalityType: String, CaseIterable {
         case .양천구:
             return CLLocationCoordinate2D(latitude: 37.52007, longitude: 126.9549)
         case .영등포구:
-            return CLLocationCoordinate2D(latitude: 37.54240, longitude: 126.8402)
+            return CLLocationCoordinate2D(latitude: 37.51370, longitude: 126.89097)
         case .용산구:
             return CLLocationCoordinate2D(latitude: 37.53804, longitude: 126.9913)
         case .은평구:

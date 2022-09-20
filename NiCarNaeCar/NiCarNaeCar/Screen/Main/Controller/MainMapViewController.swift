@@ -162,7 +162,6 @@ final class MainMapViewController: BaseViewController {
             if let address: [CLPlacemark] = placemarks {
                 if let result: String = address.last?.subLocality {
                     self.currentSublocality = result.components(separatedBy: "동")[0]
-                    print(self.currentSublocality)
                 }
             }
         })
@@ -305,9 +304,8 @@ extension MainMapViewController: MainMapViewDelegate {
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
             
+            self.refreshSpotListAndAnnotation()
             self.requestSpotList(.locality)
-            
-            self.removeMapViewOverlays()
             
             for locality in LocalityType.allCases {
                 if self.selectedLocality == locality.rawValue {
@@ -346,7 +344,6 @@ extension MainMapViewController {
         
         dispatchGroup.notify(queue: .main) {
             print("서버 통신 끝났는디")
-            dump(self.spotList)
             for spot in self.spotList {
                 guard let latitude = Double(spot.la) else { return }
                 guard let longtitude = Double(spot.lo) else { return }
@@ -376,7 +373,6 @@ extension MainMapViewController {
                     }
                 case .subLocality:
                     if locality == self.currentSublocality {
-                        print(spot)
                         self.spotList.append(spot)
                     }
                 }
