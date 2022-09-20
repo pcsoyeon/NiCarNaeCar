@@ -161,10 +161,12 @@ extension MainSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainSearchTableViewCell.reuseIdentifier, for: indexPath) as? MainSearchTableViewCell else { return UITableViewCell() }
         
-        if isFiltering {
-            cell.setData(filterredLocation[indexPath.row])
-        } else {
-            cell.setData(location[indexPath.row])
+        if let text = searchBar.text {
+            if isFiltering {
+                cell.setData(filterredLocation[indexPath.row], true, text)
+            } else {
+                cell.setData(location[indexPath.row], false, text)
+            }
         }
         
         cell.selectionStyle = .none

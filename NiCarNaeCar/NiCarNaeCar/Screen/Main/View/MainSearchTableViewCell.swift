@@ -39,7 +39,17 @@ final class MainSearchTableViewCell: BaseTableViewCell {
     
     // MARK: - Custom Method
     
-    func setData(_ data: String) {
+    func setData(_ data: String,  _ isFiltering: Bool, _ text: String) {
         titleLabel.text = data
+        
+        if isFiltering {
+            if let titleText = titleLabel.text {
+                titleLabel.setHighlighted(titleText, with: text, font: NiCarNaeCarFont.body2.font)
+            }
+        } else {
+            if let titleText = titleLabel.text {
+                titleLabel.setHighlighted(titleText, with: text, font: NiCarNaeCarFont.body5.font)
+            }
+        }
     }
 }
