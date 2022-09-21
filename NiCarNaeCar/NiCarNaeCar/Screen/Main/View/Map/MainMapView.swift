@@ -54,6 +54,12 @@ final class MainMapView: BaseView {
         $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
     }
     
+    private lazy var segmentedControl = UISegmentedControl(items: ["standard", "hybrid"]).then {
+        $0.backgroundColor = R.Color.gray400
+        $0.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
+        $0.selectedSegmentIndex = 0
+    }
+    
     // MARK: - Property
     
     weak var buttonDelegate: MainMapViewDelegate?
@@ -67,7 +73,7 @@ final class MainMapView: BaseView {
     
     override func setLayout() {
         addSubviews(navigationBar, mapView)
-        mapView.addSubviews(currentLocationButton)
+        mapView.addSubviews(segmentedControl, currentLocationButton)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
@@ -98,6 +104,12 @@ final class MainMapView: BaseView {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
+        segmentedControl.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(12)
+            make.leading.trailing.equalToSuperview().inset(Metric.margin)
+            make.height.equalTo(35)
+        }
+        
         currentLocationButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(60)
             make.trailing.equalToSuperview().inset(Metric.margin)
@@ -120,5 +132,23 @@ final class MainMapView: BaseView {
     
     @objc func touchUpSettingButton() {
         buttonDelegate?.touchUpSettingButton()
+    }
+    
+    @objc private func didChangeValue(segment: UISegmentedControl) {
+        if segment.selectedSegmentIndex == 0 {
+            if #available(iOS 16.0, *) {
+                let standard = MKStandardMapConfiguration(elevationStyle: .realistic)
+                mapView.preferredConfiguration = standard
+            } else {
+                mapView.mapType = .standard
+            }
+        } else if segment.selectedSegmentIndex == 1 {
+            if #available(iOS 16.0, *) {
+                let configuration = MKHybridMapConfiguration(elevationStyle: .realistic)
+                mapView.preferredConfiguration = configuration
+            } else {
+                mapView.mapType = .hybrid
+            }
+        } 
     }
 }
