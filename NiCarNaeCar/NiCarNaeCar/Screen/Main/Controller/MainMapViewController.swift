@@ -325,6 +325,18 @@ extension MainMapViewController: MainMapViewDelegate {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
             setRegion(center: center, meters: 1200)
         }
+        
+        filteredList.removeAll()
+        removeAnnotations()
+        
+        filteredList = spotList
+        for spot in filteredList {
+            guard let latitude = Double(spot.la) else { return }
+            guard let longtitude = Double(spot.lo) else { return }
+            
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            self.setAnnotation(center: center, title: spot.positnNm)
+        }
     }
     
     func touchUpSettingButton() {
@@ -360,7 +372,9 @@ extension MainMapViewController {
         SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
             guard let data = data else { return }
             
-            self.spotList = data.nanumcarSpotList.row
+            for item in data.nanumcarSpotList.row {
+                self.spotList.append(item)
+            }
             self.dispatchGroup.leave()
         }
     }
