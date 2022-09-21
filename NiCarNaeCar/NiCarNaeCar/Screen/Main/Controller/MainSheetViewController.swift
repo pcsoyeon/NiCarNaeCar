@@ -46,6 +46,7 @@ final class MainSheetViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoadingIndicator.showLoading()
         configureNavigation()
         fetchSpotInfo()
         fetchSocarInfo()
@@ -187,6 +188,7 @@ extension MainSheetViewController {
             
             self.rootView.collectionView.reloadData()
             self.view.isUserInteractionEnabled = true
+            LoadingIndicator.hideLoading()
         }
     }
     
