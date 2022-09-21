@@ -92,6 +92,7 @@ final class MainMapViewController: BaseViewController {
     
     private func setLocationManager() {
         locationManager.delegate = self
+//        locationManager.distanceFilter = 100000
     }
     
     private func setRegion(center: CLLocationCoordinate2D, meters: CLLocationDistance) {

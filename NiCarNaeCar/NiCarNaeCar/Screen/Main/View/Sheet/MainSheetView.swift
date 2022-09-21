@@ -36,14 +36,37 @@ final class MainSheetView: BaseView {
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout).then {
-            $0.backgroundColor = R.Color.white
-            $0.contentInsetAdjustmentBehavior = .never
-            $0.showsHorizontalScrollIndicator = false
-            $0.isScrollEnabled = false
-        }
+        $0.backgroundColor = R.Color.white
+        $0.contentInsetAdjustmentBehavior = .never
+        $0.showsHorizontalScrollIndicator = false
+        $0.isScrollEnabled = false
+        $0.isHidden = true
+    }
     
     private let collectionViewFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
+    }
+    
+    private lazy var emptyView = UIView().then {
+        $0.addSubviews(emptyLabel)
+        $0.backgroundColor = R.Color.white
+        $0.isHidden = true
+    }
+    
+    private var emptyLabel = UILabel().then {
+        $0.text = """
+                  현재 대여할 수 있는 나눔카가 없어요 :(
+                  주변의 다른 지점을 찾아볼까요?
+                  """
+        $0.textColor = R.Color.gray100
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+    }
+    
+    private var searchLocationButton = UIButton().then {
+        $0.setTitle("행정구로 찾기", for: .normal)
+        $0.setTitleColor(R.Color.gray200, for: .normal)
+        $0.setTitleColor(R.Color.gray100, for: .normal)
     }
     
     // MARK: - Property
@@ -66,6 +89,13 @@ final class MainSheetView: BaseView {
         }
     }
     
+    var hasData: Bool = true {
+        didSet {
+            emptyView.isHidden = hasData ? true : false
+            collectionView.isHidden = hasData ? false : true
+        }
+    }
+    
     // MARK: - UI Method
     
     override func configureUI() {
@@ -73,7 +103,7 @@ final class MainSheetView: BaseView {
     }
     
     override func setLayout() {
-        addSubviews(locationLabel, addressLabel, distanceLabel, lineView, collectionView)
+        addSubviews(locationLabel, addressLabel, distanceLabel, lineView, collectionView, emptyView)
         
         locationLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).inset(33)
@@ -100,6 +130,16 @@ final class MainSheetView: BaseView {
             make.top.equalTo(lineView.snp.bottom).offset(20)
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(46)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(lineView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(108)
         }
     }
 }

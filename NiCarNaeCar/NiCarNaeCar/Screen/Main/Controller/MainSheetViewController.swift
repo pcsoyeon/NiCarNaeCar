@@ -178,6 +178,13 @@ extension MainSheetViewController {
         dispatchGroup.notify(queue: .main) {
             print("서버통신 끝났는디")
             self.calculateDistance(self.spotInfo)
+            
+            if self.socarInfo.availableCount == "0" && self.greencarInfo.availableCount == "0" {
+                self.rootView.hasData = false
+            } else {
+                self.rootView.hasData = true
+            }
+            
             self.rootView.collectionView.reloadData()
             self.view.isUserInteractionEnabled = true
         }
@@ -209,6 +216,7 @@ extension MainSheetViewController: XMLParserDelegate {
                 if parser.parse() {
                     if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
                         self.socarInfo = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
+                        print("🚙 대여가능한 쏘카: ", availableCount)
                     }
                 } else {
                     print("🔴 SOCAR XML Parse Failed 🔴")
@@ -233,6 +241,7 @@ extension MainSheetViewController: XMLParserDelegate {
                 if parser.parse() {
                     if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
                         self.greencarInfo = BrandInfo(brandType: .greencar, totalCount: totalCount, availableCount: availableCount)
+                        print("🚕 대여가능한 그린카: ", availableCount)
                     }
                 } else {
                     print("🔴 GREENCAR XML Parse Failed 🔴")
