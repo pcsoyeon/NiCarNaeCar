@@ -7,7 +7,6 @@
 
 import MapKit
 
-/// Draws a given polyline with a gradient fill, use in place of a MKOverlayPathRenderer
 class GradientPathRenderer: MKOverlayPathRenderer {
    
    /// The polyline to render
@@ -115,11 +114,6 @@ class GradientPathRenderer: MKOverlayPathRenderer {
        super.draw(mapRect, zoomScale: zoomScale, in: context)
    }
    
-   /*
-    Create path from polyline
-    Thanks to Adrian Schoenig
-    (http://adrian.schoenig.me/blog/2013/02/21/drawing-multi-coloured-lines-on-an-mkmapview/ )
-    */
     public override func createPath() {
        let path: CGMutablePath  = CGMutablePath()
        var pathIsEmpty: Bool = true
