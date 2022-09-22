@@ -54,7 +54,7 @@ final class MainMapView: BaseView {
         $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
     }
     
-    private lazy var segmentedControl = UISegmentedControl(items: ["standard", "hybrid"]).then {
+    private lazy var segmentedControl = UISegmentedControl(items: ["Light", "Dark"]).then {
         $0.backgroundColor = R.Color.gray400
         $0.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
         $0.selectedSegmentIndex = 0
@@ -136,19 +136,11 @@ final class MainMapView: BaseView {
     
     @objc private func didChangeValue(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
-            if #available(iOS 16.0, *) {
-                let standard = MKStandardMapConfiguration(elevationStyle: .realistic)
-                mapView.preferredConfiguration = standard
-            } else {
-                mapView.mapType = .standard
-            }
+            mapView.overrideUserInterfaceStyle = .light
+            segmentedControl.overrideUserInterfaceStyle = .light
         } else if segment.selectedSegmentIndex == 1 {
-            if #available(iOS 16.0, *) {
-                let configuration = MKHybridMapConfiguration(elevationStyle: .realistic)
-                mapView.preferredConfiguration = configuration
-            } else {
-                mapView.mapType = .hybrid
-            }
+            mapView.overrideUserInterfaceStyle = .dark
+            segmentedControl.overrideUserInterfaceStyle = .dark
         } 
     }
 }
