@@ -60,6 +60,8 @@ final class MainSheetView: BaseView {
                   """
         $0.textColor = R.Color.gray100
         $0.numberOfLines = 0
+        $0.font = NiCarNaeCarFont.body3.font
+        $0.addLabelSpacing(fontStyle: NiCarNaeCarFont.body3)
         $0.textAlignment = .center
     }
     
