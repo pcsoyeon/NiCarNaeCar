@@ -171,13 +171,15 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
             print("메일 발송 성공")
         case .saved:
             // 메일 임시 저장
-            print("메일 임시 저장공")
+            print("메일 임시 저장")
         case .cancelled:
             // 메일 작성 취소
             print("메일 작성 취소")
         case .failed:
             // 메일 발송 실패 (오류 발생)
             print("메일 발송 실패")
+        @unknown default:
+            fatalError()
         }
         dismiss(animated: true)
     }

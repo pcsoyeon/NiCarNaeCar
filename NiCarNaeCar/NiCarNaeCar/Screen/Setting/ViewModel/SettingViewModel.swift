@@ -9,8 +9,8 @@ import Foundation
 
 final class SettingViewModel {
     var list: Observable<[Setting]> = Observable([Setting(title: "",
-                                                               subTitle: nil,
-                                                               description: nil)])
+                                                          subTitle: nil,
+                                                          description: nil)])
     
     func fetchSetting() {
         list.value = [Setting(title: "서비스 이용 약관", subTitle: nil, description: nil),

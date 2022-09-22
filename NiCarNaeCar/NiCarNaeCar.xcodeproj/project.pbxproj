@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		920B474F28D5D7A600411255 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B474E28D5D7A600411255 /* SplashViewController.swift */; };
+		9226117628DC1B1C00990777 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9226117528DC1B1C00990777 /* SnapKit */; };
 		9235199F28DAB9CA0019D837 /* NDSLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235199E28DAB9CA0019D837 /* NDSLoadingIndicator.swift */; };
 		92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5128C9844400EB5333 /* AppDelegate.swift */; };
 		92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5328C9844400EB5333 /* SceneDelegate.swift */; };
@@ -28,7 +29,6 @@
 		923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EE828D56C0A0064700C /* SettingNameController.swift */; };
 		923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSFloatingButton.swift */; };
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
-		9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9F728D1E3C90084F4E1 /* SnapKit */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
 		925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */; };
@@ -213,8 +213,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9241C9F828D1E3C90084F4E1 /* SnapKit in Frameworks */,
 				92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */,
+				9226117628DC1B1C00990777 /* SnapKit in Frameworks */,
 				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
 				9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */,
 			);
@@ -627,8 +627,8 @@
 			);
 			name = NiCarNaeCar;
 			packageProductDependencies = (
-				9241C9F728D1E3C90084F4E1 /* SnapKit */,
 				9241C9FE28D1E3D30084F4E1 /* Then */,
+				9226117528DC1B1C00990777 /* SnapKit */,
 			);
 			productName = NiCarNaeCar;
 			productReference = 92356D4E28C9844400EB5333 /* NiCarNaeCar.app */;
@@ -659,8 +659,8 @@
 			);
 			mainGroup = 92356D4528C9844400EB5333;
 			packageReferences = (
-				9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				9241C9FD28D1E3D30084F4E1 /* XCRemoteSwiftPackageReference "Then" */,
+				9226117428DC1B1C00990777 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 92356D4F28C9844400EB5333 /* Products */;
 			projectDirPath = "";
@@ -944,7 +944,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -977,7 +976,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1018,12 +1016,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		9226117428DC1B1C00990777 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 		9241C9FD28D1E3D30084F4E1 /* XCRemoteSwiftPackageReference "Then" */ = {
@@ -1037,9 +1035,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9241C9F728D1E3C90084F4E1 /* SnapKit */ = {
+		9226117528DC1B1C00990777 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9241C9F628D1E3C90084F4E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 9226117428DC1B1C00990777 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		9241C9FE28D1E3D30084F4E1 /* Then */ = {
