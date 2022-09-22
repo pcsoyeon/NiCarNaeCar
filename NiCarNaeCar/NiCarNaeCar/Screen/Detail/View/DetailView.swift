@@ -34,7 +34,7 @@ final class DetailView: BaseView {
     
     lazy var openButton = NDSButton().then {
         $0.text = "앱으로 이동"
-        $0.isDisabled = false
+        $0.isDisabled = true
         $0.addTarget(self, action: #selector(touchUpButton), for: .touchUpInside)
     }
     
@@ -42,9 +42,9 @@ final class DetailView: BaseView {
     
     weak var delegate: DetailViewDelegate?
     
-    var brandType: BrandType? {
+    var hasData: Bool = false {
         didSet {
-            
+            openButton.isDisabled = hasData ? false : true
         }
     }
     

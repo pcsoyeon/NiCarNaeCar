@@ -29,7 +29,18 @@ class DetailViewController: BaseViewController {
         }
     }
     
-    var info: BrandInfo?
+    var info: BrandInfo? {
+        didSet {
+            if let count = info?.availableCount {
+                if count == "0" {
+                    rootView.hasData = false
+                } else {
+                    rootView.hasData = true
+                    rootView.openButton.backgroundColor = brandType.color
+                }
+            }
+        }
+    }
     
     var positionName: String = ""
     var address: String = ""
