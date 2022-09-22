@@ -151,19 +151,6 @@ final class MainMapViewController: BaseViewController {
         let overlays = rootView.mapView.overlays
         rootView.mapView.removeOverlays(overlays)
     }
-    
-    private func convertLocationToSublocality(_ location: CLLocation){
-        let geocoder = CLGeocoder()
-        let locale = Locale(identifier: "Ko-kr")
-        
-        geocoder.reverseGeocodeLocation(location, preferredLocale: locale, completionHandler: {(placemarks, error) in
-            if let address: [CLPlacemark] = placemarks {
-                if let result: String = address.last?.subLocality {
-                    self.currentSublocality = result.components(separatedBy: "동")[0]
-                }
-            }
-        })
-    }
 }
 
 // MARK: - MapView Protocol
@@ -283,7 +270,6 @@ extension MainMapViewController: CLLocationManagerDelegate {
             setAnnotation(center: coordinate, title: Constant.Annotation.currentLocationTitle)
             
             locationUpdateCount += 1
-            convertLocationToSublocality(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
         locationManager.stopUpdatingLocation()
     }
