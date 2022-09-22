@@ -41,13 +41,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        NetworkConnectionStatus.shared.startMonitoring { isConnected in
-            if !isConnected {
+//        NetworkConnectionStatus.shared.startMonitoring { isConnected in
+//            if !isConnected {
 //                DispatchQueue.main.async {
 //                    self.window?.rootViewController?.presentNetworkAlert()
 //                }
-            }
-        }
+//            }
+//        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
