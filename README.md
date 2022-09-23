@@ -20,4 +20,7 @@
 |2022.09.18| 행정구/동 검색 | 안되면 되게하자 | [📄 Notion](https://www.notion.so/7ef8d95ea0d4444c9f649ec5c1d3bdc3) |
 |2022.09.19| Code Refactoring | 힘들었다. | [📄 Notion](https://www.notion.so/Code-Refactoring-And-Map-Custom-37b86de094f443da829ecde37475326e) |
 |2022.09.20| Error Handling and Map Custom | 오류 해결하고 UI 커스텀하고 바쁘다 바빠; | [📄 Notion](https://www.notion.so/821cef30008d47ab84f304ac4911b184) |
-
+|2022.09.21| Bug Fix & Default/Empty UI  | 부가적인 기능 및 empty/loading 뷰 구현 | [📄 Notion](https://receptive-humidity-bf2.notion.site/Bug-Fix-Default-Empty-UI-300b0dbeb04b42ddaed2aeb5d5808395) |
+|2022.09.22| -- | -- | [📄 Notion](--) |
+|2022.09.23| 중간발표 | 중간발표 및 피드백 | [📄 Notion](--) |
+|2022.09.24| -- | -- | [📄 Notion](--) |
