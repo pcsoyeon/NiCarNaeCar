@@ -310,7 +310,7 @@ extension MainMapViewController: MainMapViewDelegate {
     func touchUpCurrentLocationButton() {
         if let latitude = currentLatitude, let longtitude = currentLongtitude {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            setRegion(center: center, meters: 1200)
+            setRegion(center: center, meters: 800)
         }
         
         filteredList.removeAll()
