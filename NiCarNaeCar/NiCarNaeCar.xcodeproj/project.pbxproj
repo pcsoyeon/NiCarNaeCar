@@ -959,7 +959,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NiCarNaeCar/Resource/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "니카내카";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 주차 정보를 보여주기 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 나눔카 위치 정보를 보여주기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -991,7 +991,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NiCarNaeCar/Resource/Support/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "니카내카";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 주차 정보를 보여주기 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 나눔카 위치 정보를 보여주기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
