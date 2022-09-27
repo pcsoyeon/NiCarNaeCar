@@ -103,12 +103,13 @@ extension DetailViewController: DetailViewDelegate {
         if brandType == .socar {
             url = "socar:"
         } else {
-            url = "greencar:"
+            url = "greencar://"
         }
         
         if let openApp = URL(string: url), UIApplication.shared.canOpenURL(openApp) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+                print("링크 주소 : \(url)")
             }
         } else {
             presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요")
