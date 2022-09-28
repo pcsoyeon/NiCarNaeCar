@@ -21,6 +21,7 @@
 |2022.09.19| Code Refactoring | 힘들었다. | [📄 Notion](https://www.notion.so/Code-Refactoring-And-Map-Custom-37b86de094f443da829ecde37475326e) |
 |2022.09.20| Error Handling and Map Custom | 오류 해결하고 UI 커스텀하고 바쁘다 바빠; | [📄 Notion](https://www.notion.so/821cef30008d47ab84f304ac4911b184) |
 |2022.09.21| Bug Fix & Default/Empty UI  | 부가적인 기능 및 empty/loading 뷰 구현 | [📄 Notion](https://receptive-humidity-bf2.notion.site/Bug-Fix-Default-Empty-UI-300b0dbeb04b42ddaed2aeb5d5808395) |
-|2022.09.22| -- | -- | [📄 Notion](--) |
-|2022.09.23| 중간발표 | 중간발표 및 피드백 | [📄 Notion](--) |
-|2022.09.24| -- | -- | [📄 Notion](--) |
+|2022.09.23| 중간발표 | 중간발표 및 피드백 | [📄 Notion]() |
+|2022.09.26| 출시를 해보자 | 일단 출시 해보자. | [📄 Notion](https://www.notion.so/a580e028f5f94a2080e03227fc2f8481) |
+|2022.09.27| 업데이트를 하자 | 버그 해결 후 버전 업데이트 | [📄 Notion](https://www.notion.so/re-plan-1d3ad35500aa4a2dae70d5f049a1202e) |
+|2022.09.28| Hue드백 | 수정에 수정을 더해서 ~ | [📄 Notion](https://www.notion.so/Hue-ab4fb9f78af84048859ab853b8d09b03) |
