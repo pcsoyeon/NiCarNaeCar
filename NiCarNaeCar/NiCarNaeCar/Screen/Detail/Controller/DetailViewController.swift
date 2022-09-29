@@ -119,7 +119,7 @@ extension DetailViewController: DetailViewDelegate {
     }
     
     private func openURLByBrandType(_ brandType: BrandType) {
-        var appStoreURL = brandType == .socar ? URLConstant.SocarURL : URLConstant.GreencarURL
+        let appStoreURL = brandType == .socar ? URLConstant.SocarURL : URLConstant.GreencarURL
         
         if let openApp = URL(string: appStoreURL), UIApplication.shared.canOpenURL(openApp) {
             if #available(iOS 10.0, *) {

@@ -25,7 +25,7 @@ final class SettingHeaderView: UIView {
         $0.font = NiCarNaeCarFont.title2.font
     }
     
-    private var changeNameButton = UIButton().then {
+    private lazy var changeNameButton = UIButton().then {
         $0.setTitle("내 정보 수정하기", for: .normal)
         $0.setTitleColor(R.Color.gray100, for: .normal)
         $0.setTitleColor(R.Color.black200, for: .highlighted)
