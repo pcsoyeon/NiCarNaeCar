@@ -112,8 +112,19 @@ extension DetailViewController: DetailViewDelegate {
                 print("링크 주소 : \(url)")
             }
         } else {
-            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요")
-            print("링크 주소 : \(url)")
+            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요") { _ in
+                self.openURLByBrandType(self.brandType)
+            }
+        }
+    }
+    
+    private func openURLByBrandType(_ brandType: BrandType) {
+        var appStoreURL = brandType == .socar ? URLConstant.SocarURL : URLConstant.GreencarURL
+        
+        if let openApp = URL(string: appStoreURL), UIApplication.shared.canOpenURL(openApp) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+            }
         }
     }
 }
