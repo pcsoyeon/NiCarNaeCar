@@ -44,7 +44,7 @@ public enum NiCarNaeCarFont {
         case .body1:
             return FontProperty(font: .semibold, size: 18, kern: -0.3, lineHeight: nil)
         case .body2:
-            return FontProperty(font: .medium, size: 18, kern: -0.3, lineHeight: 34)
+            return FontProperty(font: .medium, size: 18, kern: -0.3, lineHeight: 10)
         case .body3:
             return FontProperty(font: .regular, size: 18, kern: -0.3, lineHeight: 8)
         case .body4:

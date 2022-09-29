@@ -46,7 +46,7 @@ final class DisconnectedView: BaseView {
     }
     
     private var overlayView = UIView().then {
-        $0.backgroundColor = UIColor(white: 0, alpha: 0.85)
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.7)
     }
     
     private var descriptionLabel = UILabel().then {
@@ -56,6 +56,7 @@ final class DisconnectedView: BaseView {
                   """
         $0.textColor = .white
         $0.font = NiCarNaeCarFont.body1.font
+        $0.addLabelSpacing(fontStyle: NiCarNaeCarFont.body2)
         $0.textAlignment = .center
         $0.numberOfLines = 0
     }
