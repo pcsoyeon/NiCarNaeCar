@@ -19,7 +19,7 @@ final class OnboardingImageCollectionViewCell: BaseCollectionViewCell {
     
     private var backgroundImageView = UIImageView().then {
         $0.image = R.Image.imgBackground
-        $0.contentMode = .scaleToFill
+        $0.contentMode = .scaleAspectFill
     }
     
     private var titleLabel = UILabel().then {

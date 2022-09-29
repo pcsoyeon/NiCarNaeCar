@@ -85,26 +85,13 @@ final class SplashViewController: BaseViewController {
     
     // MARK: - Custom Method
     
-    private func checkDeviceNetworkStatus() {
-        NetworkConnectionStatus.shared.startMonitoring { isConnected in
-            if isConnected {
-                print("🟢 네트워크 연결")
-                DispatchQueue.main.async {
-                    if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
-                        let viewController = UINavigationController(rootViewController: MainMapViewController())
-                        self.transition(viewController, transitionStyle: .presentCrossDissolve)
-                    } else {
-                        let viewController = UINavigationController(rootViewController: OnboardingViewController())
-                        self.transition(viewController, transitionStyle: .presentCrossDissolve)
-                    }
-                }
-                
-            } else {
-                print("🟠 네트워크 연결 해제!")
-                DispatchQueue.main.async {
-                    self.presentNetworkAlert()
-                }
-            }
+    private func presentMain() {
+        if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
+            let viewController = UINavigationController(rootViewController: MainMapViewController())
+            self.transition(viewController, transitionStyle: .presentCrossDissolve)
+        } else {
+            let viewController = UINavigationController(rootViewController: OnboardingViewController())
+            self.transition(viewController, transitionStyle: .presentCrossDissolve)
         }
     }
     
@@ -113,9 +100,7 @@ final class SplashViewController: BaseViewController {
             self.showLabel(self.secondLabel) {
                 self.showLabel(self.thirdLabel) {
                     self.showLabel(self.fourthLabel) {
-                        
-                        self.checkDeviceNetworkStatus()
-                        
+                        self.presentMain()
                     }
                 }
             }

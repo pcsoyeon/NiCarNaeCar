@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		920B474F28D5D7A600411255 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920B474E28D5D7A600411255 /* SplashViewController.swift */; };
+		920ECBCB28E50E5200854E13 /* DisconnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920ECBCA28E50E5200854E13 /* DisconnectedView.swift */; };
+		920ECBCD28E50F5D00854E13 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920ECBCC28E50F5D00854E13 /* NetworkMonitor.swift */; };
 		9226117628DC1B1C00990777 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9226117528DC1B1C00990777 /* SnapKit */; };
 		9235199F28DAB9CA0019D837 /* NDSLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235199E28DAB9CA0019D837 /* NDSLoadingIndicator.swift */; };
 		92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92356D5128C9844400EB5333 /* AppDelegate.swift */; };
@@ -132,6 +134,8 @@
 
 /* Begin PBXFileReference section */
 		920B474E28D5D7A600411255 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		920ECBCA28E50E5200854E13 /* DisconnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedView.swift; sourceTree = "<group>"; };
+		920ECBCC28E50F5D00854E13 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		9235199E28DAB9CA0019D837 /* NDSLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSLoadingIndicator.swift; sourceTree = "<group>"; };
 		92356D4E28C9844400EB5333 /* NiCarNaeCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiCarNaeCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92356D5128C9844400EB5333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +233,16 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		920ECBC928E50DFA00854E13 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */,
+				920ECBCA28E50E5200854E13 /* DisconnectedView.swift */,
+				920ECBCC28E50F5D00854E13 /* NetworkMonitor.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		92356D4528C9844400EB5333 = {
 			isa = PBXGroup;
 			children = (
@@ -286,9 +300,9 @@
 		92356D6728C9847F00EB5333 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				920ECBC928E50DFA00854E13 /* Reachability */,
 				926DE48528CAF8C00083123F /* APIManager */,
 				926DE48128CAF8150083123F /* Base */,
-				925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -790,6 +804,7 @@
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				926DE45428CAD9DF0083123F /* DetailView.swift in Sources */,
 				9277205428CF1C8D00163925 /* DetailHeaderView.swift in Sources */,
+				920ECBCD28E50F5D00854E13 /* NetworkMonitor.swift in Sources */,
 				926DE47928CAF2C10083123F /* UIFont+Extension.swift in Sources */,
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */,
@@ -803,6 +818,7 @@
 				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
 				92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
+				920ECBCB28E50E5200854E13 /* DisconnectedView.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */,
