@@ -99,6 +99,19 @@ final class SettingViewController: BaseViewController {
             presentAlert(title: "메일 앱을 사용할 수 없어요")
         }
     }
+    
+    private func sendReview() {
+        if let appstoreUrl = URL(string: "https://apps.apple.com/app/id\(APIKey.AppId)") {
+            var urlComp = URLComponents(url: appstoreUrl, resolvingAgainstBaseURL: false)
+            urlComp?.queryItems = [
+                URLQueryItem(name: "action", value: "write-review")
+            ]
+            guard let reviewUrl = urlComp?.url else {
+                return
+            }
+            UIApplication.shared.open(reviewUrl, options: [:], completionHandler: nil)
+        }
+    }
 }
 
 // MARK: - UITableView Protocol
@@ -110,8 +123,10 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0, 2, 3:
+        case 0, 3, 4:
             pushToNotion()
+        case 2:
+            sendReview()
         case 1:
             sendMail()
         default: return

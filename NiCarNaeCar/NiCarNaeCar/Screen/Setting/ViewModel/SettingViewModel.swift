@@ -15,6 +15,7 @@ final class SettingViewModel {
     func fetchSetting() {
         list.value = [Setting(title: "서비스 이용 약관", subTitle: nil, description: nil),
                       Setting(title: "문의하기", subTitle: nil, description: nil),
+                      Setting(title: "리뷰남기기", subTitle: nil, description: nil),
                       Setting(title: "개발자 정보", subTitle: nil, description: nil),
                       Setting(title: "오픈소스 라이선스 보기", subTitle: nil, description: nil),
                       Setting(title: "앱 버전", subTitle: "1.0.0", description: "최신버전입니다")]
