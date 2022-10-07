@@ -26,7 +26,7 @@ final class MainMapView: BaseView {
     
     private lazy var navigationBar = UIView().then {
         $0.backgroundColor = R.Color.white
-        $0.addSubviews(logoView, settingButton, searchButton)
+        $0.addSubviews(logoView, searchButton)
     }
     
     private let logoView = UIImageView().then {
@@ -39,12 +39,6 @@ final class MainMapView: BaseView {
         $0.setImage(R.Image.btnSearch, for: .normal)
         $0.setTitle("", for: .normal)
         $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
-    }
-    
-    private lazy var settingButton = UIButton().then {
-        $0.setImage(R.Image.btnSetting, for: .normal)
-        $0.setTitle("", for: .normal)
-        $0.addTarget(self, action: #selector(touchUpSettingButton), for: .touchUpInside)
     }
     
     var mapView = MKMapView()
@@ -81,15 +75,9 @@ final class MainMapView: BaseView {
             make.height.equalTo(27)
         }
         
-        settingButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
-            make.width.height.equalTo(Metric.navigationButtonSize)
-        }
-        
         searchButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(settingButton.snp.leading)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
             make.width.height.equalTo(Metric.navigationButtonSize)
         }
         
@@ -99,7 +87,7 @@ final class MainMapView: BaseView {
         }
         
         currentLocationButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(60)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(35)
             make.trailing.equalToSuperview().inset(Metric.margin)
         }
     }
@@ -116,9 +104,5 @@ final class MainMapView: BaseView {
     
     @objc func touchUpCurrentLocationButton() {
         buttonDelegate?.touchUpCurrentLocationButton()
-    }
-    
-    @objc func touchUpSettingButton() {
-        buttonDelegate?.touchUpSettingButton()
     }
 }
