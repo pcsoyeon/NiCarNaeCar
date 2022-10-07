@@ -87,7 +87,7 @@ final class SplashViewController: BaseViewController {
     
     private func presentMain() {
         if UserDefaults.standard.bool(forKey: Constant.UserDefaults.isNotFirst) {
-            let viewController = UINavigationController(rootViewController: MainMapViewController())
+            let viewController = UINavigationController(rootViewController: TabBarViewController())
             self.transition(viewController, transitionStyle: .presentCrossDissolve)
         } else {
             let viewController = UINavigationController(rootViewController: OnboardingViewController())

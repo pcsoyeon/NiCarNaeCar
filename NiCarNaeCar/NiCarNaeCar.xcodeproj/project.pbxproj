@@ -84,6 +84,8 @@
 		92BA475728D42956003B973A /* MainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475628D42956003B973A /* MainSearchView.swift */; };
 		92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */; };
 		92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475A28D45CBB003B973A /* LocalityType.swift */; };
+		92E9536028EFD77A00BCF32D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9535F28EFD77A00BCF32D /* TabBarController.swift */; };
+		92E9536328EFD7B800BCF32D /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9536228EFD7B800BCF32D /* ParkingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +210,8 @@
 		92BA475628D42956003B973A /* MainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchView.swift; sourceTree = "<group>"; };
 		92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchTableViewCell.swift; sourceTree = "<group>"; };
 		92BA475A28D45CBB003B973A /* LocalityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalityType.swift; sourceTree = "<group>"; };
+		92E9535F28EFD77A00BCF32D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		92E9536228EFD7B800BCF32D /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +291,8 @@
 		92356D6628C9847B00EB5333 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				92E9536128EFD7AB00BCF32D /* Parking */,
+				92E9535E28EFD76F00BCF32D /* Tab */,
 				9290E83D28E07B34002DD101 /* Search */,
 				920B474D28D5D57500411255 /* Splash */,
 				926DE45528CADEAE0083123F /* Setting */,
@@ -644,6 +650,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		92E9535E28EFD76F00BCF32D /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				92E9535F28EFD77A00BCF32D /* TabBarController.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		92E9536128EFD7AB00BCF32D /* Parking */ = {
+			isa = PBXGroup;
+			children = (
+				92E9536228EFD7B800BCF32D /* ParkingViewController.swift */,
+			);
+			path = Parking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -771,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				928D4C7228D331B2001A029F /* Observable.swift in Sources */,
+				92E9536028EFD77A00BCF32D /* TabBarController.swift in Sources */,
 				928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */,
 				9235199F28DAB9CA0019D837 /* NDSLoadingIndicator.swift in Sources */,
 				92356D5628C9844400EB5333 /* OnboardingViewController.swift in Sources */,
@@ -815,6 +838,7 @@
 				926DE44928CAD47D0083123F /* BackButton.swift in Sources */,
 				9277205F28CF46D200163925 /* CarType.swift in Sources */,
 				927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */,
+				92E9536328EFD7B800BCF32D /* ParkingViewController.swift in Sources */,
 				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
 				92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
