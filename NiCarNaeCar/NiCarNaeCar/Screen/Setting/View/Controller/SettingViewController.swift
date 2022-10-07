@@ -18,7 +18,8 @@ final class SettingViewController: BaseViewController {
     
     private lazy var navigationBar = NDSNavigationBar(self).then {
         $0.viewType = .setting
-        $0.backButtonIsHidden = false
+        $0.backButtonIsHidden = true
+        $0.closeButtonIsHidden = true
     }
     
     private var tableView = UITableView().then {

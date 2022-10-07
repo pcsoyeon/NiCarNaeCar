@@ -51,10 +51,15 @@ final class NDSNavigationBar: UIView {
         }
     }
     
-    var backButtonIsHidden: Bool = false {
+    var backButtonIsHidden: Bool = true {
         didSet {
             backButton.isHidden = backButtonIsHidden
-            closeButton.isHidden = !backButtonIsHidden
+        }
+    }
+    
+    var closeButtonIsHidden: Bool = true {
+        didSet {
+            closeButton.isHidden = closeButtonIsHidden
         }
     }
     
@@ -119,12 +124,5 @@ final class NDSNavigationBar: UIView {
             make.trailing.equalToSuperview().inset(Metric.navigationButtonTrailing)
             make.width.height.equalTo(Metric.navigationButtonSize)
         }
-    }
-    
-    // MARK: - Custom Method
-    
-    private func setBackButton(isHidden: Bool) {
-        backButton.isHidden = isHidden
-        closeButton.isHidden = !backButton.isHidden
     }
 }
