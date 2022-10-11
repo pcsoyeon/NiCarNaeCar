@@ -19,6 +19,7 @@ enum EndPoint {
     case spotList
     case carListSO
     case carListGR
+    case parkingList
     
     var requestURL: String {
         switch self {
@@ -28,6 +29,8 @@ enum EndPoint {
             return URL.makeEndPointString("/\(APIKey.APIKey)/xml/NanumcarCarList")
         case .carListGR:
             return URL.makeEndPointString("/\(APIKey.APIKey)/xml/NanumcarCarList")
+        case .parkingList:
+            return URL.makeEndPointString("/\(APIKey.APIKey)/json/GetParkInfo")
         }
     }
 }

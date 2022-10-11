@@ -33,6 +33,8 @@
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
 		9250CFE628F551AF00628593 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFE528F551AF00628593 /* ParkingMapView.swift */; };
+		9250CFF428F5586E00628593 /* ParkingAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF328F5586E00628593 /* ParkingAPIManager.swift */; };
+		9250CFF628F5593C00628593 /* ParkingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF528F5593C00628593 /* ParkingList.swift */; };
 		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
 		925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */; };
 		925F7E5428DA259900F6C9DA /* NetworkConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */; };
@@ -160,6 +162,8 @@
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		9250CFE528F551AF00628593 /* ParkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingMapView.swift; sourceTree = "<group>"; };
+		9250CFF328F5586E00628593 /* ParkingAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAPIManager.swift; sourceTree = "<group>"; };
+		9250CFF528F5593C00628593 /* ParkingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingList.swift; sourceTree = "<group>"; };
 		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnnotationView.swift; sourceTree = "<group>"; };
 		925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionStatus.swift; sourceTree = "<group>"; };
@@ -492,6 +496,7 @@
 		9250CFE428F5518E00628593 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9250CFF528F5593C00628593 /* ParkingList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 			children = (
 				926DE48628CAF8D20083123F /* SpotListAPIManager.swift */,
 				9277206028CF4D7900163925 /* SpotAPIManager.swift */,
+				9250CFF328F5586E00628593 /* ParkingAPIManager.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -827,6 +833,7 @@
 				926DE48728CAF8D20083123F /* SpotListAPIManager.swift in Sources */,
 				92356E1B28C9C71500EB5333 /* MainSheetView.swift in Sources */,
 				927404AC28CCA51D0074FBEB /* OnboardingImageCollectionViewCell.swift in Sources */,
+				9250CFF628F5593C00628593 /* ParkingList.swift in Sources */,
 				92356DF028C9937800EB5333 /* MainMapView.swift in Sources */,
 				927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
@@ -872,6 +879,7 @@
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
 				920ECBCB28E50E5200854E13 /* DisconnectedView.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
+				9250CFF428F5586E00628593 /* ParkingAPIManager.swift in Sources */,
 				926DE49328CB223B0083123F /* CarList.swift in Sources */,
 				9267150E28D07AF2002DCDB9 /* NDSGradientPathRenderer.swift in Sources */,
 				92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */,

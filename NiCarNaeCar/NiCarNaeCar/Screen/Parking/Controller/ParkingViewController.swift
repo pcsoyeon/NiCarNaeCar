@@ -42,6 +42,12 @@ final class ParkingViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
+        
+        ParkingAPIManager.requestParkingList(startPage: 1, endPage: 5) { data, error in
+            guard let data = data else { return }
+            
+            dump(data)
+        }
     }
     
     // MARK: - UI Method
