@@ -13,11 +13,12 @@ final class ParkingAPIManager {
     
     private init() { }
     
-    static func requestParkingList(startPage: Int, endPage: Int, completionHandler: @escaping (ParkingList?, APIError?) -> Void) {
-        let urlString = EndPoint.parkingList.requestURL + "/\(startPage)/\(endPage)"
+    static func requestParkingList(startPage: Int, endPage: Int, region: String, completionHandler: @escaping (ParkingList?, APIError?) -> Void) {
+        let urlString = EndPoint.parkingList.requestURL + "/\(startPage)/\(endPage)/\(region)"
         
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.request(endpoint: URLRequest(url: url), completionHandler: completionHandler)
+        if let safeString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: safeString) {
+            URLSession.request(endpoint: URLRequest(url: url), completionHandler: completionHandler)
+        }
     }
 }

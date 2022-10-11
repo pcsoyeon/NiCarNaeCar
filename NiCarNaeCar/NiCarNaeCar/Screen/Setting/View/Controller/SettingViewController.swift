@@ -16,10 +16,21 @@ final class SettingViewController: BaseViewController {
     
     // MARK: - UI Property
     
-    private lazy var navigationBar = NDSNavigationBar(self).then {
-        $0.viewType = .setting
-        $0.backButtonIsHidden = true
-        $0.closeButtonIsHidden = true
+//    private lazy var navigationBar = NDSNavigationBar(self).then {
+//        $0.viewType = .setting
+//        $0.backButtonIsHidden = true
+//        $0.closeButtonIsHidden = true
+//    }
+    
+    private lazy var navigationBar = UIView().then {
+        $0.backgroundColor = R.Color.white
+        $0.addSubviews(titleLabel)
+    }
+    
+    private let titleLabel = UILabel().then {
+        $0.text = "설정"
+        $0.textColor = R.Color.black200
+        $0.font = NiCarNaeCarFont.title2.font
     }
     
     private var tableView = UITableView().then {
@@ -55,6 +66,14 @@ final class SettingViewController: BaseViewController {
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(57)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.width.equalTo(72)
+            make.height.equalTo(27)
         }
         
         tableView.snp.makeConstraints { make in

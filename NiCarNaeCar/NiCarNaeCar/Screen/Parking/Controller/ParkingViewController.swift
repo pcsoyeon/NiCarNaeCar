@@ -26,6 +26,8 @@ final class ParkingViewController: BaseViewController {
     private var currentLatitude: Double?
     private var currentLongtitude: Double?
     
+    private var selectedLocality: String = ""
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -42,12 +44,6 @@ final class ParkingViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
-        
-        ParkingAPIManager.requestParkingList(startPage: 1, endPage: 5) { data, error in
-            guard let data = data else { return }
-            
-            dump(data)
-        }
     }
     
     // MARK: - UI Method
@@ -91,6 +87,27 @@ final class ParkingViewController: BaseViewController {
         annotation.title = title
         rootView.mapView.addAnnotation(annotation)
     }
+    
+    private func removeAnnotations() {
+        rootView.mapView.annotations.forEach {
+            if !($0.title == Constant.Annotation.currentLocationTitle) {
+              self.rootView.mapView.removeAnnotation($0)
+          }
+        }
+    }
+    
+    private func fetchParkingListWithRegion(_ region: String) {
+        ParkingAPIManager.requestParkingList(startPage: 1, endPage: 1000, region: region) { data, error in
+            guard let data = data else { return }
+            
+            DispatchQueue.main.async {
+                for parkinglot in data.getParkInfo.row {
+                    let center = CLLocationCoordinate2D(latitude: parkinglot.lat, longitude: parkinglot.lng)
+                    self.setAnnotation(center: center, title: parkinglot.parkingName)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Custom Delegate
@@ -101,6 +118,26 @@ extension ParkingViewController: ParkingMapViewDelegate {
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
             setRegion(center: center, meters: 1200)
         }
+    }
+    
+    func touchUpSearchButton() {
+        let viewController = MainSearchViewController()
+        viewController.locationClosure = { locality in
+            self.selectedLocality = locality
+            
+            for locality in LocalityType.allCases {
+                if self.selectedLocality == locality.rawValue {
+                    let center = locality.location
+                    self.setRegion(center: center, meters: 8000)
+                }
+            }
+            
+            self.selectedLocality = String(locality.dropLast(1))
+            self.removeAnnotations()
+            
+            self.fetchParkingListWithRegion(self.selectedLocality)
+        }
+        transition(viewController, transitionStyle: .push)
     }
 }
 
