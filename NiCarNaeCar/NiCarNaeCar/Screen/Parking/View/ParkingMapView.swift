@@ -17,6 +17,7 @@ import Then
 
 protocol ParkingMapViewDelegate: ParkingViewController {
     func touchUpCurrentLocationButton()
+    func touchUpSearchButton()
 }
 
 final class ParkingMapView: BaseView {
@@ -25,13 +26,19 @@ final class ParkingMapView: BaseView {
     
     private lazy var navigationBar = UIView().then {
         $0.backgroundColor = R.Color.white
-        $0.addSubviews(titleLabel)
+        $0.addSubviews(titleLabel, searchButton)
     }
     
     private let titleLabel = UILabel().then {
         $0.text = "주차장"
         $0.textColor = R.Color.black200
         $0.font = NiCarNaeCarFont.title2.font
+    }
+    
+    private lazy var searchButton = UIButton().then {
+        $0.setImage(R.Image.btnSearch, for: .normal)
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
     }
     
     var mapView = MKMapView()
@@ -67,6 +74,12 @@ final class ParkingMapView: BaseView {
             make.height.equalTo(27)
         }
         
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
+            make.width.height.equalTo(Metric.navigationButtonSize)
+        }
+        
         mapView.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
@@ -83,6 +96,10 @@ final class ParkingMapView: BaseView {
     }
     
     // MARK: - @objc
+    
+    @objc func touchUpSearchButton() {
+        buttonDelegate?.touchUpSearchButton()
+    }
     
     @objc func touchUpCurrentLocationButton() {
         buttonDelegate?.touchUpCurrentLocationButton()

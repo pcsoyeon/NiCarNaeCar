@@ -35,22 +35,22 @@ struct ParkingListInfo: Codable {
 
 struct ParkingDetailInfo: Codable {
     let parkingName, addr, parkingCode: String
-    let parkingType: ParkingType
-    let parkingTypeNm: ParkingTypeNm
+    let parkingType: String
+    let parkingTypeNm: String
     let operationRule: String
-    let operationRuleNm: OperationRuleNm
+    let operationRuleNm: String
     let tel: String
     let capacity: Int
-    let payYn: HolidayPayYn
-    let payNm: PayNm
-    let nightFreeOpen: HolidayPayYn
-    let nightFreeOpenNm: NightFreeOpenNm
+    let payYn: String
+    let payNm: String
+    let nightFreeOpen: String
+    let nightFreeOpenNm: String
     let weekdayBeginTime, weekdayEndTime, weekendBeginTime, weekendEndTime: String
     let holidayBeginTime, holidayEndTime, syncTime: String
-    let saturdayPayYn: HolidayPayYn
-    let saturdayPayNm: PayNm
-    let holidayPayYn: HolidayPayYn
-    let holidayPayNm: PayNm
+    let saturdayPayYn: String
+    let saturdayPayNm: String
+    let holidayPayYn: String
+    let holidayPayNm: String
     let fulltimeMonthly, grpParknm: String
     let rates, timeRate, addRates, addTimeRate: Int
     let busRates, busTimeRate, busAddTimeRate, busAddRates: Int
@@ -96,35 +96,4 @@ struct ParkingDetailInfo: Codable {
         case lat = "LAT"
         case lng = "LNG"
     }
-}
-
-enum PayNm: String, Codable {
-    case 무료 = "무료"
-    case 유료 = "유료"
-}
-
-enum HolidayPayYn: String, Codable {
-    case n = "N"
-    case y = "Y"
-}
-
-enum NightFreeOpenNm: String, Codable {
-    case 야간미개방 = "야간 미개방"
-}
-
-enum OperationRuleNm: String, Codable {
-    case 버스전용주차장 = "버스전용 주차장"
-    case 시간제거주자주차장 = "시간제 + 거주자 주차장"
-    case 시간제주차장 = "시간제 주차장"
-    case 이륜차전용주차장 = "이륜차 전용 주차장"
-}
-
-enum ParkingType: String, Codable {
-    case ns = "NS"
-    case nw = "NW"
-}
-
-enum ParkingTypeNm: String, Codable {
-    case 노상주차장 = "노상 주차장"
-    case 노외주차장 = "노외 주차장"
 }
