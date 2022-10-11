@@ -169,6 +169,7 @@
 		9250CFF328F5586E00628593 /* ParkingAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAPIManager.swift; sourceTree = "<group>"; };
 		9250CFF528F5593C00628593 /* ParkingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingList.swift; sourceTree = "<group>"; };
 		9250CFF728F57B2A00628593 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9250D00028F58C9D00628593 /* NiCarNaeCar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NiCarNaeCar.entitlements; sourceTree = "<group>"; };
 		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnnotationView.swift; sourceTree = "<group>"; };
 		925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionStatus.swift; sourceTree = "<group>"; };
@@ -284,6 +285,7 @@
 		92356D5028C9844400EB5333 /* NiCarNaeCar */ = {
 			isa = PBXGroup;
 			children = (
+				9250D00028F58C9D00628593 /* NiCarNaeCar.entitlements */,
 				9250CFF728F57B2A00628593 /* GoogleService-Info.plist */,
 				92356D6828C9848800EB5333 /* Global */,
 				92356D6728C9847F00EB5333 /* Network */,
@@ -1043,6 +1045,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NiCarNaeCar/NiCarNaeCar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PU64TS56AD;
@@ -1076,6 +1079,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NiCarNaeCar/NiCarNaeCar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PU64TS56AD;
