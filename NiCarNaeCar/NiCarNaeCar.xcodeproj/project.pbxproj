@@ -32,6 +32,7 @@
 		923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSFloatingButton.swift */; };
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
 		9241C9FF28D1E3D30084F4E1 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9241C9FE28D1E3D30084F4E1 /* Then */; };
+		9250CFE628F551AF00628593 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFE528F551AF00628593 /* ParkingMapView.swift */; };
 		925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2D28D85FB000F6C9DA /* SearchType.swift */; };
 		925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */; };
 		925F7E5428DA259900F6C9DA /* NetworkConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */; };
@@ -158,6 +159,7 @@
 		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
+		9250CFE528F551AF00628593 /* ParkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingMapView.swift; sourceTree = "<group>"; };
 		925F7E2D28D85FB000F6C9DA /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		925F7E2F28D87D5400F6C9DA /* DefaultAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnnotationView.swift; sourceTree = "<group>"; };
 		925F7E5328DA259900F6C9DA /* NetworkConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionStatus.swift; sourceTree = "<group>"; };
@@ -471,6 +473,29 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		9250CFE228F5517D00628593 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92E9536228EFD7B800BCF32D /* ParkingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9250CFE328F5518700628593 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9250CFE528F551AF00628593 /* ParkingMapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9250CFE428F5518E00628593 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		925F7E4628D9B6C000F6C9DA /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +686,9 @@
 		92E9536128EFD7AB00BCF32D /* Parking */ = {
 			isa = PBXGroup;
 			children = (
-				92E9536228EFD7B800BCF32D /* ParkingViewController.swift */,
+				9250CFE428F5518E00628593 /* Model */,
+				9250CFE328F5518700628593 /* View */,
+				9250CFE228F5517D00628593 /* Controller */,
 			);
 			path = Parking;
 			sourceTree = "<group>";
@@ -832,6 +859,7 @@
 				926DE46028CAE36A0083123F /* OnboardingView.swift in Sources */,
 				928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */,
 				920B474F28D5D7A600411255 /* SplashViewController.swift in Sources */,
+				9250CFE628F551AF00628593 /* ParkingMapView.swift in Sources */,
 				92BA475728D42956003B973A /* MainSearchView.swift in Sources */,
 				925F7E3028D87D5400F6C9DA /* DefaultAnnotationView.swift in Sources */,
 				92356E1528C9C4B100EB5333 /* MainSheetViewController.swift in Sources */,
