@@ -14,25 +14,6 @@ import Then
 
 final class NDSNavigationBar: UIView {
     
-    // MARK: - PageView Enum
-    
-    public enum PageView {
-        case main
-        case detail
-        case setting
-        
-        fileprivate var title: String? {
-            switch self {
-            case .main:
-                return ""
-            case .detail:
-                return "예약 현황"
-            case .setting:
-                return "설정"
-            }
-        }
-    }
-    
     // MARK: - Properties
     
     private var viewController = UIViewController()
@@ -42,13 +23,14 @@ final class NDSNavigationBar: UIView {
     private var titleLabel = UILabel().then {
         $0.textColor = R.Color.black200
         $0.textAlignment = .center
-        $0.font = NiCarNaeCarFont.body2.font
+        $0.font = NiCarNaeCarFont.title2.font
     }
     
-    var viewType: PageView = .main {
-        didSet {
-            titleLabel.text = viewType.title
-        }
+    private var detailTitleLabel = UILabel().then {
+        $0.textColor = R.Color.black200
+        $0.textAlignment = .center
+        $0.font = NiCarNaeCarFont.body2.font
+        $0.isHidden = true
     }
     
     var backButtonIsHidden: Bool = true {
@@ -66,12 +48,25 @@ final class NDSNavigationBar: UIView {
     var title: String = "" {
         didSet {
             titleLabel.text = title
+            detailTitleLabel.text = title
         }
     }
     
     var isCloseButtonDisabled = true {
         didSet {
             closeButton.isDisabled = isCloseButtonDisabled
+        }
+    }
+    
+    var isDetail: Bool = false {
+        didSet {
+            if isDetail {
+                titleLabel.isHidden = true
+                detailTitleLabel.isHidden = false
+            } else {
+                titleLabel.isHidden = false
+                detailTitleLabel.isHidden = true
+            }
         }
     }
     
@@ -85,12 +80,6 @@ final class NDSNavigationBar: UIView {
         setLayout()
     }
     
-    convenience init(_ viewController: UIViewController,
-                     view: PageView,
-                     isHidden: Bool) {
-        self.init(viewController, view: view, isHidden: isHidden)
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -102,7 +91,7 @@ final class NDSNavigationBar: UIView {
     }
     
     private func setLayout() {
-        addSubviews(backButton, titleLabel, closeButton)
+        addSubviews(backButton, titleLabel, detailTitleLabel, closeButton)
                 
         snp.makeConstraints { make in
             make.height.equalTo(Metric.navigationHeight)
@@ -115,6 +104,11 @@ final class NDSNavigationBar: UIView {
         }
         
         titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Metric.navigationTitleTop)
+            make.leading.equalToSuperview().inset(Metric.navigationTitleLeading)
+        }
+        
+        detailTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(Metric.navigationTitleTop)
             make.centerX.equalToSuperview()
         }

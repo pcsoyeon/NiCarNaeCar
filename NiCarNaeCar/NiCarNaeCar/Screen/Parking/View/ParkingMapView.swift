@@ -17,29 +17,11 @@ import Then
 
 protocol ParkingMapViewDelegate: ParkingViewController {
     func touchUpCurrentLocationButton()
-    func touchUpSearchButton()
 }
 
 final class ParkingMapView: BaseView {
     
     // MARK: - UI Property
-    
-    private lazy var navigationBar = UIView().then {
-        $0.backgroundColor = R.Color.white
-        $0.addSubviews(titleLabel, searchButton)
-    }
-    
-    private let titleLabel = UILabel().then {
-        $0.text = "주차장"
-        $0.textColor = R.Color.black200
-        $0.font = NiCarNaeCarFont.title2.font
-    }
-    
-    private lazy var searchButton = UIButton().then {
-        $0.setImage(R.Image.btnSearch, for: .normal)
-        $0.setTitle("", for: .normal)
-        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
-    }
     
     var mapView = MKMapView()
     
@@ -59,29 +41,11 @@ final class ParkingMapView: BaseView {
     }
     
     override func setLayout() {
-        addSubviews(navigationBar, mapView)
+        addSubviews(mapView)
         mapView.addSubviews(currentLocationButton)
         
-        navigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(57)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(25)
-            make.width.equalTo(72)
-            make.height.equalTo(27)
-        }
-        
-        searchButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
-            make.width.height.equalTo(Metric.navigationButtonSize)
-        }
-        
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(57)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -96,10 +60,6 @@ final class ParkingMapView: BaseView {
     }
     
     // MARK: - @objc
-    
-    @objc func touchUpSearchButton() {
-        buttonDelegate?.touchUpSearchButton()
-    }
     
     @objc func touchUpCurrentLocationButton() {
         buttonDelegate?.touchUpCurrentLocationButton()
