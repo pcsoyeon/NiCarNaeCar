@@ -8,14 +8,14 @@
 import Foundation
 
 struct ParkingLot {
-    var location = Location()
+    var location = ParkingLotLocation()
     var fee = Fee()
     var free = Free()
     var operatingTime = OperatingTime()
     var contact = Contact()
 }
 
-struct Location {
+struct ParkingLotLocation {
     var name: String = ""
     var address: String = ""
 }
