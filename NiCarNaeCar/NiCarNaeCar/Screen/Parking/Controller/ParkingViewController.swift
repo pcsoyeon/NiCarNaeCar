@@ -40,6 +40,8 @@ final class ParkingViewController: BaseViewController {
     
     private var selectedLocality: String = ""
     
+    private var parkinglist: [ParkingDetailInfo] = []
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -127,6 +129,8 @@ final class ParkingViewController: BaseViewController {
         ParkingAPIManager.requestParkingList(startPage: 1, endPage: 1000, region: region) { data, error in
             guard let data = data else { return }
             
+            self.parkinglist = data.getParkInfo.row
+            
             DispatchQueue.main.async {
                 for parkinglot in data.getParkInfo.row {
                     let center = CLLocationCoordinate2D(latitude: parkinglot.lat, longitude: parkinglot.lng)
@@ -200,8 +204,18 @@ extension ParkingViewController: CLLocationManagerDelegate {
 
 extension ParkingViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
         if let annotationTitle = view.annotation?.title {
-            print(annotationTitle)
+            if annotationTitle != Constant.Annotation.currentLocationTitle {
+                for item in parkinglist {
+                    if item.parkingName == annotationTitle {
+                        let viewController = ParkingDetailViewController()
+                        viewController.paringDetailInfo = item
+                        transition(viewController, transitionStyle: .presentFullScreen)
+                        break
+                    }
+                }
+            }
         }
     }
     
