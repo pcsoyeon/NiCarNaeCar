@@ -27,6 +27,8 @@ struct Fee {
 
 struct Free {
     var isWeekdayFree: String = ""
+    var isSaturdayFree: String = ""
+    var isHolidayFree: String = ""
 }
 
 struct OperatingTime {

@@ -90,6 +90,9 @@
 		929DA50B28FFC4DD00810B2A /* ParkingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA50A28FFC4DD00810B2A /* ParkingDetailViewController.swift */; };
 		929DA50D28FFC5E800810B2A /* ParkingLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA50C28FFC5E800810B2A /* ParkingLot.swift */; };
 		929DA51528FFC7A200810B2A /* ParkingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA51428FFC7A200810B2A /* ParkingDetailViewModel.swift */; };
+		929DA51728FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA51628FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift */; };
+		929DA51928FFE26B00810B2A /* ParkingDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA51828FFE26B00810B2A /* ParkingDetailHeaderView.swift */; };
+		929DA51C28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929DA51B28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift */; };
 		92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475428D421B9003B973A /* MainSearchViewController.swift */; };
 		92BA475728D42956003B973A /* MainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475628D42956003B973A /* MainSearchView.swift */; };
 		92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */; };
@@ -224,6 +227,9 @@
 		929DA50A28FFC4DD00810B2A /* ParkingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailViewController.swift; sourceTree = "<group>"; };
 		929DA50C28FFC5E800810B2A /* ParkingLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingLot.swift; sourceTree = "<group>"; };
 		929DA51428FFC7A200810B2A /* ParkingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailViewModel.swift; sourceTree = "<group>"; };
+		929DA51628FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		929DA51828FFE26B00810B2A /* ParkingDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailHeaderView.swift; sourceTree = "<group>"; };
+		929DA51B28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		92BA475428D421B9003B973A /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		92BA475628D42956003B973A /* MainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchView.swift; sourceTree = "<group>"; };
 		92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -720,7 +726,10 @@
 		929DA50828FFC4BC00810B2A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				929DA50A28FFC4DD00810B2A /* ParkingDetailViewController.swift */,
+				929DA51A28FFE6AF00810B2A /* Controller */,
+				929DA51628FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift */,
+				929DA51828FFE26B00810B2A /* ParkingDetailHeaderView.swift */,
+				929DA51B28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -731,6 +740,14 @@
 				929DA51428FFC7A200810B2A /* ParkingDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		929DA51A28FFE6AF00810B2A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				929DA50A28FFC4DD00810B2A /* ParkingDetailViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		92E9535E28EFD76F00BCF32D /* Tab */ = {
@@ -896,8 +913,10 @@
 				927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */,
 				926DE47E28CAF4360083123F /* NiCarNaeCarFont.swift in Sources */,
 				926DE48A28CAFB8A0083123F /* SpotList.swift in Sources */,
+				929DA51728FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift in Sources */,
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				927404B128CCACF80074FBEB /* OnboardingSheetView.swift in Sources */,
+				929DA51C28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
@@ -953,6 +972,7 @@
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 				926DE46628CAE9210083123F /* OnboardingNameViewController.swift in Sources */,
 				928D4C8D28D388E9001A029F /* APIError.swift in Sources */,
+				929DA51928FFE26B00810B2A /* ParkingDetailHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
