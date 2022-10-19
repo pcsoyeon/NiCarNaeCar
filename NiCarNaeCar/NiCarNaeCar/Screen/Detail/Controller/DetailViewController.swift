@@ -17,8 +17,9 @@ class DetailViewController: BaseViewController {
     private let rootView = DetailView()
     
     private lazy var navigationBar = NDSNavigationBar(self).then {
-        $0.viewType = .detail
+        $0.title = "예약 현황"
         $0.backButtonIsHidden = true
+        $0.isDetail = true
     }
     
     // MARK: - Property

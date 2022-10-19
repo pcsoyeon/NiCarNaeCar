@@ -18,6 +18,18 @@ final class ParkingViewController: BaseViewController {
     
     private let rootView = ParkingMapView()
     
+    private lazy var navigationBar = NDSNavigationBar(self).then {
+        $0.title = "주차장"
+        $0.backButtonIsHidden = true
+        $0.closeButtonIsHidden = true
+    }
+    
+    private lazy var searchButton = UIButton().then {
+        $0.setImage(R.Image.btnSearch, for: .normal)
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
+    }
+    
     // MARK: - Property
     
     private let locationManager = CLLocationManager()
@@ -52,6 +64,21 @@ final class ParkingViewController: BaseViewController {
         super.configureUI()
         configureMapView()
         configureButton()
+    }
+    
+    override func setLayout() {
+        view.addSubview(navigationBar)
+        navigationBar.addSubview(searchButton)
+        
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        searchButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Metric.navigationButtonTrailing)
+            make.width.height.equalTo(Metric.navigationButtonSize)
+        }
     }
     
     private func configureNavigation() {
@@ -108,19 +135,10 @@ final class ParkingViewController: BaseViewController {
             }
         }
     }
-}
-
-// MARK: - Custom Delegate
-
-extension ParkingViewController: ParkingMapViewDelegate {
-    func touchUpCurrentLocationButton() {
-        if let latitude = currentLatitude, let longtitude = currentLongtitude {
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            setRegion(center: center, meters: 1200)
-        }
-    }
     
-    func touchUpSearchButton() {
+    // MARK: - @objc
+    
+    @objc func touchUpSearchButton() {
         let viewController = MainSearchViewController()
         viewController.locationClosure = { locality in
             self.selectedLocality = locality
@@ -138,6 +156,17 @@ extension ParkingViewController: ParkingMapViewDelegate {
             self.fetchParkingListWithRegion(self.selectedLocality)
         }
         transition(viewController, transitionStyle: .push)
+    }
+}
+
+// MARK: - Custom Delegate
+
+extension ParkingViewController: ParkingMapViewDelegate {
+    func touchUpCurrentLocationButton() {
+        if let latitude = currentLatitude, let longtitude = currentLongtitude {
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+            setRegion(center: center, meters: 1200)
+        }
     }
 }
 

@@ -17,7 +17,6 @@ final class MainSearchViewController: BaseViewController {
     private let rootView = MainSearchView()
     
     private lazy var navigationBar = NDSNavigationBar(self).then {
-        $0.viewType = .main
         $0.backButtonIsHidden = false
         $0.closeButtonIsHidden = true
         $0.addSubview(searchBar)

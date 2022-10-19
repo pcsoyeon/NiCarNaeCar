@@ -69,8 +69,8 @@ final class MainMapView: BaseView {
         }
         
         logoView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationTitleTop)
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationTitleLeading)
             make.width.equalTo(72)
             make.height.equalTo(27)
         }

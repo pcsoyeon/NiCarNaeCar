@@ -24,6 +24,7 @@ extension Metric {
 extension Metric {
     static let navigationHeight: CGFloat = UIScreen.main.hasNotch ? 44 : 50
     static let navigationTitleTop: CGFloat = 12
+    static let navigationTitleLeading: CGFloat = 20
     static let navigationButtonLeading: CGFloat = 4
     static let navigationButtonTrailing: CGFloat = 9
     static let navigationButtonSize: CGFloat = 44
