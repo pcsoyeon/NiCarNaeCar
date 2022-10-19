@@ -55,7 +55,7 @@ final class SettingViewController: BaseViewController {
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(57)
+            make.height.equalTo(Metric.navigationHeight)
         }
         
         tableView.snp.makeConstraints { make in

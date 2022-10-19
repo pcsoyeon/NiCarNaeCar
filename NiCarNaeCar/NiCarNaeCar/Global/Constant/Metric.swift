@@ -22,7 +22,7 @@ extension Metric {
 // MARK: - Navigation
 
 extension Metric {
-    static let navigationHeight: CGFloat = UIScreen.main.hasNotch ? 44 : 50
+    static let navigationHeight: CGFloat = UIScreen.main.hasNotch ? 48 : 50
     static let navigationTitleTop: CGFloat = 12
     static let navigationTitleLeading: CGFloat = 20
     static let navigationButtonLeading: CGFloat = 4

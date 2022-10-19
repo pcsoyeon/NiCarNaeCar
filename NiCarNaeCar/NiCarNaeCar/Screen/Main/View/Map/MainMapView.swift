@@ -65,7 +65,7 @@ final class MainMapView: BaseView {
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(57)
+            make.height.equalTo(Metric.navigationHeight)
         }
         
         logoView.snp.makeConstraints { make in

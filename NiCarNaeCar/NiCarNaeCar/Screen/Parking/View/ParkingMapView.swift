@@ -38,6 +38,7 @@ final class ParkingMapView: BaseView {
     
     override func configureUI() {
         self.backgroundColor = R.Color.white
+        configureButton()
     }
     
     override func setLayout() {
@@ -45,7 +46,7 @@ final class ParkingMapView: BaseView {
         mapView.addSubviews(currentLocationButton)
         
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(57)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(Metric.navigationHeight)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
