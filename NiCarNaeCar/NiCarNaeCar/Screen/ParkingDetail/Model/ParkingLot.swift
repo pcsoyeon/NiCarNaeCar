@@ -38,5 +38,5 @@ struct OperatingTime {
 }
 
 struct Contact {
-    var contact: String = ""
+    var tel: String = ""
 }

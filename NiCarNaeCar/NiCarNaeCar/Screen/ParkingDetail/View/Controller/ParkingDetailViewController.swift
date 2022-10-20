@@ -93,25 +93,7 @@ final class ParkingDetailViewController: BaseViewController {
     // MARK: - Data
     
     private func bindData(_ item: ParkingDetailInfo) {
-        dump(item)
-        
-        parkingLot.location.name = item.parkingName
-        parkingLot.location.address = item.addr
-        
-        parkingLot.fee.defaultFee = "\(item.rates)원/\(item.timeRate)분"
-        parkingLot.fee.additionalFee = "\(item.addRates)원/\(item.addTimeRate)분"
-        
-        parkingLot.free.isWeekdayFree = item.payNm
-        parkingLot.free.isSaturdayFree = item.saturdayPayNm
-        parkingLot.free.isHolidayFree = item.holidayPayNm
-        
-        parkingLot.operatingTime.weekdayOperatingTime = "\(item.weekdayBeginTime) ~ \(item.weekdayEndTime)"
-        parkingLot.operatingTime.saturdayOperatingTime = "\(item.weekdayBeginTime) ~ \(item.weekdayEndTime)"
-        parkingLot.operatingTime.holidayOperatingTime = "\(item.holidayBeginTime) ~ \(item.holidayEndTime)"
-        
-        parkingLot.contact.contact = item.tel
-        
-        viewModel.info.value = parkingLot
+        viewModel.fetchParkingDetailInfo(item)
     }
 }
 
@@ -119,33 +101,17 @@ extension ParkingDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ParkingDetailHeaderView.reuseIdentifier, for: indexPath) as? ParkingDetailHeaderView else { return UICollectionReusableView() }
         
-        if indexPath.section == 1 {
-            headerView.title = "요금"
-        } else if indexPath.section == 2 {
-            headerView.title = "무/유료"
-        } else if indexPath.section == 3 {
-            headerView.title = "운영시간"
-        } else if indexPath.section == 4 {
-            headerView.title = "전화번호"
-        }
+        viewModel.titleForSection(indexPath.section, headerView)
         
         return headerView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return CGSize(width: view.frame.width, height: 0)
-        } else {
-            return CGSize(width: view.frame.width, height: 60)
-        }
+        return viewModel.referenceSizeForHeaderInSection(at: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: view.frame.width, height: 109)
-        } else {
-            return CGSize(width: view.frame.width, height: 60)
-        }
+        return viewModel.sizeForItemAt(at: indexPath.section)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -171,34 +137,25 @@ extension ParkingDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkingDetailCollectionViewCell.reuseIdentifier, for: indexPath) as? ParkingDetailCollectionViewCell else {
-            return UICollectionViewCell()
-        }
+        
+        let item = viewModel.cellForItemAt(indexPath.section)
+        let title = item.0
+        let data = item.1
         
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkingDetailLocationCollectionViewCell.reuseIdentifier, for: indexPath) as? ParkingDetailLocationCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.setData(parkingLot.location.name, parkingLot.location.address)
+            cell.setData(data[0], data[1])
             return cell
-        } else if indexPath.section == 1 {
-            let title = ["기본", "추가"]
-            let detail = [parkingLot.fee.defaultFee, parkingLot.fee.additionalFee]
-            cell.setData(title[indexPath.item], detail[indexPath.item])
-        } else if indexPath.section == 2 {
-            let title = ["평일", "토요일", "공휴일"]
-            let detail = [parkingLot.free.isWeekdayFree, parkingLot.free.isSaturdayFree, parkingLot.free.isHolidayFree]
-            cell.setData(title[indexPath.item], detail[indexPath.item])
-        } else if indexPath.section == 3 {
-            let title = ["평일", "토요일", "공휴일"]
-            let detail = [parkingLot.operatingTime.weekdayOperatingTime, parkingLot.operatingTime.saturdayOperatingTime, parkingLot.operatingTime.holidayOperatingTime]
-            cell.setData(title[indexPath.item], detail[indexPath.item])
-        } else if indexPath.section == 4 {
-            let title = ["주차장"]
-            let detail = [parkingLot.contact.contact]
-            cell.setData(title[indexPath.item], detail[indexPath.item])
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParkingDetailCollectionViewCell.reuseIdentifier, for: indexPath) as? ParkingDetailCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            if let title = title {
+                cell.setData(title[indexPath.item], data[indexPath.item])
+            }
+            return cell
         }
-        
-        return cell
     }
 }
