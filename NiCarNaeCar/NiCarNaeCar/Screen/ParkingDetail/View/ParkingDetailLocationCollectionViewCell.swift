@@ -25,7 +25,7 @@ final class ParkingDetailLocationCollectionViewCell: BaseCollectionViewCell {
     
     private var locationLabel = UILabel().then {
         $0.textColor = R.Color.gray100
-        $0.font = NiCarNaeCarFont.body6.font
+        $0.font = NiCarNaeCarFont.body5.font
     }
     
     // MARK: - UI Method
@@ -38,12 +38,12 @@ final class ParkingDetailLocationCollectionViewCell: BaseCollectionViewCell {
         contentView.addSubviews(nameLabel, locationLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(Metric.margin)
+            make.leading.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(Metric.margin)
             make.top.equalTo(contentView.safeAreaLayoutGuide).inset(30)
         }
         
         locationLabel.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(Metric.margin)
+            make.leading.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(Metric.margin)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
         }
     }

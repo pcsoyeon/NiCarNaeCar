@@ -7,36 +7,20 @@
 
 import Foundation
 
-struct ParkingLot {
-    var location = ParkingLotLocation()
-    var fee = Fee()
-    var free = Free()
-    var operatingTime = OperatingTime()
-    var contact = Contact()
-}
-
-struct ParkingLotLocation {
+struct ParkingLot: Hashable {
     var name: String = ""
-    var address: String = ""
-}
-
-struct Fee {
+    var location: String = ""
+    
     var defaultFee: String = ""
     var additionalFee: String = ""
-}
-
-struct Free {
+    
     var isWeekdayFree: String = ""
     var isSaturdayFree: String = ""
     var isHolidayFree: String = ""
-}
-
-struct OperatingTime {
+    
     var weekdayOperatingTime: String = ""
     var saturdayOperatingTime: String = ""
     var holidayOperatingTime: String = ""
-}
-
-struct Contact {
-    var tel: String = ""
+    
+    var contact: String = ""
 }
