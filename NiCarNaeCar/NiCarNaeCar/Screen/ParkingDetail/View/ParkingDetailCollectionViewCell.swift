@@ -25,7 +25,7 @@ final class ParkingDetailCollectionViewCell: BaseCollectionViewCell {
     
     private var detailLabel = UILabel().then {
         $0.textColor = R.Color.black200
-        $0.font = NiCarNaeCarFont.body2.font
+        $0.font = NiCarNaeCarFont.body4.font
     }
     
     // MARK: - UI Method

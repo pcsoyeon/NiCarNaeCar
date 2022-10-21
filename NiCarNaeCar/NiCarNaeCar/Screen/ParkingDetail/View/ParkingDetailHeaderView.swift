@@ -26,7 +26,7 @@ final class ParkingDetailHeaderView: UICollectionReusableView {
     
     private var titleLabel = UILabel().then {
         $0.textColor = R.Color.black200
-        $0.font = NiCarNaeCarFont.title2.font
+        $0.font = NiCarNaeCarFont.body1.font
     }
     
     // MARK: - Property
@@ -65,7 +65,7 @@ final class ParkingDetailHeaderView: UICollectionReusableView {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(lineView.snp.bottom).offset(15)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(Metric.margin)
         }
     }
 }
