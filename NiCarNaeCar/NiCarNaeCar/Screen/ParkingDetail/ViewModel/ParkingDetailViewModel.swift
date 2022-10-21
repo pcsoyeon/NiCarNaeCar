@@ -27,18 +27,31 @@ final class ParkingDetailViewModel {
         parkingLot.value.name = item.parkingName
         parkingLot.value.location = item.addr
         
-        parkingLot.value.defaultFee = "\(item.rates)원/\(item.timeRate)분"
-        parkingLot.value.additionalFee = "\(item.addRates)원/\(item.addTimeRate)분"
+        processFee(item)
         
-        parkingLot.value.isWeekdayFree = (item.payNm)
-        parkingLot.value.isSaturdayFree = (item.saturdayPayNm)
-        parkingLot.value.isHolidayFree = (item.holidayPayNm)
+        parkingLot.value.isWeekdayFree = item.payNm
+        parkingLot.value.isSaturdayFree = item.saturdayPayNm
+        parkingLot.value.isHolidayFree = item.holidayPayNm
         
-        parkingLot.value.weekdayOperatingTime = "\(item.weekdayBeginTime) ~ \(item.weekdayEndTime)"
-        parkingLot.value.saturdayOperatingTime = "\(item.weekdayBeginTime) ~ \(item.weekdayEndTime)"
-        parkingLot.value.holidayOperatingTime = "\(item.holidayBeginTime) ~ \(item.holidayEndTime)"
+        processOperatingTime(item)
         
         parkingLot.value.contact = item.tel
     }
     
+    private func processFee(_ item: ParkingDetailInfo) {
+        parkingLot.value.defaultFee = "\(item.rates)원/\(item.timeRate)분"
+        parkingLot.value.additionalFee = "\(item.addRates)원/\(item.addTimeRate)분"
+    }
+    
+    private func processOperatingTime(_ item: ParkingDetailInfo) {
+        parkingLot.value.weekdayOperatingTime = "\(stringFormatter(item.weekdayBeginTime)) ~ \(stringFormatter(item.weekdayEndTime))"
+        parkingLot.value.saturdayOperatingTime = "\(stringFormatter(item.weekdayBeginTime)) ~ \(stringFormatter(item.weekdayEndTime))"
+        parkingLot.value.holidayOperatingTime = "\(stringFormatter(item.holidayBeginTime)) ~ \(stringFormatter(item.holidayEndTime))"
+    }
+    
+    private func stringFormatter(_ str: String) -> String {
+        var time = str
+        time.insert(":", at: time.index(time.startIndex, offsetBy: 2))
+        return time
+    }
 }
