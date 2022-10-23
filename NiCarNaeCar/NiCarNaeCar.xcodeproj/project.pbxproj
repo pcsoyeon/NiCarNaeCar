@@ -99,6 +99,8 @@
 		92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475A28D45CBB003B973A /* LocalityType.swift */; };
 		92E9536028EFD77A00BCF32D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9535F28EFD77A00BCF32D /* TabBarController.swift */; };
 		92E9536328EFD7B800BCF32D /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9536228EFD7B800BCF32D /* ParkingViewController.swift */; };
+		92F80EF42905FECE00938A01 /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F80EF32905FECE00938A01 /* SettingCollectionViewCell.swift */; };
+		92F80EF62905FFE700938A01 /* SettingVersionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F80EF52905FFE700938A01 /* SettingVersionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +238,8 @@
 		92BA475A28D45CBB003B973A /* LocalityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalityType.swift; sourceTree = "<group>"; };
 		92E9535F28EFD77A00BCF32D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		92E9536228EFD7B800BCF32D /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
+		92F80EF32905FECE00938A01 /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		92F80EF52905FFE700938A01 /* SettingVersionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -603,6 +607,8 @@
 				923B7EEA28D56CAE0064700C /* Controller */,
 				928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */,
 				928D4C7F28D370EF001A029F /* SettingHeaderView.swift */,
+				92F80EF32905FECE00938A01 /* SettingCollectionViewCell.swift */,
+				92F80EF52905FFE700938A01 /* SettingVersionCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -935,6 +941,7 @@
 				925F7E2E28D85FB000F6C9DA /* SearchType.swift in Sources */,
 				925F7E5428DA259900F6C9DA /* NetworkConnectionStatus.swift in Sources */,
 				926DE44D28CAD48E0083123F /* NDSNavigationBar.swift in Sources */,
+				92F80EF62905FFE700938A01 /* SettingVersionCollectionViewCell.swift in Sources */,
 				92356D5428C9844400EB5333 /* SceneDelegate.swift in Sources */,
 				929DA50B28FFC4DD00810B2A /* ParkingDetailViewController.swift in Sources */,
 				929DA50D28FFC5E800810B2A /* ParkingLot.swift in Sources */,
@@ -969,6 +976,7 @@
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
 				9277206128CF4D7900163925 /* SpotAPIManager.swift in Sources */,
 				928D4C8028D370EF001A029F /* SettingHeaderView.swift in Sources */,
+				92F80EF42905FECE00938A01 /* SettingCollectionViewCell.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,
 				926DE46628CAE9210083123F /* OnboardingNameViewController.swift in Sources */,
 				928D4C8D28D388E9001A029F /* APIError.swift in Sources */,

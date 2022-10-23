@@ -79,7 +79,7 @@ final class SettingViewController: BaseViewController {
     }
     
     private func bindData() {
-        viewModel.fetchSetting()
+        viewModel.setSettingList()
     }
     
     private func pushToNotion() {
