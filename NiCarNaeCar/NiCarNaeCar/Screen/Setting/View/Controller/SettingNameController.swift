@@ -12,6 +12,8 @@ import NiCarNaeCar_Resource
 
 final class SettingNameController: BaseViewController {
     
+    // MARK: - UI Property
+    
     private lazy var navigationBar = NDSNavigationBar(self).then {
         $0.backButtonIsHidden = true
     }
@@ -32,9 +34,17 @@ final class SettingNameController: BaseViewController {
         $0.addTarget(self, action: #selector(touchUpChangeButton), for: .touchUpInside)
     }
     
+    // MARK: - Property
+    
+    var closure: ((String) -> Void)?
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: - UI Method
     
     override func configureUI() {
         super.configureUI()
@@ -74,6 +84,8 @@ final class SettingNameController: BaseViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
+    // MARK: - Custom Method
+    
     private func configureTextField() {
         nameTextField.becomeFirstResponder()
         
@@ -88,6 +100,7 @@ final class SettingNameController: BaseViewController {
     @objc func touchUpChangeButton() {
         if let text = nameTextField.text {
             UserDefaults.standard.setValue(text, forKey: Constant.UserDefaults.userName)
+            closure?(text)
             dismiss(animated: true)
         }
     }

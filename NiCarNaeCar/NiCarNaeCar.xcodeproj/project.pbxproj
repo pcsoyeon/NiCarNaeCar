@@ -101,6 +101,7 @@
 		92E9536328EFD7B800BCF32D /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9536228EFD7B800BCF32D /* ParkingViewController.swift */; };
 		92F80EF42905FECE00938A01 /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F80EF32905FECE00938A01 /* SettingCollectionViewCell.swift */; };
 		92F80EF62905FFE700938A01 /* SettingVersionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F80EF52905FFE700938A01 /* SettingVersionCollectionViewCell.swift */; };
+		92F80EF829060F1800938A01 /* SettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F80EF729060F1800938A01 /* SettingSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,7 @@
 		92E9536228EFD7B800BCF32D /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
 		92F80EF32905FECE00938A01 /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		92F80EF52905FFE700938A01 /* SettingVersionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionCollectionViewCell.swift; sourceTree = "<group>"; };
+		92F80EF729060F1800938A01 /* SettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,6 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				928D4C7328D33261001A029F /* SettingList.swift */,
+				92F80EF729060F1800938A01 /* SettingSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,
 				9235C54128D6F59D0092D252 /* Annotation.swift in Sources */,
+				92F80EF829060F1800938A01 /* SettingSection.swift in Sources */,
 				926DE48F28CAFC9B0083123F /* EndPoint.swift in Sources */,
 				926DE46228CAE77F0083123F /* NDSTextField.swift in Sources */,
 				926DE45928CADECF0083123F /* SettingViewController.swift in Sources */,

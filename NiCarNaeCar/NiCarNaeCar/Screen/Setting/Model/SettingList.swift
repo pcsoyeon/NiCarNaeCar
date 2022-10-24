@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Setting: Hashable {
+struct SettingList: Hashable {
     let title: String
     let subTitle: String?
     let detail: String?
