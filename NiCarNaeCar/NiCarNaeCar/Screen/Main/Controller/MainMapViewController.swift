@@ -108,9 +108,9 @@ final class MainMapViewController: BaseViewController {
     }
     
     private func drawDistanceLine(to: CLLocationCoordinate2D, from: CLLocationCoordinate2D) {
-        let overlays = self.rootView.mapView.overlays
+        let overlays = rootView.mapView.overlays
         for overlay in overlays {
-            self.rootView.mapView.removeOverlay(overlay)
+            rootView.mapView.removeOverlay(overlay)
         }
         
         let sourcePlaceMark = MKPlacemark(coordinate: to, addressDictionary: nil)
@@ -175,7 +175,9 @@ extension MainMapViewController: MKMapViewDelegate {
                 }
                 
                 let viewController = MainSheetViewController()
-                transition(viewController, transitionStyle: .presentNavigation) { _ in
+                transition(viewController, transitionStyle: .presentNavigation) { [weak self] _ in
+                    guard let self = self else { return }
+                    
                     viewController.positionId = self.positionId
                     viewController.currentLatitude = self.currentLatitude ?? 0.0
                     viewController.currentLongtitude = self.currentLongtitude ?? 0.0
@@ -210,7 +212,6 @@ extension MainMapViewController: MKMapViewDelegate {
 extension MainMapViewController {
     func checkUserDeviceLocationServiceAuthorization() {
         let authorizationStatus: CLAuthorizationStatus
-        
         authorizationStatus = locationManager.authorizationStatus
         
         if CLLocationManager.locationServicesEnabled() {
@@ -242,15 +243,15 @@ extension MainMapViewController {
     func showRequestLocationServiceAlert() {
         let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         
-        let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+        let setting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
             if let appSetting = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSetting)
             }
         }
-        
         let cancel = UIAlertAction(title: "취소", style: .default)
+        
         requestLocationServiceAlert.addAction(cancel)
-        requestLocationServiceAlert.addAction(goSetting)
+        requestLocationServiceAlert.addAction(setting)
         
         present(requestLocationServiceAlert, animated: true, completion: nil)
     }
@@ -339,8 +340,11 @@ extension MainMapViewController {
         self.fetchSpotList(startPage: 1, endPage: 1000)
         self.fetchSpotList(startPage: 1001, endPage: 1870)
         
-        dispatchGroup.notify(queue: .main) {
-            print("🔴 서버 통신 끝났는디")
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            
+            print("🔴 서버 통신 끝!!!")
+            
             for spot in self.spotList {
                 guard let latitude = Double(spot.la) else { return }
                 guard let longtitude = Double(spot.lo) else { return }
@@ -355,8 +359,10 @@ extension MainMapViewController {
     
     private func fetchSpotList(startPage: Int, endPage: Int) {
         print("🟢 서버통신을 해볼게요???")
+        
         dispatchGroup.enter()
-        SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { data, error in
+        SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { [weak self] data, error in
+            guard let self = self else { return }
             guard let data = data else { return }
             
             for item in data.nanumcarSpotList.row {
@@ -377,20 +383,20 @@ extension MainMapViewController {
             
             switch searchType {
             case .locality:
-                if locality == self.selectedLocality {
+                if locality == selectedLocality {
                     guard let latitude = Double(spot.la) else { return }
                     guard let longtitude = Double(spot.lo) else { return }
                     
                     let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                    self.setAnnotation(center: center, title: spot.positnNm)
+                    setAnnotation(center: center, title: spot.positnNm)
                 }
             case .subLocality:
-                if locality == self.currentSublocality {
+                if locality == currentSublocality {
                     guard let latitude = Double(spot.la) else { return }
                     guard let longtitude = Double(spot.lo) else { return }
                     
                     let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-                    self.setAnnotation(center: center, title: spot.positnNm)
+                    setAnnotation(center: center, title: spot.positnNm)
                 }
             }
         }

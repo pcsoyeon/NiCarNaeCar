@@ -159,9 +159,10 @@ extension MainSheetViewController {
         view.isUserInteractionEnabled = false
         
         dispatchGroup.enter()
-        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 5, positionId: positionId) { response, error in
-            print("거점지 서버통신한다???")
+        SpotAPIManager.requestSpotWithPositionId(startPage: 1, endPage: 5, positionId: positionId) { [weak self] response, error in
+            guard let self = self else { return }
             guard let response = response else { return }
+            
             self.spotInfo = response.nanumcarSpotList.row[0]
             
             self.socarInfo.carType = self.changeStringToCarType(self.spotInfo.elctyvhcleAt)
@@ -176,8 +177,8 @@ extension MainSheetViewController {
             self.dispatchGroup.leave()
         }
         
-        dispatchGroup.notify(queue: .main) {
-            print("서버통신 끝났는디")
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
             self.calculateDistance(self.spotInfo)
             
             if self.socarInfo.availableCount == "0" && self.greencarInfo.availableCount == "0" {
@@ -210,13 +211,15 @@ extension MainSheetViewController: XMLParserDelegate {
         guard let url = URL(string: urlString) else { return }
         
         dispatchGroup.enter()
-        DispatchQueue.global().async {
-            print("쏘카 서버통신한다???")
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            
             if let parser = XMLParser(contentsOf: url) {
                 parser.delegate = self
                 
                 if parser.parse() {
-                    if let totalCount = self.elements["reservAbleAllCnt"], let availableCount = self.elements["reservAbleCnt"] {
+                    if let totalCount = self.elements["reservAbleAllCnt"],
+                        let availableCount = self.elements["reservAbleCnt"] {
                         self.socarInfo = BrandInfo(brandType: .socar, totalCount: totalCount, availableCount: availableCount)
                         print("🚙 대여가능한 쏘카: ", availableCount)
                     }
@@ -235,8 +238,9 @@ extension MainSheetViewController: XMLParserDelegate {
         guard let url = URL(string: urlString) else { return }
         
         dispatchGroup.enter()
-        DispatchQueue.global().async {
-            print("그린카 서버통신한다???")
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            
             if let parser = XMLParser(contentsOf: url) {
                 parser.delegate = self
                 
@@ -257,12 +261,10 @@ extension MainSheetViewController: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
-//        print("currentElement = \(elementName)")
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-//        print("data = \(data)")
         if !data.isEmpty {
             item[currentElement] = data
         }

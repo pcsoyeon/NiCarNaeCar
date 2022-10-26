@@ -43,7 +43,7 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
             image: R.Image.icSetting,
             selectedImage: R.Image.icSetting)
         
-        self.viewControllers = [firstTabController, secondTabController, thirdTabController]
+        viewControllers = [firstTabController, secondTabController, thirdTabController]
     }
 }
 

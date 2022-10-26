@@ -99,9 +99,9 @@ final class SettingViewController: BaseViewController {
         viewModel.setSettingList()
         
         viewModel.list.bind { [weak self] settingList in
-            var snapshot = NSDiffableDataSourceSnapshot<Int, SettingList>()
-            
             guard let self = self else { return }
+            
+            var snapshot = NSDiffableDataSourceSnapshot<Int, SettingList>()
             
             snapshot.appendSections([0])
             snapshot.appendItems(settingList, toSection: 0)
@@ -203,7 +203,10 @@ extension SettingViewController: UICollectionViewDelegate {
 extension SettingViewController: SettingHeaderViewDelegate {
     func touchUpButton() {
         let viewController = SettingNameController()
-        viewController.closure = { name in
+        viewController.closure = { [weak self] name in
+            guard let self = self else { return }
+            
+            print(name)
             self.collectionView.reloadData()
         }
         transition(viewController, transitionStyle: .presentFullScreen)

@@ -113,7 +113,8 @@ extension DetailViewController: DetailViewDelegate {
                 print("링크 주소 : \(url)")
             }
         } else {
-            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요") { _ in
+            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요") { [weak self] _ in
+                guard let self = self else { return }
                 self.openURLByBrandType(self.brandType)
             }
         }
