@@ -16,7 +16,7 @@ protocol SettingHeaderViewDelegate: SettingViewController {
     func touchUpButton()
 }
 
-final class SettingHeaderView: UIView {
+final class SettingHeaderView: UICollectionReusableView {
     
     // MARK: - UI Property
     
@@ -63,7 +63,7 @@ final class SettingHeaderView: UIView {
         addSubviews(nameLabel, changeNameButton, lineView)
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(30)
             make.leading.equalToSuperview().inset(Metric.margin)
         }
         

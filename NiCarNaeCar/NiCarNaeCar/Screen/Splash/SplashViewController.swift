@@ -96,7 +96,9 @@ final class SplashViewController: BaseViewController {
     }
     
     private func setAnimation() {
-        showLabel(firstLabel) {
+        showLabel(firstLabel) { [weak self] in
+            guard let self = self else { return }
+            
             self.showLabel(self.secondLabel) {
                 self.showLabel(self.thirdLabel) {
                     self.showLabel(self.fourthLabel) {
