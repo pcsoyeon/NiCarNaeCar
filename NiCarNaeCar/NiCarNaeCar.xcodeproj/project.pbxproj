@@ -73,7 +73,7 @@
 		9277205F28CF46D200163925 /* CarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9277205E28CF46D200163925 /* CarType.swift */; };
 		9277206128CF4D7900163925 /* SpotAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9277206028CF4D7900163925 /* SpotAPIManager.swift */; };
 		928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C6F28D3317F001A029F /* SettingViewModel.swift */; };
-		928D4C7228D331B2001A029F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7128D331B2001A029F /* Observable.swift */; };
+		928D4C7228D331B2001A029F /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7128D331B2001A029F /* CObservable.swift */; };
 		928D4C7428D33261001A029F /* SettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7328D33261001A029F /* SettingList.swift */; };
 		928D4C7628D34ECB001A029F /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */; };
 		928D4C8028D370EF001A029F /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D4C7F28D370EF001A029F /* SettingHeaderView.swift */; };
@@ -218,7 +218,7 @@
 		9277205E28CF46D200163925 /* CarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarType.swift; sourceTree = "<group>"; };
 		9277206028CF4D7900163925 /* SpotAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotAPIManager.swift; sourceTree = "<group>"; };
 		928D4C6F28D3317F001A029F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		928D4C7128D331B2001A029F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		928D4C7128D331B2001A029F /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
 		928D4C7328D33261001A029F /* SettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingList.swift; sourceTree = "<group>"; };
 		928D4C7528D34ECB001A029F /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		928D4C7F28D370EF001A029F /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 			children = (
 				926DE43B28CAD3DC0083123F /* DesignSystem */,
 				92356D6F28C9858D00EB5333 /* Constant */,
-				928D4C7128D331B2001A029F /* Observable.swift */,
+				928D4C7128D331B2001A029F /* CObservable.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -909,7 +909,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				929DA51528FFC7A200810B2A /* ParkingDetailViewModel.swift in Sources */,
-				928D4C7228D331B2001A029F /* Observable.swift in Sources */,
+				928D4C7228D331B2001A029F /* CObservable.swift in Sources */,
 				92E9536028EFD77A00BCF32D /* TabBarController.swift in Sources */,
 				928D4C7028D3317F001A029F /* SettingViewModel.swift in Sources */,
 				9235199F28DAB9CA0019D837 /* NDSLoadingIndicator.swift in Sources */,
@@ -1138,7 +1138,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soyeon.NiCarNaeCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1172,7 +1172,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soyeon.NiCarNaeCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -8,7 +8,7 @@
 import Foundation
 
 final class SettingViewModel {
-    var list: Observable<[SettingList]> = Observable([SettingList(title: "",
+    var list: CObservable<[SettingList]> = CObservable([SettingList(title: "",
                                                                   subTitle: nil,
                                                                   detail: nil)])
     

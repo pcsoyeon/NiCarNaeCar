@@ -19,7 +19,7 @@ final class ParkingDetailViewModel {
     
     // MARK: - Property
     
-    var parkingLot: Observable<ParkingLot> = Observable(ParkingLot())
+    var parkingLot: CObservable<ParkingLot> = CObservable(ParkingLot())
     
     // MARK: - Data Method
     
