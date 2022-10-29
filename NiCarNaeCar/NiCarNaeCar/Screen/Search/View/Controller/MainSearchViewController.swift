@@ -91,9 +91,6 @@ final class MainSearchViewController: BaseViewController {
     }
     
     private func configureTableView() {
-        rootView.tableView.delegate = self
-        rootView.tableView.dataSource = self
-        
         rootView.tableView.rowHeight = 60
         
         rootView.tableView.register(MainSearchTableViewCell.self, forCellReuseIdentifier: MainSearchTableViewCell.reuseIdentifier)
@@ -126,36 +123,28 @@ final class MainSearchViewController: BaseViewController {
                 vc.searchBar.resignFirstResponder()
             }
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - UITableView Protocol
-
-extension MainSearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        locationClosure?(viewModel.filteredLocation.value[indexPath.row])
-        navigationController?.popViewController(animated: true)
-    }
-}
-
-extension MainSearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainSearchTableViewCell.reuseIdentifier, for: indexPath) as? MainSearchTableViewCell else { return UITableViewCell() }
         
-        let data = viewModel.cellForRowAt(at: indexPath)
-        if let text = searchBar.text {
-            if viewModel.isFiltering.value {
-                cell.setData(data, true, text)
-            } else {
-                cell.setData(data, false, text)
+        viewModel.filteredLocation
+            .bind(to: rootView.tableView.rx.items(cellIdentifier: MainSearchTableViewCell.reuseIdentifier, cellType: MainSearchTableViewCell.self)) { [weak self] index, item, cell in
+                guard let self = self else { return }
+                
+                if let text = self.searchBar.text {
+                    if self.viewModel.isFiltering.value {
+                        cell.setData(item, true, text)
+                    } else {
+                        cell.setData(item, false, text)
+                    }
+                }
             }
-        }
+            .disposed(by: disposeBag)
         
-        cell.selectionStyle = .none
-        return cell
+        rootView.tableView.rx
+            .itemSelected
+            .withUnretained(self)
+            .subscribe(onNext:  { (vc, value) in
+                vc.locationClosure?(vc.viewModel.filteredLocation.value[value.row])
+                vc.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
