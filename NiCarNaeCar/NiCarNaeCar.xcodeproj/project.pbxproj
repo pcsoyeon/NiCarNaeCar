@@ -32,6 +32,7 @@
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
 		924CA42A290D2B7200C0BB0C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 924CA429290D2B7200C0BB0C /* RxCocoa */; };
 		924CA42C290D2B7200C0BB0C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 924CA42B290D2B7200C0BB0C /* RxSwift */; };
+		924CA42F290D38DF00C0BB0C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CA42E290D38DF00C0BB0C /* SearchViewModel.swift */; };
 		9250CFE628F551AF00628593 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFE528F551AF00628593 /* ParkingMapView.swift */; };
 		9250CFF428F5586E00628593 /* ParkingAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF328F5586E00628593 /* ParkingAPIManager.swift */; };
 		9250CFF628F5593C00628593 /* ParkingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF528F5593C00628593 /* ParkingList.swift */; };
@@ -176,6 +177,7 @@
 		923B7EE828D56C0A0064700C /* SettingNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNameController.swift; sourceTree = "<group>"; };
 		923B7EEE28D58D740064700C /* NDSFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDSFloatingButton.swift; sourceTree = "<group>"; };
 		923B7EF028D58F600064700C /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
+		924CA42E290D38DF00C0BB0C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		9250CFE528F551AF00628593 /* ParkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingMapView.swift; sourceTree = "<group>"; };
 		9250CFF328F5586E00628593 /* ParkingAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAPIManager.swift; sourceTree = "<group>"; };
 		9250CFF528F5593C00628593 /* ParkingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingList.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 		924CA42D290D384A00C0BB0C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				924CA42E290D38DF00C0BB0C /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 				926DE45D28CAE2380083123F /* NDSButton.swift in Sources */,
 				927404B128CCACF80074FBEB /* OnboardingSheetView.swift in Sources */,
 				929DA51C28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift in Sources */,
+				924CA42F290D38DF00C0BB0C /* SearchViewModel.swift in Sources */,
 				92356D7328C985A700EB5333 /* UserDefaults.swift in Sources */,
 				926DE48328CAF81D0083123F /* APIKey.swift in Sources */,
 				92356D5228C9844400EB5333 /* AppDelegate.swift in Sources */,

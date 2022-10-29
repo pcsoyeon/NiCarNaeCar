@@ -30,10 +30,7 @@ final class MainSearchViewController: BaseViewController {
 
     // MARK: - Property
     
-    var isFiltering: Bool = false
-
-    var location = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
-    var filterredLocation: [String] = [""]
+    private var viewModel = SearchViewModel()
     
     var locationClosure: ((String) -> Void)?
     
@@ -81,7 +78,6 @@ final class MainSearchViewController: BaseViewController {
         searchBar.becomeFirstResponder()
         searchBar.delegate = self
         
-        searchBar.setValue("취소", forKey: "cancelButtonText")
         searchBar.tintColor = R.Color.black200
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
@@ -98,34 +94,35 @@ final class MainSearchViewController: BaseViewController {
         
         rootView.tableView.register(MainSearchTableViewCell.self, forCellReuseIdentifier: MainSearchTableViewCell.reuseIdentifier)
     }
+    
+    private func bind() {
+        viewModel.location.bind { [weak self] location in
+            guard let self = self else { return }
+            self.rootView.tableView.reloadData()
+        }
+        
+        viewModel.filteredLocation.bind { [weak self] location in
+            guard let self = self else { return }
+            self.rootView.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UISearchBar Protocol
 
 extension MainSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.isFiltering = true
+        viewModel.isFiltering.value = true
         
         guard let text = searchBar.text else { return }
-        self.filterredLocation = self.location.filter { $0.contains(text) }
-       
-        rootView.tableView.reloadData()
+        viewModel.filteredLocation.value = viewModel.location.value.filter { $0.contains(text) }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
 
         guard let text = searchBar.text else { return }
-        self.filterredLocation = self.location.filter { $0.contains(text) }
-       
-        rootView.tableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.text = ""
-        self.searchBar.resignFirstResponder()
-        self.isFiltering = false
-        rootView.tableView.reloadData()
+        viewModel.filteredLocation.value = viewModel.location.value.filter { $0.contains(text) }
     }
     
     func dismissKeyboard() {
@@ -137,14 +134,14 @@ extension MainSearchViewController: UISearchBarDelegate {
 
 extension MainSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return viewModel.heightForRowAt
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isFiltering {
-            locationClosure?(filterredLocation[indexPath.row])
+        if viewModel.isFiltering.value {
+            locationClosure?(viewModel.filteredLocation.value[indexPath.row])
         } else {
-            locationClosure?(location[indexPath.row])
+            locationClosure?(viewModel.location.value[indexPath.row])
         }
         navigationController?.popViewController(animated: true)
     }
@@ -152,21 +149,18 @@ extension MainSearchViewController: UITableViewDelegate {
 
 extension MainSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filterredLocation.count
-        } else {
-            return location.count
-        }
+        return viewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainSearchTableViewCell.reuseIdentifier, for: indexPath) as? MainSearchTableViewCell else { return UITableViewCell() }
         
+        let data = viewModel.cellForRowAt(at: indexPath)
         if let text = searchBar.text {
-            if isFiltering {
-                cell.setData(filterredLocation[indexPath.row], true, text)
+            if viewModel.isFiltering.value {
+                cell.setData(data, true, text)
             } else {
-                cell.setData(location[indexPath.row], false, text)
+                cell.setData(data, false, text)
             }
         }
         
