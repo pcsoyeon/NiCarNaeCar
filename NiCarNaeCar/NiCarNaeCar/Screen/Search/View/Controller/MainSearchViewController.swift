@@ -10,6 +10,9 @@ import UIKit
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
+import RxCocoa
+import RxSwift
+
 final class MainSearchViewController: BaseViewController {
     
     // MARK: - UI Property
@@ -24,13 +27,13 @@ final class MainSearchViewController: BaseViewController {
     
     private lazy var searchBar = UISearchBar().then {
         $0.placeholder = "행정구를 검색해보세요"
-        $0.delegate = self
         $0.backgroundImage = UIImage()
     }
 
     // MARK: - Property
     
-    private var viewModel = SearchViewModel()
+    private let viewModel = SearchViewModel()
+    private let disposeBag = DisposeBag()
     
     var locationClosure: ((String) -> Void)?
     
@@ -43,6 +46,7 @@ final class MainSearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     // MARK: - UI Method
@@ -76,8 +80,6 @@ final class MainSearchViewController: BaseViewController {
     
     private func configureSearchBar() {
         searchBar.becomeFirstResponder()
-        searchBar.delegate = self
-        
         searchBar.tintColor = R.Color.black200
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
@@ -96,37 +98,37 @@ final class MainSearchViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.location.bind { [weak self] location in
-            guard let self = self else { return }
-            self.rootView.tableView.reloadData()
-        }
+        viewModel.filteredLocation
+            .withUnretained(self)
+            .bind { vc, location in
+                vc.rootView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
         
-        viewModel.filteredLocation.bind { [weak self] location in
-            guard let self = self else { return }
-            self.rootView.tableView.reloadData()
-        }
-    }
-}
-
-// MARK: - UISearchBar Protocol
-
-extension MainSearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.isFiltering.value = true
+        viewModel.location
+            .withUnretained(self)
+            .bind { vc, location in
+                vc.rootView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
         
-        guard let text = searchBar.text else { return }
-        viewModel.filteredLocation.value = viewModel.location.value.filter { $0.contains(text) }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        dismissKeyboard()
-
-        guard let text = searchBar.text else { return }
-        viewModel.filteredLocation.value = viewModel.location.value.filter { $0.contains(text) }
-    }
-    
-    func dismissKeyboard() {
-        searchBar.resignFirstResponder()
+        searchBar.rx.text.orEmpty
+            .debounce(RxTimeInterval.microseconds(5), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind { vc, value in
+                if value != "" {
+                    vc.viewModel.isFiltering.accept(true)
+                    vc.viewModel.filterLocation(value)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.searchButtonClicked
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.searchBar.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
