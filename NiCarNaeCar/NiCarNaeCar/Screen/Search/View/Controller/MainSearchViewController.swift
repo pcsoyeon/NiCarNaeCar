@@ -94,18 +94,15 @@ final class MainSearchViewController: BaseViewController {
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
         
+        rootView.tableView.rowHeight = 60
+        
         rootView.tableView.register(MainSearchTableViewCell.self, forCellReuseIdentifier: MainSearchTableViewCell.reuseIdentifier)
     }
     
     private func bind() {
-        viewModel.filteredLocation
-            .withUnretained(self)
-            .bind { vc, location in
-                vc.rootView.tableView.reloadData()
-            }
-            .disposed(by: disposeBag)
+        viewModel.filteredLocation.accept(viewModel.location)
         
-        viewModel.location
+        viewModel.filteredLocation
             .withUnretained(self)
             .bind { vc, location in
                 vc.rootView.tableView.reloadData()
@@ -135,16 +132,8 @@ final class MainSearchViewController: BaseViewController {
 // MARK: - UITableView Protocol
 
 extension MainSearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.heightForRowAt
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewModel.isFiltering.value {
-            locationClosure?(viewModel.filteredLocation.value[indexPath.row])
-        } else {
-            locationClosure?(viewModel.location.value[indexPath.row])
-        }
+        locationClosure?(viewModel.filteredLocation.value[indexPath.row])
         navigationController?.popViewController(animated: true)
     }
 }
