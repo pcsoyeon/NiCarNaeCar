@@ -511,6 +511,13 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		924CA42D290D384A00C0BB0C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9250CFE228F5517D00628593 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,7 +696,7 @@
 			children = (
 				9290E84028E07B43002DD101 /* Model */,
 				9290E83F28E07B3F002DD101 /* View */,
-				9290E83E28E07B39002DD101 /* Controller */,
+				924CA42D290D384A00C0BB0C /* ViewModel */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -705,6 +712,7 @@
 		9290E83F28E07B3F002DD101 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9290E83E28E07B39002DD101 /* Controller */,
 				92BA475628D42956003B973A /* MainSearchView.swift */,
 				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
 			);
