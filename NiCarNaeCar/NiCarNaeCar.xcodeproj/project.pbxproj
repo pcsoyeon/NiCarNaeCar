@@ -30,6 +30,8 @@
 		923B7EE928D56C0A0064700C /* SettingNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EE828D56C0A0064700C /* SettingNameController.swift */; };
 		923B7EEF28D58D740064700C /* NDSFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EEE28D58D740064700C /* NDSFloatingButton.swift */; };
 		923B7EF128D58F600064700C /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B7EF028D58F600064700C /* Metric.swift */; };
+		924CA42A290D2B7200C0BB0C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 924CA429290D2B7200C0BB0C /* RxCocoa */; };
+		924CA42C290D2B7200C0BB0C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 924CA42B290D2B7200C0BB0C /* RxSwift */; };
 		9250CFE628F551AF00628593 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFE528F551AF00628593 /* ParkingMapView.swift */; };
 		9250CFF428F5586E00628593 /* ParkingAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF328F5586E00628593 /* ParkingAPIManager.swift */; };
 		9250CFF628F5593C00628593 /* ParkingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250CFF528F5593C00628593 /* ParkingList.swift */; };
@@ -249,12 +251,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924CA42C290D2B7200C0BB0C /* RxSwift in Frameworks */,
 				92356DFA28C994BF00EB5333 /* NiCarNaeCar_Resource.framework in Frameworks */,
 				929DA5C02902895100810B2A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				929DA5C42902895100810B2A /* FirebaseMessaging in Frameworks */,
 				929DA5BD2902887600810B2A /* SnapKit in Frameworks */,
 				929DA5C22902895100810B2A /* FirebaseCrashlytics in Frameworks */,
 				929DA5BA2902886900810B2A /* Then in Frameworks */,
+				924CA42A290D2B7200C0BB0C /* RxCocoa in Frameworks */,
 				92356DBA28C98EF400EB5333 /* NiCarNaeCar_Util.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,6 +804,8 @@
 				929DA5BF2902895100810B2A /* FirebaseAnalyticsWithoutAdIdSupport */,
 				929DA5C12902895100810B2A /* FirebaseCrashlytics */,
 				929DA5C32902895100810B2A /* FirebaseMessaging */,
+				924CA429290D2B7200C0BB0C /* RxCocoa */,
+				924CA42B290D2B7200C0BB0C /* RxSwift */,
 			);
 			productName = NiCarNaeCar;
 			productReference = 92356D4E28C9844400EB5333 /* NiCarNaeCar.app */;
@@ -833,6 +839,7 @@
 				929DA5B82902886900810B2A /* XCRemoteSwiftPackageReference "Then" */,
 				929DA5BB2902887600810B2A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				929DA5BE2902895100810B2A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				924CA428290D2B7100C0BB0C /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 92356D4F28C9844400EB5333 /* Products */;
 			projectDirPath = "";
@@ -1208,6 +1215,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		924CA428290D2B7100C0BB0C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		929DA5B82902886900810B2A /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
@@ -1235,6 +1250,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		924CA429290D2B7200C0BB0C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924CA428290D2B7100C0BB0C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		924CA42B290D2B7200C0BB0C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924CA428290D2B7100C0BB0C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		929DA5B92902886900810B2A /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 929DA5B82902886900810B2A /* XCRemoteSwiftPackageReference "Then" */;
