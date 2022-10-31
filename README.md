@@ -10,7 +10,7 @@
 </br>
 
 ## Notion
-[🚗 니카내카 작업 노션](https://www.notion.so/3fc56a8891a74b2cb4aec9ea16da3be9) _(현재 작업 노션은 비공개로 설정되어 있습니다.)_ </br> 
+[🚗 니카내카 작업 노션](https://www.notion.so/3fc56a8891a74b2cb4aec9ea16da3be9)
 [🚙 니카내카 소개 노션](https://www.notion.so/f48a8b496a484bcaa4191a8128683c58)
 
 </br>
@@ -39,4 +39,4 @@
 |2022.10.19| 상세화면 구현 | 주차장 상세 화면 구현 | [📄 Notion](https://www.notion.so/b27e65674ed24709a75cd08f44430e55) |
 |2022.10.20| 상세화면 구현 | 주차장 상세 화면 구현 (MVVM+DffiableDataSource+CompositionalLayout) | [📄 Notion](https://www.notion.so/MVVM-DiffableDateSource-CompositionalLayout-2b033842c8da442d9617867deb7c88b1) |
 |2022.10.20| 코드 개선 | 설정화면 코드 개선 (DffiableDataSource+CompositionalLayout) | [📄 Notion](https://www.notion.so/DiffableDataSource-CompositionalLayout-245d48d113364e5f8a7644c1da664b53) |
-|2022.10.20| 코드 개선 | 검색화면 코드 개선 (MVVM+Rx)) | [📄 Notion](https://www.notion.so/RxSwift-RxCocoa-aaadc1466afd4399b1a88d1ff9641fa2) |
+|2022.10.20| 코드 개선 | 검색화면 코드 개선 (MVVM+Rx) | [📄 Notion](https://www.notion.so/RxSwift-RxCocoa-aaadc1466afd4399b1a88d1ff9641fa2) |
