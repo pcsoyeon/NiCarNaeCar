@@ -10,7 +10,7 @@ import UIKit
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
-class DetailViewController: BaseViewController {
+final class DetailViewController: BaseViewController {
     
     // MARK: - UI Property
     
@@ -24,27 +24,7 @@ class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    var brandType: BrandType = .socar {
-        didSet {
-            rootView.openButton.backgroundColor = brandType.color
-        }
-    }
-    
-    var info: BrandInfo? {
-        didSet {
-            if let count = info?.availableCount {
-                if count == "0" {
-                    rootView.hasData = false
-                } else {
-                    rootView.hasData = true
-                    rootView.openButton.backgroundColor = brandType.color
-                }
-            }
-        }
-    }
-    
-    var positionName: String = ""
-    var address: String = ""
+    let viewModel = DetailViewModel()
     
     // MARK: - Life Cycle
     
@@ -60,6 +40,7 @@ class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     // MARK: - UI Method
@@ -93,29 +74,40 @@ class DetailViewController: BaseViewController {
         rootView.collectionView.register(DetailHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailHeaderView.identifier)
         rootView.collectionView.register(DetailCollectionViewCell.self, forCellWithReuseIdentifier: DetailCollectionViewCell.reuseIdentifier)
     }
+    
+    private func bind() {
+        viewModel.brandType.bind { [weak self] brandType in
+            guard let self = self else { return }
+            self.rootView.openButton.backgroundColor = brandType.color
+        }
+        
+        viewModel.info.bind { [weak self] brandInfo in
+            guard let self = self else { return }
+            
+            if brandInfo.availableCount == "0" {
+                self.rootView.hasData = false
+            } else {
+                self.rootView.hasData = true
+                self.rootView.openButton.backgroundColor = self.viewModel.brandType.value.color
+            }
+        }
+    }
 }
 
 // MARK: - Custom Delegate
 
 extension DetailViewController: DetailViewDelegate {
     func touchUpOpenButton() {
-        var url = ""
-        
-        if brandType == .socar {
-            url = "socar:"
-        } else {
-            url = "greencar://"
-        }
+        let url = viewModel.openURL()
         
         if let openApp = URL(string: url), UIApplication.shared.canOpenURL(openApp) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
-                print("링크 주소 : \(url)")
             }
         } else {
-            presentAlert(title: "\(brandType.brandNameKR) 앱을 설치해주세요") { [weak self] _ in
+            presentAlert(title: "\(self.viewModel.brandType.value.brandNameKR) 앱을 설치해주세요") { [weak self] _ in
                 guard let self = self else { return }
-                self.openURLByBrandType(self.brandType)
+                self.openURLByBrandType(self.viewModel.brandType.value)
             }
         }
     }
@@ -136,8 +128,8 @@ extension DetailViewController: DetailViewDelegate {
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailHeaderView.identifier, for: indexPath) as? DetailHeaderView else { return UICollectionReusableView() }
-        headerView.brandType = brandType
-        headerView.carType = info?.carType.text ?? ""
+        headerView.brandType = viewModel.brandType.value
+        headerView.carType = viewModel.info.value.carType.text
         return headerView
     }
     
@@ -168,18 +160,14 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewModel.numberOfItemsInSection(at: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseIdentifier, for: indexPath) as? DetailCollectionViewCell else { return UICollectionViewCell() }
-        if indexPath.row == 0 {
-            cell.setData(brandType, positionName, address, nil, indexPath.row)
-        } else if indexPath.row == 1 {
-            cell.setData(brandType, "전체 차량 수", nil, info?.totalCount, indexPath.row)
-        } else {
-            cell.setData(brandType, "예약 가능 차량 수", nil, info?.availableCount, indexPath.row)
-        }
+        
+        let data = viewModel.cellForItemAt(at: indexPath)
+        cell.setData(data.0, data.1, data.2, data.3, indexPath.row)
         return cell
     }
 }
