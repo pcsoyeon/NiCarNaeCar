@@ -96,6 +96,7 @@
 		929DA5C02902895100810B2A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 929DA5BF2902895100810B2A /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		929DA5C22902895100810B2A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 929DA5C12902895100810B2A /* FirebaseCrashlytics */; };
 		929DA5C42902895100810B2A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 929DA5C32902895100810B2A /* FirebaseMessaging */; };
+		92B7B66E2911DD6300E0336C /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B7B66D2911DD6300E0336C /* LocationDetailViewModel.swift */; };
 		92BA475528D421B9003B973A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475428D421B9003B973A /* MainSearchViewController.swift */; };
 		92BA475728D42956003B973A /* MainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475628D42956003B973A /* MainSearchView.swift */; };
 		92BA475928D4419D003B973A /* MainSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */; };
@@ -237,6 +238,7 @@
 		929DA51628FFD64B00810B2A /* ParkingDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		929DA51828FFE26B00810B2A /* ParkingDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailHeaderView.swift; sourceTree = "<group>"; };
 		929DA51B28FFE6D300810B2A /* ParkingDetailLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailLocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		92B7B66D2911DD6300E0336C /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		92BA475428D421B9003B973A /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		92BA475628D42956003B973A /* MainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchView.swift; sourceTree = "<group>"; };
 		92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -576,7 +578,7 @@
 			isa = PBXGroup;
 			children = (
 				926DE45028CAD9570083123F /* View */,
-				926DE44F28CAD9520083123F /* Controller */,
+				92B7B66C2911DD4200E0336C /* ViewModel */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -592,6 +594,7 @@
 		926DE45028CAD9570083123F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				926DE44F28CAD9520083123F /* Controller */,
 				926DE45328CAD9DF0083123F /* DetailView.swift */,
 				9277205328CF1C8D00163925 /* DetailHeaderView.swift */,
 				9277205928CF21C100163925 /* DetailCollectionViewCell.swift */,
@@ -764,6 +767,14 @@
 				929DA50A28FFC4DD00810B2A /* ParkingDetailViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		92B7B66C2911DD4200E0336C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92B7B66D2911DD6300E0336C /* LocationDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		92E9535E28EFD76F00BCF32D /* Tab */ = {
@@ -978,6 +989,7 @@
 				928D4C7428D33261001A029F /* SettingList.swift in Sources */,
 				92BA475B28D45CBB003B973A /* LocalityType.swift in Sources */,
 				926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */,
+				92B7B66E2911DD6300E0336C /* LocationDetailViewModel.swift in Sources */,
 				920ECBCB28E50E5200854E13 /* DisconnectedView.swift in Sources */,
 				927404AF28CCACAC0074FBEB /* OnboardingSheetViewController.swift in Sources */,
 				9250CFF428F5586E00628593 /* ParkingAPIManager.swift in Sources */,
