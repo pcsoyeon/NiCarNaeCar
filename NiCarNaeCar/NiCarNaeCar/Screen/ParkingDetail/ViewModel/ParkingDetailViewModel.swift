@@ -13,8 +13,6 @@ import Then
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
-// MARK: - ParkingDetailViewModel
-
 final class ParkingDetailViewModel {
     
     // MARK: - Property

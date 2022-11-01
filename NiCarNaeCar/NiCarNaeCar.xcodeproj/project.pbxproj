@@ -697,7 +697,6 @@
 		9290E83D28E07B34002DD101 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				9290E84028E07B43002DD101 /* Model */,
 				9290E83F28E07B3F002DD101 /* View */,
 				924CA42D290D384A00C0BB0C /* ViewModel */,
 			);
@@ -720,13 +719,6 @@
 				92BA475828D4419D003B973A /* MainSearchTableViewCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9290E84028E07B43002DD101 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		929DA50628FFC4B000810B2A /* ParkingDetail */ = {
