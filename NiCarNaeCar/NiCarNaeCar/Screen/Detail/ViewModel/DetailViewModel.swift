@@ -13,12 +13,12 @@ import RxCocoa
 import RxSwift
 
 final class DetailViewModel {
-    var brandType = CObservable<BrandType>(.socar)
+    var brandType = BehaviorRelay<BrandType>(value: .socar)
     
-    var info = CObservable<BrandInfo>(BrandInfo(brandType: .socar, totalCount: "", availableCount: ""))
+    var info = BehaviorRelay<BrandInfo>(value: BrandInfo(brandType: .socar, totalCount: "", availableCount: ""))
     
-    var positionName = CObservable<String>("")
-    var address = CObservable<String>("")
+    var positionName = BehaviorRelay<String>(value: "")
+    var address = BehaviorRelay<String>(value: "")
     
     func openURL() -> String {
         if brandType.value == .socar {

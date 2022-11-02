@@ -10,6 +10,9 @@ import UIKit
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
+import RxCocoa
+import RxSwift
+
 final class DetailViewController: BaseViewController {
     
     // MARK: - UI Property
@@ -25,6 +28,7 @@ final class DetailViewController: BaseViewController {
     // MARK: - Property
     
     let viewModel = DetailViewModel()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     
@@ -76,21 +80,27 @@ final class DetailViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.brandType.bind { [weak self] brandType in
-            guard let self = self else { return }
-            self.rootView.openButton.backgroundColor = brandType.color
-        }
+        viewModel.brandType
+            .asDriver()
+            .drive(onNext: { [weak self] brandType in
+                guard let self = self else { return }
+                self.rootView.openButton.backgroundColor = brandType.color
+            })
+            .disposed(by: disposeBag)
         
-        viewModel.info.bind { [weak self] brandInfo in
-            guard let self = self else { return }
-            
-            if brandInfo.availableCount == "0" {
-                self.rootView.hasData = false
-            } else {
-                self.rootView.hasData = true
-                self.rootView.openButton.backgroundColor = self.viewModel.brandType.value.color
-            }
-        }
+        viewModel.info
+            .asDriver()
+            .drive(onNext: { [weak self] brandInfo in
+                guard let self = self else { return }
+                
+                if brandInfo.availableCount == "0" {
+                    self.rootView.hasData = false
+                } else {
+                    self.rootView.hasData = true
+                    self.rootView.openButton.backgroundColor = self.viewModel.brandType.value.color
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
