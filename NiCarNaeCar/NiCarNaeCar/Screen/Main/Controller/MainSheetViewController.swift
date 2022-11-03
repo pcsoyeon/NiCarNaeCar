@@ -110,14 +110,14 @@ extension MainSheetViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = DetailViewController()
         if indexPath.row == 0 {
-            viewController.brandType = .socar
-            viewController.info = socarInfo
+            viewController.viewModel.brandType.accept(.socar)
+            viewController.viewModel.info.accept(socarInfo)
         } else {
-            viewController.brandType = .greencar
-            viewController.info = greencarInfo
+            viewController.viewModel.brandType.accept(.greencar)
+            viewController.viewModel.info.accept(greencarInfo)
         }
-        viewController.positionName = positionName
-        viewController.address = address
+        viewController.viewModel.positionName.accept(positionName)
+        viewController.viewModel.address.accept(address)
         transition(viewController, transitionStyle: .presentFullScreen)
     }
 }
