@@ -37,6 +37,8 @@
 |2022.10.12| 추가된 기획 구현 | 푸시 알림, 공영주차장 지도 추가 | [📄](https://www.notion.so/5172f7e1bde0420b9ba000d1cd7e637c) |
 |2022.10.14| 기획 추가 | 주차장 상세 화면 기획 추가 및 디자인 | [📄](https://www.notion.so/07c45f2a45194f3c924e4178f04c8871) |
 |2022.10.19| 상세화면 구현 | 주차장 상세 화면 구현 | [📄](https://www.notion.so/b27e65674ed24709a75cd08f44430e55) |
-|2022.10.20| 상세화면 구현 | 주차장 상세 화면 구현 (MVVM+DffiableDataSource+CompositionalLayout) | [📄](https://www.notion.so/MVVM-DiffableDateSource-CompositionalLayout-2b033842c8da442d9617867deb7c88b1) |
-|2022.10.20| 코드 개선 | 설정화면 코드 개선 (DffiableDataSource+CompositionalLayout) | [📄](https://www.notion.so/DiffableDataSource-CompositionalLayout-245d48d113364e5f8a7644c1da664b53) |
-|2022.10.20| 코드 개선 | 검색화면 코드 개선 (MVVM+Rx) | [📄](https://www.notion.so/RxSwift-RxCocoa-aaadc1466afd4399b1a88d1ff9641fa2) |
+|2022.10.20| 상세화면 구현 | MVVM, DiffableDateSource+CompositionalLayout   | [📄](https://www.notion.so/MVVM-DiffableDateSource-CompositionalLayout-2b033842c8da442d9617867deb7c88b1) |
+|2022.10.27| 코드 개선 | 설정화면 코드 개선 (DffiableDataSource+CompositionalLayout) | [📄](https://www.notion.so/DiffableDataSource-CompositionalLayout-245d48d113364e5f8a7644c1da664b53) |
+|2022.10.29| 코드 개선 | 검색화면 코드 개선 (MVVM+Rx) | [📄](https://www.notion.so/RxSwift-RxCocoa-aaadc1466afd4399b1a88d1ff9641fa2) |
+|2022.10.31| 코드 개선 | 거점지 상세화면 코드 개선 (MVVM+Rx) | [📄](https://www.notion.so/RxSwift-RxCocoa-c57eaf99fe4c473fb20df0ae4cb02ebb) |
+|2022.11.03| 코드 개선 및 업데이트 | 전반적으로 코드 개선 및 필요없는 코드 삭제 (추가적인 코드개선) | [📄](https://www.notion.so/edd056fe6cf44edf82bbe1e0a481c181) |
