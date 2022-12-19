@@ -1,22 +1,168 @@
 # 니카내카
 ![Frame 12](https://user-images.githubusercontent.com/59593430/190400639-1d3b796d-7950-4aa2-84eb-e718d268fc43.png)
 
-</br>
-
-## App Store
-[🟢🔵 니카내카 다운로드](https://apps.apple.com/app/id6443532661) 
+### 한 줄 소개
+서울시의 나눔카(쏘카/그린카) 주차 위치 정보 및 실시간 예약 현황을 알 수 있는 서비스
 
 </br>
+
+### 서비스 특징
+- 지도를 기반으로 나눔카의 위치를 핀을 통해서 제공 
+- 예약 가능한 차량에 대한 간략한 정보 (전기차 여부, 거점지, 거점 ID) 제공 
+- 해당 위치에서 쏘카/그린카의 예약 현황을 알 수 있으며 앱 간 이동을 통해 바로 예약이 가능한 앱으로 이동 
+  -  거점 리스트 API로 위치를 확인 가능 
+  - 해당 위치의 거점 ID로 예약 현황 API에 연결하여 예약 가능한 차량을 조회 가능 
+- 지도를 기반으로 서울시에 위치한 공공주차장의 위치를 핀을 통해서 제공 
+
 </br>
 
-## Notion
-[🚗 니카내카 작업 노션](https://www.notion.so/3fc56a8891a74b2cb4aec9ea16da3be9) </br>
-[🚙 니카내카 소개 노션](https://www.notion.so/f48a8b496a484bcaa4191a8128683c58)
+### Link
+[🔗 앱 스토어 링크 바로 가기](https://apps.apple.com/app/id6443532661) </br>
+[🔗 노션 링크 바로 가기](https://www.notion.so/f48a8b496a484bcaa4191a8128683c58)
 
 </br>
 </br>
 
-## 개인일지 
+## 🛠️ 사용 기술 및 라이브러리 
+- UIKit, AutoLayout
+- SnapKit, Then
+- Firebase
+    - Push Notification
+    - Google Analytics
+- CoreLocation, Mapkit
+- CompositionalLayout, DiffableDataSource
+- URLSession
+- MVC, MVVM
+- RxSwift
+
+</br>
+</br>
+
+## 📌 회고 
+[🔗 좀 더 상세한 회고가 보고싶다면?](https://so-kyte.tistory.com/157)
+</br>
+
+### 🥰 좋았던 점 
+아이디어를 고르는 것부터 시작해서 기획/개발 명세서를 작성하고 와이어프레임, UI를 그리는 작업까지 하나의 앱이 만들어지는 모든 과정을 다 다룰 수 있었다. </br>
+1차 릴리즈에서는 큰 기능을 많이 넣지 않고 최대한 옹골찬(?) 앱을 만들어보자 .. 라고 목표를 세웠고 그에 맞는 적절한 계획과 Save Day라는 기간을 둘 수 있어서 작업이 밀리지 않은 점이 잘한 부분이라고 생각한다. </br>
+
+</br>
+
+프로젝트 단위에서 성장한 부분은 프레임워크로 모듈화를 하여 리소스를 관리한 것이라고 생각한다. 
+기능적으로 공부한 부분은 CLLocation과 MapKit을 사용한 것, DispatchGroup을 사용해서 서버통신의 흐름을 다룬 것, Network 프레임워크를 통해 네트워크 연결 상태에 따른 분기처리를 한 것이라고 생각한다. </br>
+이전 프로젝트에서 다뤄보지 않은 부분이라 새롭게 공부할 수 있었고 개발적으로도 성장했으며 사용자 입장에서 보다 원활한 이용과 자연스러운 앱 사용 흐름을 고민할 수 있었다. 
+
+- CLLocation + MapKit (Custom Annotation)
+```
+import MapKit
+
+import NiCarNaeCar_Resource
+
+class DefaultAnnoationView: MKMarkerAnnotationView {
+
+    static let ReuseID = "defaultAnnotation"
+
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        clusteringIdentifier = "default"
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForDisplay() {
+        super.prepareForDisplay()
+        displayPriority = .defaultHigh
+        markerTintColor = R.Color.black200
+    }
+}
+```
+
+</br>
+
+- DispatchGroup
+```
+        dispatchGroup.enter()
+        SpotListAPIManager.requestSpotList(startPage: startPage, endPage: endPage) { [weak self] data, error in
+            guard let self = self else { return }
+            guard let data = data else { return }
+            
+            for item in data.nanumcarSpotList.row {
+                self.spotList.append(item)
+            }
+            self.dispatchGroup.leave()
+        }
+```
+
+```
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            for spot in self.spotList {
+                guard let latitude = Double(spot.la) else { return }
+                guard let longtitude = Double(spot.lo) else { return }
+                
+                let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                self.setAnnotation(center: center, title: spot.positnNm)
+            }
+            
+            self.filteredList = self.spotList
+        }
+```
+
+</br>
+- Network 프레임워크 사용 (네트워크 연결상태 분기)
+
+```
+import Foundation
+import Network
+
+final class NetworkMonitor {
+    private let queue = DispatchQueue.global(qos: .background)
+    private let monitor: NWPathMonitor
+    
+    init() {
+        monitor = NWPathMonitor()
+        dump(monitor)
+        print("------------")
+    }
+    
+    func startMonitoring(statusUpdateHandler: @escaping (NWPath.Status) -> Void) {
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                statusUpdateHandler(path.status)
+            }
+        }
+        monitor.start(queue: queue)
+    }
+    
+    func stopMonitoring() {
+        monitor.cancel()
+    }
+}
+```
+
+
+### 🤔 아쉬운 부분 
+초반부터 좀 더 욕심을 갖고 여러 목표를 세워서 구현했으면 어땠을까 하는 아쉬움이 든다. </br>
+SeSAC 과정 중후반에 배운 MVVM을 도입하고 싶었는데 .. 사실 아직도 잘 모르겠어서 .. 이후에 공부를 좀 더 빡세게 하고 적용을 해야겠다고 다짐했다 .. 
+
+</br>
+</br>
+
+### 개발 기간
+- 전체적인 개발 기간 : 2022.09.07 ~ 2022.10.07
+- 세부적인 개발 공수 
+  - 일주일 단위로 개발 공수 분리 후 작업 진행
+  - 1주차 : 프로젝트 초기 세팅 및 프레임워크 구현, 기획 및 UI 완성
+  - 2주차 : 지도, API 연결 등의 기능 구현
+  - 3주차 : 각 정보에 대한 세부 화면 UI 및 앱 간 이동, 정보 화면 등의 세부적인 기능 구현
+  - 4주차 : 구현 마무리 및 QA 진행 
+
+</br>
+</br>
+
+## 📑 개인일지 
 | 날짜 | 제목 | 한 줄 요약 | 링크 |
 |----|----|----|----|
 |2022.09.14| Xcode Update | 업데이트는 마음 먹고 하자. | [📄](https://www.notion.so/8ee0c1ac594e434ab8224980177d0dbb) |
