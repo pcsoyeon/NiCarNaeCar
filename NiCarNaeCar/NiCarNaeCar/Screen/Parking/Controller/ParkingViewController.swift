@@ -158,7 +158,9 @@ final class ParkingViewController: BaseViewController {
     
     @objc func touchUpSearchButton() {
         let viewController = MainSearchViewController()
-        viewController.locationClosure = { locality in
+        viewController.locationClosure = { [weak self] locality in
+            guard let self = self else { return }
+            
             self.selectedLocality = locality
             
             for locality in LocalityType.allCases {
