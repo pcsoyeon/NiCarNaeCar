@@ -15,24 +15,15 @@ import NiCarNaeCar_Util
 import SnapKit
 import Then
 
-protocol ParkingMapViewDelegate: ParkingViewController {
-    func touchUpCurrentLocationButton()
-}
-
 final class ParkingMapView: BaseView {
     
     // MARK: - UI Property
     
     var mapView = MKMapView()
     
-    private lazy var currentLocationButton = NDSFloatingButton().then {
+    lazy var currentLocationButton = NDSFloatingButton().then {
         $0.image = R.Image.btnLocation
-        $0.addTarget(self, action: #selector(touchUpCurrentLocationButton), for: .touchUpInside)
     }
-    
-    // MARK: - Property
-    
-    weak var buttonDelegate: ParkingMapViewDelegate?
     
     // MARK: - UI Method
     
@@ -58,12 +49,6 @@ final class ParkingMapView: BaseView {
     
     private func configureButton() {
         currentLocationButton.layer.applySketchShadow(color: R.Color.gray100, alpha: 0.3, x: 0, y: 4, blur: 10, spread: 0)
-    }
-    
-    // MARK: - @objc
-    
-    @objc func touchUpCurrentLocationButton() {
-        buttonDelegate?.touchUpCurrentLocationButton()
     }
 }
 

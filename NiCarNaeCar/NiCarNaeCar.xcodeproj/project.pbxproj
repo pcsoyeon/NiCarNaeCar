@@ -65,6 +65,7 @@
 		926DE48D28CAFC5E0083123F /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48C28CAFC5E0083123F /* URLConstant.swift */; };
 		926DE48F28CAFC9B0083123F /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE48E28CAFC9B0083123F /* EndPoint.swift */; };
 		926DE49328CB223B0083123F /* CarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926DE49228CB223B0083123F /* CarList.swift */; };
+		926FDBB22952E6860002B798 /* ParkingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926FDBB12952E6860002B798 /* ParkingViewModel.swift */; };
 		927404A428CC98010074FBEB /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9274049F28CC98010074FBEB /* Pretendard-ExtraBold.otf */; };
 		927404A628CC99D10074FBEB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404A528CC99D10074FBEB /* UILabel+Extension.swift */; };
 		927404AA28CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927404A928CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift */; };
@@ -212,6 +213,7 @@
 		926DE48C28CAFC5E0083123F /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
 		926DE48E28CAFC9B0083123F /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		926DE49228CB223B0083123F /* CarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarList.swift; sourceTree = "<group>"; };
+		926FDBB12952E6860002B798 /* ParkingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewModel.swift; sourceTree = "<group>"; };
 		9274049F28CC98010074FBEB /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		927404A528CC99D10074FBEB /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		927404A928CC9CD00074FBEB /* OnboardingTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -688,6 +690,14 @@
 			path = APIManager;
 			sourceTree = "<group>";
 		};
+		926FDBB02952E6560002B798 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				926FDBB12952E6860002B798 /* ParkingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		928D4C6E28D3309F001A029F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +801,7 @@
 				9250CFE428F5518E00628593 /* Model */,
 				9250CFE328F5518700628593 /* View */,
 				9250CFE228F5517D00628593 /* Controller */,
+				926FDBB02952E6560002B798 /* ViewModel */,
 			);
 			path = Parking;
 			sourceTree = "<group>";
@@ -1002,6 +1013,7 @@
 				929C3AA228CCE0C9004592A9 /* BrandInfo.swift in Sources */,
 				926DE45228CAD9D60083123F /* DetailViewController.swift in Sources */,
 				9277206128CF4D7900163925 /* SpotAPIManager.swift in Sources */,
+				926FDBB22952E6860002B798 /* ParkingViewModel.swift in Sources */,
 				928D4C8028D370EF001A029F /* SettingHeaderView.swift in Sources */,
 				92F80EF42905FECE00938A01 /* SettingCollectionViewCell.swift in Sources */,
 				92356D7128C9859900EB5333 /* Constant.swift in Sources */,

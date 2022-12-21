@@ -12,6 +12,9 @@ import MapKit
 import NiCarNaeCar_Util
 import NiCarNaeCar_Resource
 
+import RxSwift
+import RxCocoa
+
 final class ParkingViewController: BaseViewController {
     
     // MARK: - UI Property
@@ -42,6 +45,8 @@ final class ParkingViewController: BaseViewController {
     
     private var parkinglist: [ParkingDetailInfo] = []
     
+    private var disposeBag = DisposeBag()
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -58,6 +63,7 @@ final class ParkingViewController: BaseViewController {
         super.viewDidLoad()
         checkUserCurrentLocationAuthorization(locationManager.authorizationStatus)
         setLocationManager()
+        bind()
     }
     
     // MARK: - UI Method
@@ -65,7 +71,6 @@ final class ParkingViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         configureMapView()
-        configureButton()
     }
     
     override func setLayout() {
@@ -94,8 +99,17 @@ final class ParkingViewController: BaseViewController {
         rootView.mapView.register(DefaultAnnoationView.self, forAnnotationViewWithReuseIdentifier: DefaultAnnoationView.ReuseID)
     }
     
-    private func configureButton() {
-        rootView.buttonDelegate = self
+    private func bind() {
+        rootView.currentLocationButton.rx.tap
+            .debounce(.microseconds(10), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind { vc, _ in
+                if let latitude = vc.currentLatitude, let longtitude = vc.currentLongtitude {
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+                    vc.setRegion(center: center, meters: 1200)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Custom Method
@@ -160,17 +174,6 @@ final class ParkingViewController: BaseViewController {
             self.fetchParkingListWithRegion(self.selectedLocality)
         }
         transition(viewController, transitionStyle: .push)
-    }
-}
-
-// MARK: - Custom Delegate
-
-extension ParkingViewController: ParkingMapViewDelegate {
-    func touchUpCurrentLocationButton() {
-        if let latitude = currentLatitude, let longtitude = currentLongtitude {
-            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
-            setRegion(center: center, meters: 1200)
-        }
     }
 }
 
