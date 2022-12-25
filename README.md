@@ -1,6 +1,10 @@
 # 니카내카
 ![Frame 12](https://user-images.githubusercontent.com/59593430/190400639-1d3b796d-7950-4aa2-84eb-e718d268fc43.png)
 
+### Screen Shot 
+![Slide 16_9 - 2](https://user-images.githubusercontent.com/59593430/209460005-905a27d0-8283-484d-8203-d03ba449608b.png)
+
+
 ### 한 줄 소개
 서울시의 나눔카(쏘카/그린카) 주차 위치 정보 및 실시간 예약 현황을 알 수 있는 서비스
 
