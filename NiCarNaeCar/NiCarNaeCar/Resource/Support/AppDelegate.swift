@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseCore
+import FirebaseAnalytics
 import FirebaseMessaging
 
 @main
